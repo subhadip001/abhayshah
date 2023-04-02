@@ -12,7 +12,7 @@ function SignupForm() {
         <>
             <div className='h-[100vh] flex m-auto flex-col gap-2 justify-center my-auto'>
                 <form className="flex mx-auto w-[25rem] flex-col justify-around gap-5" onSubmit={(e) => { e.preventDefault() }}>
-                    <span className='text-[2.5rem] text-blue-600 w-[90%] mx-auto'>Sign Up</span>
+                    <span className='text-[2.5rem] text-blue-500 w-[90%] mx-auto'>Sign Up</span>
                     <div className='flex flex-col justify-center gap-5 w-[90%] mx-auto'>
                         <div className='flex flex-col'>
                             <label htmlFor="username">Enrollment Number</label>
@@ -58,7 +58,7 @@ function SignupForm() {
                                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
                             />
                         </div>
-                        <button className='bg-blue-600 h-10 text-white font-semibold' type="submit">Register</button>
+                        <button className='bg-blue-500 h-10 text-white font-semibold' type="submit">Register</button>
                     </div>
                     <Link className='w-[90%] mx-auto' href="/login">Already user ? Sign in !</Link>
                 </form>

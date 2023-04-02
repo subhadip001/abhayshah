@@ -8,9 +8,9 @@ const NavBar = () => {
     const router = useRouter()
 
     return (
-        <div className='bg-[#3CC4FF] flex justify-between items-center sticky top-0 z-50'>
+        <div className='bg-blue-500 h-[12vh] flex justify-between items-center sticky top-0 z-50'>
             <div className='flex items-center text-white text-xl w-[50%] justify-around'>
-                <Image className="scale-[0.7]" src={iitr} alt={"iitr"} priority={true} />
+                <Image className="scale-[0.6]" src={iitr} alt={"iitr"} priority={true} />
 
                 <Link className={`inline-block ${router.asPath==="/"?`underline`:``}`} href={"/"}>Home</Link>
                 <Link className={`inline-block ${router.asPath==="/team"?`underline`:``}`} href={"/team"}>Team</Link>
@@ -18,7 +18,7 @@ const NavBar = () => {
                 <Link className={`inline-block ${router.asPath==="/more"?`underline`:``}`} href={"/more"}>More</Link>
             </div>
             <div className='w-[10%]'>
-                <Link className='bg-white text-[#5183B8] text-[2vh] h-[35px] w-[55%] flex items-center justify-center font-semibold' href={"login"}>Log in</Link>
+                <Link className='bg-white text-blue-500 text-[2vh] h-[35px] w-[55%] flex items-center justify-center font-semibold' href={"login"}>Log in</Link>
             </div>
         </div>
     )
