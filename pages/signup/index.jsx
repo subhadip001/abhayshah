@@ -1,4 +1,7 @@
+import { AuthContext } from '@/store/AuthContext'
+import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 
 function SignupForm() {
@@ -7,11 +10,37 @@ function SignupForm() {
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
 
+    const router = useRouter()
+
+    const auth = useContext(AuthContext)
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (password !== confirm) {
+            console.log("confirm password doesnot match")
+            return
+        }
+
+        try {
+            const res = await axios.post('https://abhayasha.onrender.com/signup', {
+                username: username,
+                email: email,
+                password: password,
+            });
+
+            console.log(res)
+            router.push("/login")
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
 
     return (
         <>
             <div className='h-[100vh] flex m-auto flex-col gap-2 justify-center my-auto'>
-                <form className="flex mx-auto w-[25rem] flex-col justify-around gap-5" onSubmit={(e) => { e.preventDefault() }}>
+                <form className="flex mx-auto w-[25rem] flex-col justify-around gap-5" onSubmit={handleSubmit}>
                     <span className='text-[2.5rem] text-blue-500 w-[90%] mx-auto'>Sign Up</span>
                     <div className='flex flex-col justify-center gap-5 w-[90%] mx-auto'>
                         <div className='flex flex-col'>

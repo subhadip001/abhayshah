@@ -1,4 +1,7 @@
+import { AuthContext } from '@/store/AuthContext'
+import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 
 function LoginForm() {
@@ -6,11 +9,33 @@ function LoginForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
 
+    const auth = useContext(AuthContext)
+    const router = useRouter()
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const res = await axios.post('https://abhayasha.onrender.com/login', {
+                username: username,
+                password: password
+            });
+
+            auth.login(res.data.token, res.data.username);
+            console.log(res.status)
+            router.push("/dashboard");
+
+        } catch (error) {
+            console.log(error);
+            console.log(error.response.status)
+        }
+    };
+
 
     return (
         <>
             <div className='h-[100vh] flex m-auto flex-col gap-2 justify-center my-auto'>
-                <form onSubmit={(e) => { e.preventDefault() }} className="flex mx-auto w-[25rem] flex-col justify-around gap-5">
+                <form onSubmit={handleSubmit} className="flex mx-auto w-[25rem] flex-col justify-around gap-5">
                     <span className='text-[2.5rem] text-blue-500 w-[90%] mx-auto'>Sign in</span>
                     <div className='flex flex-col justify-center gap-5 w-[90%] mx-auto'>
                         <div className='flex flex-col'>
