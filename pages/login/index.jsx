@@ -3,30 +3,33 @@ import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
+import { CgSpinner } from 'react-icons/cg';
 
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const auth = useContext(AuthContext)
     const router = useRouter()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        setIsLoading(true)
         try {
             const res = await axios.post('https://abhayasha.onrender.com/login', {
                 username: username,
                 password: password
             });
-
             auth.login(res.data.token, res.data.username);
             console.log(res.status)
+            setIsLoading(false)
             router.push("/dashboard");
 
         } catch (error) {
             console.log(error);
+            setIsLoading(false)
             console.log(error.response.status)
         }
     };
@@ -60,7 +63,7 @@ function LoginForm() {
                                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
                             />
                         </div>
-                        <button className='bg-blue-500 h-10 text-white font-semibold' type="submit">Log in</button>
+                        <button className='bg-blue-500 h-10 flex justify-center items-center text-white font-semibold' type="submit">{isLoading ? <CgSpinner className='text-xl animate-spin' /> : "Log in"}</button>
                     </div>
                     <Link className='w-[90%] mx-auto' href="/signup">New here ? Create an account !</Link>
                 </form>

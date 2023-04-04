@@ -16,7 +16,7 @@ const NavBar = () => {
 
                 <Link className={`inline-block ${router.asPath === "/" ? `underline` : ``}`} href={"/"}>Home</Link>
                 <Link className={`inline-block ${router.asPath === "/team" ? `underline` : ``}`} href={"/team"}>Team</Link>
-                <Link className={`inline-block ${router.asPath === "/research" ? `underline` : ``}`} href={"/research"}>Research</Link>
+                <Link className={`inline-block ${router.asPath === "/publications" ? `underline` : ``}`} href={"/publications"}>Publications</Link>
                 {auth.username !== null ? <Link className={`inline-block ${router.asPath === "/dashboard" ? `underline` : ``}`} href={"/dashboard"}>Dashboard ({auth.username})</Link> : <></>}
             </div>
             <div className='w-[10%]'>
