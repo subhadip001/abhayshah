@@ -1,7 +1,9 @@
 import Sidebar from "@/components/TeamSidebar";
 import { AuthContext } from "@/store/AuthContext";
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
+import { CgSpinner } from "react-icons/cg";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -9,13 +11,52 @@ const Dashboard = () => {
   const [fullname, setFullname] = useState("");
   const [about, setAbout] = useState("");
   const [interest, setInterest] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getDetails = async () => {
+    console.log(auth.username);
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/getUserdetailsByUsername",
+        {
+          username: auth.username,
+        }
+      );
+      const data = res.data;
+      console.log(data);
+      setFullname(data.fullname);
+      setAbout(data.about);
+      setInterest(data.areaOfInterest);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    setFullname(auth.fullname);
+    getDetails();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+    try {
+      const res = await axios.post("http://localhost:8000/updateUserdetails", {
+        username: auth.username,
+        data: {
+          fullname: fullname,
+          about: about,
+          areaOfInterest: interest,
+        },
+      });
+      console.log(res.data);
+      setFullname(res.data.fullname);
+      setAbout(res.data.about);
+      setInterest(res.data.areaOfInterest);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
   };
 
   return (
@@ -56,6 +97,7 @@ const Dashboard = () => {
                 type="text"
                 name="about"
                 id="about"
+                value={about}
                 placeholder="Enter your experience/designation"
                 className="border outline-none px-3 py-2"
                 onChange={(e) => {
@@ -69,6 +111,7 @@ const Dashboard = () => {
                 type="text"
                 name="interest"
                 id="interest"
+                value={interest}
                 placeholder="Enter your interest"
                 className="border outline-none px-3 py-2"
                 onChange={(e) => {
@@ -77,8 +120,8 @@ const Dashboard = () => {
               />
             </div>
           </div>
-          <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
-            Update
+          <button className="bg-[#3B82F6] px-2 py-1 text-white w-20 flex justify-center items-center">
+            {isLoading ? <CgSpinner className="animate-spin" /> : "Update"}
           </button>
         </form>
       </div>

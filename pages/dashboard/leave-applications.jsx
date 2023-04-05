@@ -8,17 +8,17 @@ const leaveapplications = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
-    setFormData(data)
+    setFormData(data);
   };
   return (
     <div className="h-[100vh] w-[85%]">
       <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
         <span className="text-4xl">Leave Applications</span>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-          <div>
-            <div className="flex gap-1 items-center ">
+          <div className="flex gap-10 items-center">
+            <div className="flex gap-2 items-center">
               <input
-                className="cursor-pointer"
+                className="cursor-pointer scale-150"
                 type="radio"
                 name="l-app"
                 id="casual"
@@ -28,9 +28,9 @@ const leaveapplications = () => {
                 Casual
               </label>
             </div>
-            <div className="flex gap-1 items-center ">
+            <div className="flex items-center gap-2">
               <input
-                className="cursor-pointer"
+                className="cursor-pointer scale-150"
                 type="radio"
                 name="l-app"
                 id="medical"
@@ -40,9 +40,9 @@ const leaveapplications = () => {
                 Medical
               </label>
             </div>
-            <div className="flex gap-1 items-center ">
+            <div className="flex items-center gap-2">
               <input
-                className="cursor-pointer"
+                className="cursor-pointer scale-150"
                 type="radio"
                 name="l-app"
                 id="vacation"
@@ -53,9 +53,9 @@ const leaveapplications = () => {
               </label>
             </div>
 
-            <div className="flex gap-1 items-center ">
+            <div className="flex gap-2 items-center ">
               <input
-                className="cursor-pointer"
+                className="cursor-pointer scale-150"
                 type="radio"
                 name="l-app"
                 id="official"
@@ -66,9 +66,9 @@ const leaveapplications = () => {
               </label>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <textarea
-              className="w-full border border-gray-600 outline-none"
+              className="w-full border-2 outline-none"
               name="application"
               id="application"
               cols="30"
