@@ -12,7 +12,7 @@ const UserContextProvider = (props) => {
 
   const getList = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/userdetails");
+      const res = await axios.get("https://abhayasha.onrender.com/userdetails");
       setUserData(res.data);
     } catch (err) {
       console.log(err);

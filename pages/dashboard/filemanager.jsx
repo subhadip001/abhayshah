@@ -14,7 +14,7 @@ const filemanager = () => {
     setIsLoading(true);
     try {
 
-      const res = await axios.post("http://localhost:8000/addResource", {
+      const res = await axios.post("https://abhayasha.onrender.com/addResource", {
         username: auth.username,
         docname: docname,
         docDesc: docDesc,

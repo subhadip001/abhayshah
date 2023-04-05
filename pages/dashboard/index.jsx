@@ -17,7 +17,7 @@ const Dashboard = () => {
     console.log(auth.username);
     try {
       const res = await axios.post(
-        "http://localhost:8000/getUserdetailsByUsername",
+        "https://abhayasha.onrender.com/getUserdetailsByUsername",
         {
           username: auth.username,
         }
@@ -40,14 +40,17 @@ const Dashboard = () => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post("http://localhost:8000/updateUserdetails", {
-        username: auth.username,
-        data: {
-          fullname: fullname,
-          about: about,
-          areaOfInterest: interest,
-        },
-      });
+      const res = await axios.post(
+        "https://abhayasha.onrender.com/updateUserdetails",
+        {
+          username: auth.username,
+          data: {
+            fullname: fullname,
+            about: about,
+            areaOfInterest: interest,
+          },
+        }
+      );
       console.log(res.data);
       setFullname(res.data.fullname);
       setAbout(res.data.about);
