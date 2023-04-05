@@ -1,50 +1,89 @@
+import Sidebar from "@/components/TeamSidebar";
 import { AuthContext } from "@/store/AuthContext";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
 const Dashboard = () => {
-    const router = useRouter();
-    const auth = useContext(AuthContext);
-    const [fullname, setFullname] = useState("")
-    const [about, setAbout] = useState("")
-    const [interest, setInterest] = useState("")
+  const router = useRouter();
+  const auth = useContext(AuthContext);
+  const [fullname, setFullname] = useState("");
+  const [about, setAbout] = useState("");
+  const [interest, setInterest] = useState("");
 
-    if (!auth.username) {
-        if (typeof window !== "undefined") {
-            router.push("/");
-        }
-    }
+  useEffect(() => {
+    setFullname(auth.fullname);
+  }, []);
 
-    return (
-        <section className="h-[100vh]">
-            <form className='flex flex-col w-[50%] mx-auto'>
-                <div className="flex flex-col gap-2">
-                    <input
-                        type="text"
-                        name="fullname"
-                        id="fullname"
-                        placeholder="Enter full name"
-                        onChange={(e) => { setFullname(e.target.value) }}
-                    />
-                    <input
-                        type="text"
-                        name="about"
-                        id="about"
-                        placeholder="Enter your experience/designation"
-                        onChange={(e) => { setAbout(e.target.value) }}
-                    />
-                    <input
-                        type="text"
-                        name="interest"
-                        id="interest"
-                        placeholder="Enter your interest"
-                        onChange={(e) => { setInterest(e.target.value) }}
-                    />
-                </div>
-                <button type="submit">Update</button>
-            </form>
-        </section>
-    );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  };
+
+  return (
+    <section className="h-[100vh] w-[85%]">
+      <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
+        <span className="text-4xl">User Details</span>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="username">Enrollment No : </label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enrollment no"
+                className="border outline-none cursor-not-allowed px-3 py-2"
+                value={auth.username}
+                disabled
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="fullname">Full Name : </label>
+              <input
+                type="text"
+                name="fullname"
+                id="fullname"
+                placeholder="Enter full name"
+                className="border outline-none  px-3 py-2"
+                value={fullname}
+                onChange={(e) => {
+                  setFullname(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="about">Add your Designation : </label>
+              <input
+                type="text"
+                name="about"
+                id="about"
+                placeholder="Enter your experience/designation"
+                className="border outline-none px-3 py-2"
+                onChange={(e) => {
+                  setAbout(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="interest">Area of Interest : </label>
+              <input
+                type="text"
+                name="interest"
+                id="interest"
+                placeholder="Enter your interest"
+                className="border outline-none px-3 py-2"
+                onChange={(e) => {
+                  setInterest(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
+            Update
+          </button>
+        </form>
+      </div>
+    </section>
+  );
 };
 
 export default Dashboard;
