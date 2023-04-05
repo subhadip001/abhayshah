@@ -25,7 +25,7 @@ export default function Home() {
           </div>
           <div className="w-[65%] h-[90%] flex flex-col overflow-y-auto">
             <div className="w-[95%] mx-auto mt-5 flex flex-col gap-10">
-              <span className="text-6xl">WELCOME</span>
+              <span className="text-6xl text-gray-800">WELCOME</span>
               <div className="flex flex-col gap-5">
                 <span className="border-2 bg-[#3b83f638] text-[#3B82F6] border-[#3B82F6] flex justify-center items-center py-3 text-xl">
                   Problems of the Day
