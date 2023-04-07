@@ -52,7 +52,7 @@ const Team = ({ users }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await axios.get("http://localhost:8000/userfullnames");
+  const res = await axios.get("https://abhayasha.onrender.com/userfullnames");
   const users = await res.data;
   console.log(users);
   return {

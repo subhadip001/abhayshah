@@ -13,7 +13,7 @@ const Username = ({ users }) => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8000/userdetails/${username}`
+        `https://abhayasha.onrender.com/userdetails/${username}`
       );
       console.log(res.data);
       setUser(res.data);
@@ -70,7 +70,7 @@ const Username = ({ users }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await axios.get("http://localhost:8000/userfullnames");
+  const res = await axios.get("https://abhayasha.onrender.com/userfullnames");
   const users = await res.data;
   console.log(users);
   return {
