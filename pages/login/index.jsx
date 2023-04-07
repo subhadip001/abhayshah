@@ -51,6 +51,7 @@ function LoginForm() {
                 id="username"
                 placeholder="Type username"
                 value={username}
+                required
                 onChange={(e) => setUsername(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
@@ -62,6 +63,7 @@ function LoginForm() {
                 id="password"
                 placeholder="Type password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />

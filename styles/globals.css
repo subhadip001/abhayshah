@@ -94,3 +94,14 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background-color: #E5E7EB;
+  border-radius: 0px;
+}
+

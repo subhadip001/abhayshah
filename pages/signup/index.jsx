@@ -57,6 +57,7 @@ function SignupForm() {
                 placeholder="Type username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
             </div>
@@ -78,6 +79,7 @@ function SignupForm() {
                 id="email"
                 placeholder="Type email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
@@ -89,6 +91,7 @@ function SignupForm() {
                 id="password"
                 placeholder="Type password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
@@ -100,6 +103,7 @@ function SignupForm() {
                 id="confirm"
                 placeholder="Confirm password"
                 value={confirm}
+                required
                 onChange={(e) => setConfirm(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />

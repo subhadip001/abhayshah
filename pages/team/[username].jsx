@@ -3,19 +3,20 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-const Username = () => {
+const Username = ({ users }) => {
   const router = useRouter();
   const username = router.query.username;
-  const [userList, setUserList] = useState([]);
+  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const getUserList = async () => {
-    console.log("working team");
+  const getUser = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("https://abhayasha.onrender.com/userdetails");
-      //console.log(res.data);
-      setUserList(res.data);
+      const res = await axios.get(
+        `http://localhost:8000/userdetails/${username}`
+      );
+      console.log(res.data);
+      setUser(res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -24,46 +25,59 @@ const Username = () => {
   };
 
   useEffect(() => {
-    getUserList();
-  }, []);
+    getUser();
+  }, [username]);
 
   return (
-    <div className="h-[100vh] flex mx-auto">
-      <div className="w-[15%] bg-[#D4FCFF]">
-        <ul className="text-center">
-          {userList.map((data, i) => {
-            return (
-              <li
-                key={i}
-                className="h-[calc(1.5rem+1.5vw)] flex items-center justify-center"
-              >
+    <main className="w-[93%] mx-auto">
+      <div className="h-[100vh]  mx-auto flex justify-center gap-5 items-center">
+        <div className="w-[18%] h-[90%] bg-[#D4FCFF]">
+          <ul className="text-center flex flex-col gap-2 w-[95%] mx-auto">
+            <li className="h-[calc(1.5rem+1.5vw)] flex justify-center items-center ">
+              Abhay Shah (Proff)
+            </li>
+            {users.map((data, i) => {
+              return (
                 <Link
-                  className={`inline-block ${
+                  key={i}
+                  className={`flex items-center justify-center ${
                     router.asPath === `/team/${data.username}`
                       ? `underline`
                       : ``
                   }`}
                   href={`/team/${data.username}`}
                 >
-                  {data.fullname}
+                  <li className="h-[calc(1.5rem+1.5vw)] flex justify-center items-center ">
+                    <span> {data.fullname}</span>
+                  </li>
                 </Link>
-              </li>
-            );
-          })}
-          {isLoading && <li>Loading...</li>}
-        </ul>
-      </div>
-      <div className="w-[85%]">
-        <div className="h-[30%] relative">
-          {username}
-          <div className="block w-[calc(8vw+10rem)] h-[calc(8vw+10rem)] top-[calc(3.5rem-1.5vw)] left-14 bg-[#CECECE] absolute z-30">
-            pp
-          </div>
+              );
+            })}
+          </ul>
         </div>
-        <div className="h-[70%] bg-[#E7E7E7]">lower</div>
+        <div className="w-[75%] mx-auto h-[90%]">
+          <div className="h-[30%] relative">
+            {user.fullname}
+            <div className="block w-[calc(8vw+10rem)] h-[calc(8vw+10rem)] top-[calc(3.5rem-1.5vw)] left-14 bg-[#CECECE] absolute z-30">
+              {user.username}
+            </div>
+          </div>
+          <div className="h-[70%] bg-[#E7E7E7]">Abhay Shah</div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await axios.get("http://localhost:8000/userfullnames");
+  const users = await res.data;
+  console.log(users);
+  return {
+    props: {
+      users,
+    },
+  };
+}
 
 export default Username;
