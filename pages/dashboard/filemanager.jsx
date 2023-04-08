@@ -179,11 +179,7 @@ const filemanager = () => {
                   type="button"
                   className="bg-[#3B82F6] px-2 py-1 text-white flex justify-center items-center"
                 >
-                  {isLoading ? (
-                    <CgSpinner className="animate-spin" />
-                  ) : (
-                    "Upload"
-                  )}
+                  {false ? <CgSpinner className="animate-spin" /> : "Upload"}
                 </button>
               </div>
             </div>
