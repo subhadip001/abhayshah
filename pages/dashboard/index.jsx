@@ -13,6 +13,14 @@ const Dashboard = () => {
   const [interest, setInterest] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  if (!auth.username) {
+    if (typeof window !== "undefined") {
+      if (router.asPath.includes("/dashboard")) {
+        router.push("/");
+      }
+    }
+  }
+
   const getDetails = async () => {
     console.log(auth.username);
     try {

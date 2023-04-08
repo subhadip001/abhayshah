@@ -11,9 +11,9 @@ export const AuthContext = createContext({
 });
 
 const AuthContextProvider = (props) => {
-  const [username, setUsername] = useState(null);
-  const [fullname, setFullname] = useState(null);
-  const [token, setToken] = useState(null);
+  const [username, setUsername] = useState();
+  const [fullname, setFullname] = useState();
+  const [token, setToken] = useState();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,34 +26,42 @@ const AuthContextProvider = (props) => {
   }, []);
 
   const login = (token, username, fullname) => {
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("username", username);
-    sessionStorage.setItem("fullname", fullname);
-    const newUsername = sessionStorage.getItem("username") || null;
-    const newToken = sessionStorage.getItem("token") || null;
-    const newFullname = sessionStorage.getItem("fullname") || null;
-    setToken(newToken);
-    setUsername(newUsername);
-    setFullname(newFullname);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("username", username);
+      sessionStorage.setItem("fullname", fullname);
+
+      const newUsername = sessionStorage.getItem("username") || null;
+      const newToken = sessionStorage.getItem("token") || null;
+      const newFullname = sessionStorage.getItem("fullname") || null;
+
+      setToken(newToken);
+      setUsername(newUsername);
+      setFullname(newFullname);
+    }
   };
 
   const logout = () => {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("username");
-    const newUsername = sessionStorage.getItem("username") || null;
-    const newToken = sessionStorage.getItem("token") || null;
-    setToken(newToken);
-    setUsername(newUsername);
-    router.push("/");
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("username");
+      const newUsername = sessionStorage.getItem("username") || null;
+      const newToken = sessionStorage.getItem("token") || null;
+      setToken(newToken);
+      setUsername(newUsername);
+      router.push("/");
+    }
   };
 
   const signup = (token, username) => {
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("username", username);
-    const newUsername = sessionStorage.getItem("username") || null;
-    const newToken = sessionStorage.getItem("token") || null;
-    setToken(newToken);
-    setUsername(newUsername);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("username", username);
+      const newUsername = sessionStorage.getItem("username") || null;
+      const newToken = sessionStorage.getItem("token") || null;
+      setToken(newToken);
+      setUsername(newUsername);
+    }
   };
 
   return (

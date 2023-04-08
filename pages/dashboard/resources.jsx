@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Resources = () => {
-  return (
-    <div className='h-[100vh]'>resouces</div>
-  )
-}
+  return <div className="h-[100vh]">My Resouces</div>;
+};
 
-export default Resources
+export default Resources;

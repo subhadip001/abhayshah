@@ -51,7 +51,18 @@ const Team = ({ users }) => {
   );
 };
 
-export async function getServerSideProps() {
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       { params: { id: "20118091" } },
+//       { params: { id: "20118092" } },
+//       { params: { id: "20118092" } },
+//     ],
+//     fallback: false, // can also be true or 'blocking'
+//   };
+// }
+
+export async function getStaticProps() {
   const res = await axios.get("https://abhayasha.onrender.com/userfullnames");
   const users = await res.data;
   console.log(users);
@@ -62,4 +73,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Team;
+
