@@ -17,7 +17,7 @@ const Sidebar = () => {
                 }`}
                 href={"/dashboard"}
               >
-                Basic details
+                User details
               </Link>
               <Link
                 className={`inline-block ${

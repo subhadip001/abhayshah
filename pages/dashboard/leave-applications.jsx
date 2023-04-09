@@ -62,7 +62,11 @@ const leaveapplications = () => {
   return (
     <div className="h-[100vh] w-[85%]">
       <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
-        <span className="text-4xl">Create a Leave Application</span>
+        {username === "admin" ? (
+          <span className="text-4xl">All Leave Applications</span>
+        ) : (
+          <span className="text-4xl">Create a Leave Application</span>
+        )}
         {username !== "admin" ? (
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div className="flex gap-10 items-center">
