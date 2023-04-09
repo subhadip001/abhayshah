@@ -22,6 +22,7 @@ const filemanager = () => {
   const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState(null);
   const [fileTab, setFileTab] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,6 +44,7 @@ const filemanager = () => {
         );
         console.log(res.data);
         setIsLoading(false);
+        setIsAdded(true);
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -60,6 +62,7 @@ const filemanager = () => {
         );
         console.log(res.data);
         setIsLoading(false);
+        setIsAdded(true);
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -77,6 +80,7 @@ const filemanager = () => {
         );
         console.log(res.data);
         setIsLoading(false);
+        setIsAdded(true);
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -137,12 +141,15 @@ const filemanager = () => {
 
   return (
     <section className="h-[100vh] w-[85%]">
-      <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
+      <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5 overflow-y-auto">
         <span className="text-4xl">Upload Files</span>
         <div className="flex justify-between item-center gap-2">
           <div
             onClick={() => {
               setFileTab(1);
+              setDownloadURL("");
+              setProgress(0);
+              setIsAdded(false);
             }}
             className={`flex h-[7vh] w-[30%] justify-center items-center ${
               fileTab === 1 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
@@ -153,6 +160,9 @@ const filemanager = () => {
           <div
             onClick={() => {
               setFileTab(2);
+              setDownloadURL("");
+              setProgress(0);
+              setIsAdded(false);
             }}
             className={`flex h-[7vh] w-[30%] justify-center items-center ${
               fileTab === 2 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
@@ -163,6 +173,9 @@ const filemanager = () => {
           <div
             onClick={() => {
               setFileTab(3);
+              setDownloadURL("");
+              setProgress(0);
+              setIsAdded(false);
             }}
             className={`flex h-[7vh] w-[30%] justify-center items-center ${
               fileTab === 3 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
@@ -171,7 +184,10 @@ const filemanager = () => {
             Projects
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-8 h-[70vh] overflow-y-auto"
+        >
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
               <label htmlFor="fullname">Document Name : </label>
@@ -189,7 +205,7 @@ const filemanager = () => {
               />
             </div>
             {fileTab === 1 && (
-              <div className="flex gap-10 items-center">
+              <div className="flex gap-10 items-center ml-1">
                 <div className="flex gap-2 items-center">
                   <input
                     className="cursor-pointer scale-150"
@@ -254,15 +270,22 @@ const filemanager = () => {
                 </button>
               </div>
             </div>
-            {progress > 0 && <p>Upload progress: {progress}%</p>}
-            {downloadURL && <p>File uploaded successfully!</p>}
+            <div className="flex gap-3">
+              {progress > 0 && <p>Upload progress: {progress}%</p>}
+              {downloadURL && <p>File uploaded successfully!</p>}
+            </div>
           </div>
           {downloadURL && (
-            <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center">
+            <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">
               {isLoading ? (
                 <CgSpinner className="animate-spin" />
               ) : (
-                "Add to Resources"
+                <>
+                  {fileTab === 1 && !isAdded && "Add to Resources"}
+                  {fileTab === 2 && !isAdded && "Add to Publications"}
+                  {fileTab === 3 && !isAdded && "Add to Projects"}
+                  {isAdded && "Added"}
+                </>
               )}
             </button>
           )}

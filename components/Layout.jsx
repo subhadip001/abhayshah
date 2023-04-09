@@ -9,8 +9,6 @@ export default function Layout({ children }) {
   const router = useRouter();
   const auth = useContext(AuthContext);
 
-  
-
   if (router.asPath === "/login" || router.asPath === "/signup") {
     return (
       <>
@@ -29,7 +27,7 @@ export default function Layout({ children }) {
           <Sidebar />
           {children}
         </main>
-        <Footer />
+        {!router.asPath.includes("/dashboard") && <Footer />}
       </>
     );
   }

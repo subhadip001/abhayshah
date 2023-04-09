@@ -16,6 +16,7 @@ const PublicResouces = () => {
       );
       console.log(res.data);
       setResources(res.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -55,6 +56,9 @@ const PublicResouces = () => {
               </>
             );
           })}
+          {isLoading && (
+            <div className="flex justify-center item-center">Loading...</div>
+          )}
         </div>
       </div>
     </section>
