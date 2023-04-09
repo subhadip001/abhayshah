@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
+import { CgSpinner } from "react-icons/cg";
 
 function SignupForm() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [isLoading , setIsLoading] = useState(false)
 
   const router = useRouter();
 
@@ -17,7 +19,7 @@ function SignupForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setIsLoading(true)
     if (password !== confirm) {
       console.log("confirm password doesnot match");
       return;
@@ -32,8 +34,10 @@ function SignupForm() {
       });
 
       console.log(res);
+      setIsLoading(false)
       router.push("/login");
     } catch (error) {
+      setIsLoading(false)
       console.error(error.message);
     }
   };
@@ -112,7 +116,11 @@ function SignupForm() {
               className="bg-blue-500 h-10 text-white font-semibold"
               type="submit"
             >
-              Register
+              {isLoading ? (
+                <CgSpinner className="text-xl animate-spin" />
+              ) : (
+                "Register"
+              )}
             </button>
           </div>
           <Link className="w-[90%] mx-auto" href="/login">
