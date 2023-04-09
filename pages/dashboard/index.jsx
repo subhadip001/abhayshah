@@ -96,7 +96,7 @@ const Dashboard = () => {
                 id="fullname"
                 placeholder="Enter full name"
                 className="border outline-none  px-3 py-2"
-                value={fullname || "Loading..."}
+                value={fullname}
                 onChange={(e) => {
                   setFullname(e.target.value);
                 }}
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 type="text"
                 name="about"
                 id="about"
-                value={about || "Loading..."}
+                value={about}
                 placeholder="Enter your experience/designation"
                 className="border outline-none px-3 py-2"
                 onChange={(e) => {
@@ -122,7 +122,7 @@ const Dashboard = () => {
                 type="text"
                 name="interest"
                 id="interest"
-                value={interest || "Loading..."}
+                value={interest}
                 placeholder="Enter your interest"
                 className="border outline-none px-3 py-2"
                 onChange={(e) => {
