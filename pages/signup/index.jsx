@@ -11,7 +11,7 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [isLoading , setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -19,7 +19,7 @@ function SignupForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     if (password !== confirm) {
       console.log("confirm password doesnot match");
       return;
@@ -34,10 +34,10 @@ function SignupForm() {
       });
 
       console.log(res);
-      setIsLoading(false)
+      setIsLoading(false);
       router.push("/login");
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       console.error(error.message);
     }
   };
@@ -113,7 +113,7 @@ function SignupForm() {
               />
             </div>
             <button
-              className="bg-blue-500 h-10 text-white font-semibold"
+              className="bg-blue-500 flex justify-center items-center h-10 text-white font-semibold"
               type="submit"
             >
               {isLoading ? (
