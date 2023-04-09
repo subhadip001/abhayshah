@@ -31,6 +31,16 @@ const Sidebar = () => {
               </Link>
               <Link
                 className={`inline-block ${
+                  router.asPath === "/dashboard/publicResources"
+                    ? `underline`
+                    : ``
+                }`}
+                href={"/dashboard/publicResources"}
+              >
+                All public Resources
+              </Link>
+              <Link
+                className={`inline-block ${
                   router.asPath === "/dashboard/resources" ? `underline` : ``
                 }`}
                 href={"/dashboard/resources"}

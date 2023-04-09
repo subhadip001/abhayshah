@@ -21,6 +21,7 @@ const filemanager = () => {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState(null);
+  const [fileTab, setFileTab] = useState(1);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,22 +29,58 @@ const filemanager = () => {
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     setIsLoading(true);
-    try {
-      const res = await axios.post(
-        "https://abhayasha.onrender.com/addResource",
-        {
-          username: auth.username,
-          docname: docname,
-          docType: data["d-type"],
-          docDesc: docDesc,
-          docLink: downloadURL,
-        }
-      );
-      console.log(res.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
+    if (fileTab === 1) {
+      try {
+        const res = await axios.post(
+          "https://abhayasha.onrender.com/addResource",
+          {
+            username: auth.username,
+            docname: docname,
+            docType: data["d-type"],
+            docDesc: docDesc,
+            docLink: downloadURL,
+          }
+        );
+        console.log(res.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    } else if (fileTab === 2) {
+      try {
+        const res = await axios.post(
+          "https://abhayasha.onrender.com/addPublications",
+          {
+            username: auth.username,
+            docname: docname,
+            docDesc: docDesc,
+            docLink: downloadURL,
+          }
+        );
+        console.log(res.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    } else if (fileTab === 3) {
+      try {
+        const res = await axios.post(
+          "https://abhayasha.onrender.com/addProjects",
+          {
+            username: auth.username,
+            docname: docname,
+            docDesc: docDesc,
+            docLink: downloadURL,
+          }
+        );
+        console.log(res.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     }
   };
 
@@ -101,7 +138,39 @@ const filemanager = () => {
   return (
     <section className="h-[100vh] w-[85%]">
       <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
-        <span className="text-4xl">Upload Resource Files</span>
+        <span className="text-4xl">Upload Files</span>
+        <div className="flex justify-between item-center gap-2">
+          <div
+            onClick={() => {
+              setFileTab(1);
+            }}
+            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+              fileTab === 1 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
+            } cursor-pointer`}
+          >
+            Resources
+          </div>
+          <div
+            onClick={() => {
+              setFileTab(2);
+            }}
+            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+              fileTab === 2 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
+            } cursor-pointer`}
+          >
+            Publications
+          </div>
+          <div
+            onClick={() => {
+              setFileTab(3);
+            }}
+            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+              fileTab === 3 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
+            } cursor-pointer`}
+          >
+            Projects
+          </div>
+        </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
@@ -119,33 +188,35 @@ const filemanager = () => {
                 }}
               />
             </div>
-            <div className="flex gap-10 items-center">
-              <div className="flex gap-2 items-center">
-                <input
-                  className="cursor-pointer scale-150"
-                  type="radio"
-                  name="d-type"
-                  id="public"
-                  value="public"
-                  defaultChecked
-                />
-                <label className="cursor-pointer" htmlFor="public">
-                  Public
-                </label>
+            {fileTab === 1 && (
+              <div className="flex gap-10 items-center">
+                <div className="flex gap-2 items-center">
+                  <input
+                    className="cursor-pointer scale-150"
+                    type="radio"
+                    name="d-type"
+                    id="public"
+                    value="public"
+                    defaultChecked
+                  />
+                  <label className="cursor-pointer" htmlFor="public">
+                    Public
+                  </label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    className="cursor-pointer scale-150"
+                    type="radio"
+                    name="d-type"
+                    id="private"
+                    value="private"
+                  />
+                  <label className="cursor-pointer" htmlFor="private">
+                    Private
+                  </label>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <input
-                  className="cursor-pointer scale-150"
-                  type="radio"
-                  name="d-type"
-                  id="private"
-                  value="private"
-                />
-                <label className="cursor-pointer" htmlFor="private">
-                  Private
-                </label>
-              </div>
-            </div>
+            )}
             <div className="flex flex-col gap-2">
               <label htmlFor="about">Document Description : </label>
               <textarea
