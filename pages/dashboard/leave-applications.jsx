@@ -153,7 +153,7 @@ const leaveapplications = () => {
                       <span className="text-lg font-semibold">
                         {data?.appType}
                       </span>
-                      <div className="mt-2 whitespace-pre-wrap">
+                      <div className="mt-2 whitespace-pre-wrap bg-gray-100 py-5 px-5 w-[95%] mx-auto">
                         {data?.appDesc}
                       </div>
                     </div>
