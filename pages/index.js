@@ -1,8 +1,33 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/store/AuthContext";
+import axios from "axios";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const auth = useContext(AuthContext);
+  const username = auth.username;
+  const [problems, setProblems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getProblems = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get("https://abhayasha.onrender.com/getProblems");
+      console.log(res.data);
+      setProblems(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getProblems();
+  }, []);
+
   return (
     <>
       <Head>
@@ -30,42 +55,31 @@ export default function Home() {
                 <span className="border-2 bg-[#3b83f638] text-[#3B82F6] border-[#3B82F6] flex justify-center items-center py-3 text-xl">
                   Problems of the Day
                 </span>
-                <div>
-                  <span>
-                    Q1. Lorem ipsum dolor sit amet consectetur adipisicing elit
-                    ipsum debitis ex saepe nulla libero, temporibus unde
-                    ratione?
-                  </span>
-                  <textarea
-                    className="border-2 outline-none px-3 py-2"
-                    name="answerone"
-                    placeholder="Type your answer here"
-                    id="answerone"
-                    cols="122"
-                    rows="10"
-                  ></textarea>
-                  <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
-                    Submit
-                  </button>
-                </div>
-                <div>
-                  <span>
-                    Q2. Lorem ipsum dolor sit amet consectetur adipisicing elit
-                    ipsum debitis ex saepe nulla libero, temporibus unde
-                    ratione?
-                  </span>
-                  <textarea
-                    className="border-2 outline-none px-3 py-2"
-                    name="answertwo"
-                    placeholder="Type your answer here"
-                    id="answertwo"
-                    cols="122"
-                    rows="10"
-                  ></textarea>
-                  <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
-                    Submit
-                  </button>
-                </div>
+                {isLoading && (
+                  <div className="flex justify-center item-center">
+                    Loading...
+                  </div>
+                )}
+                {problems.map((data, i) => {
+                  return (
+                    <div key={i} className="">
+                      <span>
+                        Q{i + 1}. {data?.question}
+                      </span>
+                      <textarea
+                        className="border-2 outline-none px-3 py-2"
+                        name="answerone"
+                        placeholder="Type your answer here"
+                        id="answerone"
+                        cols="122"
+                        rows="10"
+                      ></textarea>
+                      <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
+                        Submit
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

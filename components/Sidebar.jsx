@@ -1,9 +1,12 @@
+import { AuthContext } from "@/store/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 
 const Sidebar = () => {
   const router = useRouter();
+  const auth = useContext(AuthContext);
+  const username = auth.username;
 
   return (
     <>
@@ -55,6 +58,18 @@ const Sidebar = () => {
               >
                 File Manager
               </Link>
+              {username === "admin" && (
+                <Link
+                  className={`inline-block ${
+                    router.asPath === "/dashboard/postmanager"
+                      ? `underline`
+                      : ``
+                  }`}
+                  href={"/dashboard/postmanager"}
+                >
+                  Post Manager
+                </Link>
+              )}
             </ul>
           </div>
         </div>
