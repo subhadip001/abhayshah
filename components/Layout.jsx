@@ -9,6 +9,14 @@ export default function Layout({ children }) {
   const router = useRouter();
   const auth = useContext(AuthContext);
 
+  if (!auth.username) {
+    if (typeof window !== "undefined") {
+      if (router.asPath.includes("/dashboard")) {
+        router.push("/");
+      }
+    }
+  }
+
   if (router.asPath === "/login" || router.asPath === "/signup") {
     return (
       <>
