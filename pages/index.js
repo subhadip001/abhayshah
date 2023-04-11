@@ -10,6 +10,7 @@ export default function Home() {
   const username = auth.username;
   const [problems, setProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup , setShowPopup] = useState(true)
 
   const getProblems = async () => {
     setIsLoading(true);
@@ -62,7 +63,7 @@ export default function Home() {
                 )}
                 {problems.map((data, i) => {
                   return (
-                    <div key={i} className="">
+                    <div key={i} className="flex flex-col">
                       <span>
                         Q{i + 1}. {data?.question}
                       </span>
