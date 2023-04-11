@@ -10,7 +10,8 @@ export default function Home() {
   const username = auth.username;
   const [problems, setProblems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showPopup , setShowPopup] = useState(true)
+  const [showPopup, setShowPopup] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const getProblems = async () => {
     setIsLoading(true);
@@ -29,6 +30,65 @@ export default function Home() {
     getProblems();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("visited", "true");
+    setShowPopup(false);
+  };
+
+  const handleClose = () => {
+    localStorage.setItem("visited", "true");
+    setShowPopup(false);
+  };
+
+  useEffect(() => {
+    const visited = localStorage.getItem("visited");
+    if (!visited) {
+      setShowPopup(true);
+    }
+  }, []);
+
+  const Popup = ({ className }) => {
+    return (
+      <>
+        <div className={className}>
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-lg font-bold mb-4">
+              Why are you visiting this page?
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <label className="block mb-4">
+                <span className="text-gray-700">Reason:</span>
+                <textarea
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  rows="3"
+                  placeholder="Enter your reason here"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                ></textarea>
+              </label>
+              <div className="flex justify-end">
+                <button
+                  className="mr-4 text-gray-600 hover:text-gray-800 font-medium"
+                  type="button"
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+                <button
+                  className="bg-blue-500 text-white rounded-lg px-4 py-2"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -38,7 +98,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="h-[100vh] flex gap-5 justify-center items-center">
+        <div className="h-[100vh] flex gap-5 justify-center items-center relative">
+          {showPopup && (
+            <Popup
+              className={
+                "fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
+              }
+            />
+          )}
           <div className="w-[23%] h-[90%] flex flex-col gap-10 overflow-y-auto">
             <div className="w-[95%] mx-auto">
               <span>NEWS ARCHIVE</span>
