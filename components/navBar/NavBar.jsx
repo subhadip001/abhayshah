@@ -14,7 +14,9 @@ const NavBar = () => {
             <div className='flex items-center text-white text-xl gap-10 h-[12vh] justify-around'>
                 <Image className="scale-[0.5] ml-2 mt-3" src={iitr} alt={"iitr"} priority={true} />
                 <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/" ? `underline` : ``}`} href={"/"}>Home</Link>
-                <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/team/admin" ? `underline` : ``}`} href={"/team/admin"}>Team</Link>
+                <Link className={`inline-block mt-7 hover:underline ${router.asPath.includes("/team") ? `underline` : ``}`} href={"/team/admin"}>Team</Link>
+                <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/opportunities" ? `underline` : ``}`} href={"/opportunities"}>Opportunities</Link>
+                <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/facilities" ? `underline` : ``}`} href={"/facilities"}>Facilities</Link>
                 <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/publications" ? `underline` : ``}`} href={"/publications"}>Publications</Link>
                 <Link className={`inline-block mt-7 hover:underline ${router.asPath === "/research-projects" ? `underline` : ``}`} href={"/research-projects"}>Research Projects</Link>
                 {auth.username !== null ? <Link className={`inline-block mt-7 hover:underline ${router.asPath.includes("/dashboard") ? `underline` : ``}`} href={"/dashboard"}>Dashboard ({auth.username})</Link> : <></>}
