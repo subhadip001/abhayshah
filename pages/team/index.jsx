@@ -10,10 +10,10 @@ const Team = ({ users }) => {
 
   return (
     <main className="w-[93%] mx-auto">
-      <div className="h-[100vh]  mx-auto flex justify-center gap-5 items-center">
+      <div className="h-[150vh]  mx-auto flex justify-center gap-5 items-center">
         <div className="w-[18%] h-[90%] bg-[#D4FCFF]">
           <ul className="text-center flex flex-col gap-2 w-[95%] mx-auto">
-            <li className="h-[calc(1.5rem+1.5vw)] flex justify-center items-center ">
+            <li className="h-[100%] flex justify-center items-center ">
               Abhay Shah (Proff)
             </li>
             {users.map((data, i) => {
@@ -36,15 +36,7 @@ const Team = ({ users }) => {
             {isLoading && <li>Loading...</li>}
           </ul>
         </div>
-        <div className="w-[75%] mx-auto h-[90%]">
-          <div className="h-[30%] relative">
-            Abhay Shah Cover
-            <div className="block w-[calc(8vw+10rem)] h-[calc(8vw+10rem)] top-[calc(3.5rem-1.5vw)] left-14 bg-[#CECECE] absolute z-30">
-              Abhay
-            </div>
-          </div>
-          <div className="h-[70%] bg-[#E7E7E7]">Abhay Shah</div>
-        </div>
+        <div className="w-[75%] mx-auto h-[110%]"></div>
       </div>
     </main>
   );

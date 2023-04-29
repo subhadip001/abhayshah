@@ -36,7 +36,7 @@ const Publications = () => {
             return (
               <div
                 key={i}
-                className="card border-2 py-4 px-3 flex flex-col gap-5 bg-gray-200"
+                className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl"
               >
                 <div className="flex flex-col gap-2">
                   <span className="text-lg font-semibold">{data?.docname}</span>
@@ -48,7 +48,7 @@ const Publications = () => {
                 <a
                   href={data?.docLink}
                   target="_blank"
-                  className="w-[7%] text-center bg-[#3B82F6] text-white py-1"
+                  className="w-[10%] text-center bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 rounded font-semibold"
                 >
                   Open File
                 </a>
