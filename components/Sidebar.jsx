@@ -12,7 +12,7 @@ const Sidebar = () => {
     <>
       {router.asPath.includes("/dashboard") && (
         <div className="block w-[15%] h-[100vh]">
-          <div className="flex flex-col h-full bg-[#efefef]">
+          <div className="flex flex-col h-[100vh] bg-[#efefef]">
             <ul className="text-center flex flex-col gap-5 mt-5">
               <Link
                 className={`inline-block ${
@@ -32,6 +32,103 @@ const Sidebar = () => {
               >
                 Leave Applications
               </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/filemanager" ? `underline` : ``
+                }`}
+                href={"/dashboard/filemanager"}
+              >
+                Honors
+              </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/education" ? `underline` : ``
+                }`}
+                href={"/dashboard/education"}
+              >
+                Education
+              </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/profession" ? `underline` : ``
+                }`}
+                href={"/dashboard/profession"}
+              >
+                Profession
+              </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/administrative"
+                    ? `underline`
+                    : ``
+                }`}
+                href={"/dashboard/administrative"}
+              >
+                Administrative
+              </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/research" ? `underline` : ``
+                }`}
+                href={"/dashboard/research"}
+              >
+                Research
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/teaching" ? `underline` : ``
+                }`}
+                href={"/dashboard/teaching"}
+              >
+                Teaching
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/phds" ? `underline` : ``
+                }`}
+                href={"/dashboard/phds"}
+              >
+                PHD Supervision
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/short" ? `underline` : ``
+                }`}
+                href={"/dashboard/short"}
+              >
+                Short Term Courses
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/lectures" ? `underline` : ``
+                }`}
+                href={"/dashboard/lectures"}
+              >
+                Special Lectures
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/seminars" ? `underline` : ``
+                }`}
+                href={"/dashboard/seminars"}
+              >
+                Seminars
+              </Link>
+
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/journal" ? `underline` : ``
+                }`}
+                href={"/dashboard/journal"}
+              >
+                Journal
+              </Link>
+
               <Link
                 className={`inline-block ${
                   router.asPath === "/dashboard/publicResources"
@@ -58,6 +155,7 @@ const Sidebar = () => {
               >
                 File Manager
               </Link>
+
               {username === "admin" && (
                 <Link
                   className={`inline-block ${
@@ -67,7 +165,7 @@ const Sidebar = () => {
                   }`}
                   href={"/dashboard/postmanager"}
                 >
-                  Post Manager
+                  Profession
                 </Link>
               )}
             </ul>

@@ -5,6 +5,10 @@ import { AuthContext } from "@/store/AuthContext";
 import axios from "axios";
 const inter = Inter({ subsets: ["latin"] });
 
+import Image from "next/image";
+import HeroImage from "./../public/hero-image.png";
+import NewsImage from "./../public/news.png";
+
 export default function Home() {
   const auth = useContext(AuthContext);
   const username = auth.username;
@@ -50,7 +54,7 @@ export default function Home() {
 
   const Popup = ({ className }) => {
     return (
-      <>
+      <div>
         <div className={className}>
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4">
@@ -85,7 +89,7 @@ export default function Home() {
             </form>
           </div>
         </div>
-      </>
+      </div>
     );
   };
 
@@ -98,58 +102,150 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="h-[100vh] flex gap-5 justify-center items-center relative">
-          {showPopup && (
-            <Popup
-              className={
-                "fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
-              }
-            />
-          )}
-          <div className="w-[23%] h-[90%] flex flex-col gap-10 overflow-y-auto">
-            <div className="w-[95%] mx-auto">
-              <span>NEWS ARCHIVE</span>
-              <div className="w-full block h-[50vh] bg-gray-200"></div>
-            </div>
-            <div className="w-[95%] mx-auto">
-              <span>EVENTS ARCHIVE</span>
-              <div className="w-full block h-[50vh] bg-gray-200"></div>
+        <div className="px-28 py-10">
+          <div className="flex flex-row">
+            <Image src={HeroImage} alt="Hero Image" className="" />
+            <div className="px-20">
+              <h1 className="text-4xl font-thin mt-10">WELCOME!</h1>
+              <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
+              <p className="text-2xl">Assistant Professor</p>
+              <p className="text-xl text-[#0E66C9]">
+                Department of Electronics & Communication Engineering, IIT
+                Roorkee
+              </p>
+
+              <p className="py-10">
+                I joined the department in March 2020. Prior to that, I was a
+                Lead Architect at Radisys India Pvt. Ltd. Bangalore. I obtained
+                my Ph.D. from the Electrical Department at Indian Institute of
+                Technology Kanpur in 2017. My interests are broadly in the areas
+                of Wireless Communication, 5G and beyond Systems, Next
+                Generation Massive MIMO Systems, Intelligent Wireless Systems,
+                Applications of AI and Deep Learning{" "}
+              </p>
             </div>
           </div>
-          <div className="w-[65%] h-[90%] flex flex-col overflow-y-auto">
-            <div className="w-[95%] mx-auto mt-5 flex flex-col gap-10">
-              <span className="text-6xl text-gray-800">WELCOME</span>
-              <div className="flex flex-col gap-5">
-                <span className="border-2 bg-[#3b83f638] text-[#3B82F6] border-[#3B82F6] flex justify-center items-center py-3 text-xl">
-                  Problems of the Day
-                </span>
-                {isLoading && (
-                  <div className="flex justify-center item-center">
-                    Loading...
-                  </div>
-                )}
-                {problems.map((data, i) => {
-                  return (
-                    <div key={i} className="flex flex-col">
-                      <span>
-                        Q{i + 1}. {data?.question}
-                      </span>
-                      <textarea
-                        className="border-2 outline-none px-3 py-2"
-                        name="answerone"
-                        placeholder="Type your answer here"
-                        id="answerone"
-                        cols="122"
-                        rows="10"
-                      ></textarea>
-                      <button className="bg-[#3B82F6] px-2 py-1 text-white w-20">
-                        Submit
-                      </button>
-                    </div>
-                  );
-                })}
+        </div>
+        <div className="py-20 px-32">
+          <div>
+            <h1 className="text-[#191919] text-3xl font-bold ">NEWS</h1>
+            <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
+          </div>
+          <div className="flex flex-row justify-between">
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
+              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+              <div className="py-5 w-80 px-5">
+                <p className="text-2xl font-bold">Internal Meeting</p>
+                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
+                <p>
+                  We are working with Semiconductor Research Corporation (SRC)
+                  on Machine Learning augmented Compact Models.
+                </p>
               </div>
             </div>
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
+              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+              <div className="py-5 w-80 px-5">
+                <p className="text-2xl font-bold">Internal Meeting</p>
+                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
+                <p>
+                  We are working with Semiconductor Research Corporation (SRC)
+                  on Machine Learning augmented Compact Models.
+                </p>
+              </div>
+            </div>
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
+              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+              <div className="py-5 w-80 px-5">
+                <p className="text-2xl font-bold">Internal Meeting</p>
+                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
+                <p>
+                  We are working with Semiconductor Research Corporation (SRC)
+                  on Machine Learning augmented Compact Models.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-32 py-20">
+          <div>
+            <h1 className="text-[#191919] text-3xl font-bold ">EVENTS</h1>
+            <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
+          </div>
+          <div>
+            <div className="flex flex-row items-center">
+              <div className="py-10">
+                <h2 className="text-xl py-1">14</h2>
+                <p className="text-lg font-bold">MAR</p>
+              </div>
+              <div className="px-12">
+                <h2 className="text-2xl font-bold">Short Term Course</h2>
+                <p className="py-1">
+                  Training on Remote Sensing and GIS Technology for
+                  Environmental Monitoring, Planning and Management Under the
+                  aegis of Continuing Education Centre.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row items-center">
+              <div className="py-10">
+                <h2 className="text-xl py-1">14</h2>
+                <p className="text-lg font-bold">MAR</p>
+              </div>
+              <div className="px-12">
+                <h2 className="text-2xl font-bold">Short Term Course</h2>
+                <p className="py-1">
+                  Training on Remote Sensing and GIS Technology for
+                  Environmental Monitoring, Planning and Management Under the
+                  aegis of Continuing Education Centre.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row items-center">
+              <div className="py-10">
+                <h2 className="text-xl py-1">14</h2>
+                <p className="text-lg font-bold">MAR</p>
+              </div>
+              <div className="px-12">
+                <h2 className="text-2xl font-bold">Short Term Course</h2>
+                <p className="py-1">
+                  Training on Remote Sensing and GIS Technology for
+                  Environmental Monitoring, Planning and Management Under the
+                  aegis of Continuing Education Centre.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row items-center">
+              <div className="py-10">
+                <h2 className="text-xl py-1">14</h2>
+                <p className="text-lg font-bold">MAR</p>
+              </div>
+              <div className="px-12">
+                <h2 className="text-2xl font-bold">Short Term Course</h2>
+                <p className="py-1">
+                  Training on Remote Sensing and GIS Technology for
+                  Environmental Monitoring, Planning and Management Under the
+                  aegis of Continuing Education Centre.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-32 pb-20">
+          <div>
+            <h1 className="text-[#191919] text-3xl font-bold">QUESTION</h1>
+            <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
+          </div>
+          <div className="my-10 mx-20">
+            <h2 className="text-2xl font-bold pb-5 text-[#191919]">
+              What is your department?
+            </h2>
+            <input className="w-full bg-gray-200 border-blue-600 h-10 border rounded-lg active:border-green-600 px-2 "></input>
+            <button className="h-10 bg-blue-500 px-20 my-10 rounded-lg hover:bg-blue-600 transition-all">
+              Submit
+            </button>
           </div>
         </div>
       </main>

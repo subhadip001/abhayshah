@@ -24,6 +24,18 @@ const Dashboard = () => {
   const [downloadURL, setDownloadURL] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [profession, setProfession] = useState("");
+  const [honors, setHonors] = useState("");
+  const [education, setEducation] = useState("");
+  const [administrative, setAdministrative] = useState("");
+  const [research, setResearch] = useState("");
+  const [teching, setTeaching] = useState("");
+  const [phdsupervision, setPhdsupervision] = useState("");
+  const [shortterm, setShortterm] = useState("");
+  const [special, setSpecial] = useState("");
+  const [seminars, setSeminars] = useState("");
+  const [journal, setJournal] = useState("");
+
   if (!auth.username) {
     if (typeof window !== "undefined") {
       if (router.asPath.includes("/dashboard")) {
@@ -64,17 +76,26 @@ const Dashboard = () => {
         {
           username: auth.username,
           data: {
-            fullname: fullname,
-            about: about,
-            areaOfInterest: interest,
-            photo: downloadURL,
+            fullname: data.fullname,
+            about: data.about,
+            areaOfInterest: data.areaOfInterest,
+            profession: data.profession,
+            honors: data.honors,
+            education: data.education,
+            administrative: data.administrative,
+            research: data.research,
+            teaching: data.teaching,
+            phdsupervision: data.phdsupervision,
+            shortterm: data.shortterm,
+            special: data.special,
+            seminars: data.seminars,
+            journal: data.journal,
+            photo: downloadURL || data.photo,
           },
         }
       );
       console.log(res.data);
-      setFullname(res.data.fullname);
-      setAbout(res.data.about);
-      setInterest(res.data.areaOfInterest);
+      setData(res.data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -134,8 +155,8 @@ const Dashboard = () => {
   }
 
   return (
-    <section className="h-[100vh] w-[85%]">
-      <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
+    <section className="h-full w-[85%]">
+      <div className="w-[90%] h-[100vh] overflow-auto mx-auto flex flex-col gap-10 mt-5">
         <span className="text-4xl">User Details</span>
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col gap-5">
@@ -218,7 +239,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <button className="bg-[#3B82F6] px-2 py-1 text-white w-20 flex justify-center items-center">
+          <button className="bg-[#3B82F6] px-2 py-1 text-white w-20 flex justify-center items-center mb-10">
             {isLoading ? <CgSpinner className="animate-spin" /> : "Update"}
           </button>
         </form>
