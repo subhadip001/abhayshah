@@ -11,7 +11,6 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import AreaOfInterest from "../../components/AreaOfInterest";
 import EducationalDetails from "../../components/EducationalDetails";
 import HonorsAndAwards from "../../components/HonorsAndAwards";
-import JournalPublications from "../../components/JournalPublications";
 import ProfessionalBackground from "../../components/ProfessionalBackground";
 import Sponsored from "../../components/Sponsored";
 import Adminstrative from "../../components/Adminstrative";
