@@ -16,6 +16,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [name, setName] = useState("");
+  const [institution, setInstitution] = useState("");
 
   const getProblems = async () => {
     setIsLoading(true);
@@ -56,13 +58,36 @@ export default function Home() {
     return (
       <div>
         <div className={className}>
-          <div className="bg-white rounded-lg p-8">
+          <div className="bg-white rounded-lg p-8 w-[50vw]">
             <h2 className="text-lg font-bold mb-4">
               Why are you visiting this page?
             </h2>
             <form onSubmit={handleSubmit}>
               <label className="block mb-4">
+                <span className="text-gray-700">Name:</span>
+
+                <input
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  rows="3"
+                  placeholder="Enter your reason here"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></input>
+              </label>
+              <label className="block mb-4">
+                <span className="text-gray-700">Institution:</span>
+
+                <input
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  rows="3"
+                  placeholder="Enter your reason here"
+                  value={institution}
+                  onChange={(e) => setInstitution(e.target.value)}
+                ></input>
+              </label>
+              <label className="block mb-4">
                 <span className="text-gray-700">Reason:</span>
+
                 <textarea
                   className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   rows="3"
@@ -248,6 +273,13 @@ export default function Home() {
             </button>
           </div>
         </div>
+        {showPopup && (
+          <Popup
+            className={
+              "fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
+            }
+          />
+        )}
       </main>
     </>
   );

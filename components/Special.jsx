@@ -29,7 +29,9 @@ const Special = (props) => {
     <div>
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
-          <h1 className="text-2xl font-bold pb-5">Special</h1>
+          <h1 className="text-2xl font-bold pb-5">
+            Special Lectures Delivered
+          </h1>
         </div>
         <table className="table-auto border-collapse w-full">
           <thead>
