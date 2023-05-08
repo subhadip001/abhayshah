@@ -37,6 +37,24 @@ const NavBar = () => {
 
         <Link
           className={`inline-block mt-7 hover:underline ${
+            router.asPath === "/opportunities" ? `underline` : ``
+          }`}
+          href={"/opportunities"}
+        >
+          Opportunities
+        </Link>
+
+        <Link
+          className={`inline-block mt-7 hover:underline ${
+            router.asPath === "/facilities" ? `underline` : ``
+          }`}
+          href={"/facilities"}
+        >
+          Facilities
+        </Link>
+
+        <Link
+          className={`inline-block mt-7 hover:underline ${
             router.asPath === "/publications" ? `underline` : ``
           }`}
           href={"/publications"}

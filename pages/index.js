@@ -67,9 +67,9 @@ export default function Home() {
                 <span className="text-gray-700">Name:</span>
 
                 <input
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
-                  placeholder="Enter your reason here"
+                  placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></input>
@@ -78,9 +78,9 @@ export default function Home() {
                 <span className="text-gray-700">Institution:</span>
 
                 <input
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
                   rows="3"
-                  placeholder="Enter your reason here"
+                  placeholder="Enter your institution"
                   value={institution}
                   onChange={(e) => setInstitution(e.target.value)}
                 ></input>
@@ -89,7 +89,7 @@ export default function Home() {
                 <span className="text-gray-700">Reason:</span>
 
                 <textarea
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
                   placeholder="Enter your reason here"
                   value={inputValue}
@@ -129,7 +129,7 @@ export default function Home() {
       <main>
         <div className="px-28 py-10">
           <div className="flex flex-row">
-            <Image src={HeroImage} alt="Hero Image" className="" />
+            <Image src={HeroImage} alt="Hero Image" className="w-96 h-96" />
             <div className="px-20">
               <h1 className="text-4xl font-thin mt-10">WELCOME!</h1>
               <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
@@ -153,11 +153,11 @@ export default function Home() {
         </div>
         <div className="py-20 px-32">
           <div>
-            <h1 className="text-[#191919] text-3xl font-bold ">NEWS</h1>
+            <h1 className="text-[#191919] text-3xl font-bold">NEWS</h1>
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
           <div className="flex flex-row justify-between">
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[20rem]">
               <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
               <div className="py-5 w-80 px-5">
                 <p className="text-2xl font-bold">Internal Meeting</p>

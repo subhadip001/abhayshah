@@ -342,14 +342,137 @@ const Dashboard = () => {
   ///////////////////////////////////////////////////////////////////////////////////////
   // Sponsored Research
   ///////////////////////////////////////////////////////////////////////////////////////
+  const [editingSponsor, setEditingSponsor] = useState(false);
+  const [editedSponsorIndex, setEditedSponsorIndex] = useState(null);
+  const [editedSponsorItem, setEditedSponsorItem] = useState({});
+
+  const handleEditSponsor = (index) => {
+    setEditingSponsor(true);
+    setEditedSponsorIndex(index);
+    setEditedSponsorItem(data.research[index]);
+  };
+
+  const handleSaveEditedSponsor = () => {
+    if (editedSponsorIndex === null) {
+      // Add a new administrative entry
+      setData({
+        ...data,
+        research: [
+          ...data.research,
+          {
+            scheme: editedHonorItem.award,
+            sponsoringAgency: editedHonorItem.institute,
+            otherFaculties: editedHonorItem.yearAwarded,
+            yearSponsored: editedHonorItem.yearAwarded,
+          },
+        ],
+      });
+    } else {
+      // Update an existing administrative entry
+      const updatedSponsor = [...data.research];
+      updatedSponsor[editedSponsorIndex] = editedSponsorItem;
+      setData({ ...data, research: updatedSponsor });
+    }
+
+    // Reset the state variables
+    setEditingSponsor(false);
+    setEditedSponsorIndex(null);
+    setEditedSponsorItem({});
+  };
+
+  const handleDeleteSponsor = (index) => {
+    const updatedSponsor = data.research.filter((_, i) => i !== index);
+    setData({ ...data, research: updatedSponsor });
+  };
 
   ///////////////////////////////////////////////////////////////////////////////////////
   // Memberships
   ///////////////////////////////////////////////////////////////////////////////////////
+  const [editingMemberships, setEditingMemberships] = useState(false);
+  const [editedMembershipsIndex, setEditedMembershipsIndex] = useState(null);
+  const [editedMembershipsItem, setEditedMembershipsItem] = useState({});
+
+  const handleEditMemberships = (index) => {
+    setEditingMemberships(true);
+    setEditedMembershipsIndex(index);
+    setEditedMembershipsItem(data.research[index]);
+  };
+
+  const handleSaveEditedMemberships = () => {
+    if (editedMembershipsIndex === null) {
+      // Add a new administrative entry
+      setData({
+        ...data,
+        research: [
+          ...data.memberships,
+          {
+            field: editedMembershipsItem.field,
+          },
+        ],
+      });
+    } else {
+      // Update an existing administrative entry
+      const updatedMemberships = [...data.memberships];
+      updatedMemberships[editedMembershipsIndex] = editedMembershipsItem;
+      setData({ ...data, research: updatedMemberships });
+    }
+
+    // Reset the state variables
+    setEditingMemberships(false);
+    setEditedMembershipsIndex(null);
+    setEditedMembershipsItem({});
+  };
+
+  const handleDeleteMemberships = (index) => {
+    const updatedMemberships = data.memberships.filter((_, i) => i !== index);
+    setData({ ...data, memberships: updatedMemberships });
+  };
 
   ///////////////////////////////////////////////////////////////////////////////////////
   // Teaching
   ///////////////////////////////////////////////////////////////////////////////////////
+  const [editingTeaching, setEditingTeaching] = useState(false);
+  const [editedTeachingIndex, setEditedTeachingIndex] = useState(null);
+  const [editedTeachingItem, setEditedTeachingItem] = useState({});
+
+  const handleEditTeaching = (index) => {
+    setEditingTeaching(true);
+    setEditedTeachingIndex(index);
+    setEditedTeachingItem(data.teaching[index]);
+  };
+
+  const handleSaveEditedTeaching = () => {
+    if (editedTeachingIndex === null) {
+      // Add a new administrative entry
+      setData({
+        ...data,
+        research: [
+          ...data.teaching,
+          {
+            title: editedTeachingItem.title,
+            courseCode: editedTeachingItem.courseCode,
+            course: editedTeachingItem.course,
+            semester: editedTeachingItem.semester,
+          },
+        ],
+      });
+    } else {
+      // Update an existing administrative entry
+      const updatedTeaching = [...data.teaching];
+      updatedTeaching[editedTeachingIndex] = editedTeachingItem;
+      setData({ ...data, research: updatedTeaching });
+    }
+
+    // Reset the state variables
+    setEditingTeaching(false);
+    setEditedTeachingIndex(null);
+    setEditedTeachingItem({});
+  };
+
+  const handleDeleteTeaching = (index) => {
+    const updatedTeaching = data.teaching.filter((_, i) => i !== index);
+    setData({ ...data, teaching: updatedTeaching });
+  };
 
   ///////////////////////////////////////////////////////////////////////////////////////
   // PhD Supervision
@@ -358,6 +481,47 @@ const Dashboard = () => {
   ///////////////////////////////////////////////////////////////////////////////////////
   // Short Term Courses
   ///////////////////////////////////////////////////////////////////////////////////////
+  const [editingShortTerm, setEditingShortTerm] = useState(false);
+  const [editedShortTermIndex, setEditedShortTermIndex] = useState(null);
+  const [editedShortTermItem, setEditedShortTermItem] = useState({});
+
+  const handleEditShortTerm = (index) => {
+    setEditingShortTerm(true);
+    setEditedShortTermIndex(index);
+    setEditedShortTermItem(data.shortterm[index]);
+  };
+
+  const handleSaveEditedShortTerm = () => {
+    if (editedShortTermIndex === null) {
+      // Add a new administrative entry
+      setData({
+        ...data,
+        research: [
+          ...data.shortterm,
+          {
+            courseName: editedShortTermItem.courseName,
+            sponsoredBy: editedShortTermItem.sponsoredBy,
+            dateParticipated: editedShortTermItem.dateParticipated,
+          },
+        ],
+      });
+    } else {
+      // Update an existing administrative entry
+      const updatedShortTerm = [...data.shortterm];
+      updatedShortTerm[editedShortTermIndex] = editedShortTermItem;
+      setData({ ...data, shortterm: updatedShortTerm });
+    }
+
+    // Reset the state variables
+    setEditingShortTerm(false);
+    setEditedShortTermIndex(null);
+    setEditedShortTermItem({});
+  };
+
+  const handleDeleteShortTerm = (index) => {
+    const updatedShortTerm = data.shortterm.filter((_, i) => i !== index);
+    setData({ ...data, ShortTerm: updatedShortTerm });
+  };
 
   ///////////////////////////////////////////////////////////////////////////////////////
   // Special
