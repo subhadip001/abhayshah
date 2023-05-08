@@ -82,6 +82,7 @@ const Username = () => {
       );
       const users = res.data;
       setUsernames(res.data);
+      console.log(users);
     } catch (error) {
       console.log(error);
     }
@@ -97,7 +98,7 @@ const Username = () => {
       const res = await axios.get(
         `https://abhayasha.onrender.com/userdetails/${username}`
       );
-      console.log(res.data);
+      //console.log(res.data);
       setUser(res.data);
       setIsLoading(false);
     } catch (error) {

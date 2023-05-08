@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Facilities = () => {
-  return (
-    <div>Facilities</div>
-  )
-}
+  return <div className="h-[77vh]">Facilities</div>;
+};
 
-export default Facilities
+export default Facilities;
