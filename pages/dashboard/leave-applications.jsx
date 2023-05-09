@@ -133,7 +133,8 @@ const leaveapplications = () => {
                 rows="15"
                 required
               ></textarea>
-              <button className="bg-[#3B82F6] flex justify-center item-center px-2 py-1 text-white w-20">
+
+              <button className="text-center w-[10vw] py-10 bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto">
                 {isLoading && <CgSpinner className="text-xl animate-spin" />}
                 {!isLoading && !isSubmitted && "Submit"}
                 {!isLoading && isSubmitted && "Done"}

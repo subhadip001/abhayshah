@@ -128,8 +128,11 @@ export default function Home() {
       </Head>
       <main>
         <div className="px-28 py-10">
-          <div className="flex flex-row">
-            <Image src={HeroImage} alt="Hero Image" className="w-96 h-96" />
+          <div className="flex flex-row items-end">
+            <div>
+              <Image src={HeroImage} alt="Hero Image" className="w-[60vw]" />
+              <div className="flex flex-row py-5"></div>
+            </div>
             <div className="px-20">
               <h1 className="text-4xl font-thin mt-10">WELCOME!</h1>
               <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
@@ -157,8 +160,8 @@ export default function Home() {
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
           <div className="flex flex-row justify-between">
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[20rem]">
-              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
+              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
               <div className="py-5 w-80 px-5">
                 <p className="text-2xl font-bold">Internal Meeting</p>
                 <p className="text-xl text-[#272727]">10 Feb, 2023</p>
@@ -168,8 +171,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
-              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
+              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
               <div className="py-5 w-80 px-5">
                 <p className="text-2xl font-bold">Internal Meeting</p>
                 <p className="text-xl text-[#272727]">10 Feb, 2023</p>
@@ -179,8 +182,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf]">
-              <Image src={NewsImage} className="w-80 h-80 rounded-t-2xl" />
+            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
+              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
               <div className="py-5 w-80 px-5">
                 <p className="text-2xl font-bold">Internal Meeting</p>
                 <p className="text-xl text-[#272727]">10 Feb, 2023</p>
@@ -265,7 +268,7 @@ export default function Home() {
           </div>
           <div className="my-10 mx-20">
             <h2 className="text-2xl font-bold pb-5 text-[#191919]">
-              What is your department?
+              {problems[0].question}
             </h2>
             <input className="w-full bg-gray-200 border-blue-600 h-10 border rounded-lg active:border-green-600 px-2 "></input>
             <button className="h-10 bg-blue-500 px-20 my-10 rounded-lg hover:bg-blue-600 transition-all">
