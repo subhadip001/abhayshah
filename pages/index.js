@@ -268,7 +268,7 @@ export default function Home() {
           </div>
           <div className="my-10 mx-20">
             <h2 className="text-2xl font-bold pb-5 text-[#191919]">
-              {problems[0].question}
+              {problems[0]?.question}
             </h2>
             <input className="w-full bg-gray-200 border-blue-600 h-10 border rounded-lg active:border-green-600 px-2 "></input>
             <button className="h-10 bg-blue-500 px-20 my-10 rounded-lg hover:bg-blue-600 transition-all">

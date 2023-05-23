@@ -28,6 +28,7 @@ const Username = () => {
   const [user, setUser] = useState({});
   const [usernames, setUsernames] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingRight, setIsLoadingRight] = useState(false);
 
   const [photo, setPhoto] = useState("");
   const [profession, setProfession] = useState("");
@@ -76,6 +77,7 @@ const Username = () => {
   };
 
   const getUsernames = async () => {
+    setIsLoading(true);
     try {
       const res = await axios.get(
         "https://abhayasha.onrender.com/userfullnames"
@@ -83,8 +85,10 @@ const Username = () => {
       const users = res.data;
       setUsernames(res.data);
       console.log(users);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -93,17 +97,17 @@ const Username = () => {
   }, []);
 
   const getUser = async () => {
-    setIsLoading(true);
+    setIsLoadingRight(true);
     try {
       const res = await axios.get(
         `https://abhayasha.onrender.com/userdetails/${username}`
       );
       //console.log(res.data);
       setUser(res.data);
-      setIsLoading(false);
+      setIsLoadingRight(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      setIsLoadingRight(false);
     }
   };
 
@@ -116,27 +120,130 @@ const Username = () => {
       <div className="h-[120vh]  flex justify-center gap-5 items-center">
         <div className="w-[20%] h-[120vh] bg-blue-100">
           <ul className="text-left flex flex-col gap-2 w-[95%] mx-auto">
-            {isLoading && <span className="px-10 pt-4">Loading...</span>}
-            {!isLoading &&
-              usernames?.map((data, i) => {
-                return (
-                  <div>
-                    <Link
-                      key={i}
-                      className={`flex items-left justify-start px-10 pt-4 ${
-                        router.asPath === `/team/${data?.username}`
-                          ? `underline`
-                          : ``
-                      }`}
-                      href={`/team/${data?.username}`}
-                    >
-                      <li className="h-[90%] flex justify-center items-center ">
-                        <span> {data?.fullname}</span>
-                      </li>
-                    </Link>
-                  </div>
-                );
-              })}
+            <div
+              id="Professors"
+              className="text-left flex flex-col gap-2 w-full mx-auto"
+            >
+              <span className="bg-[#293E88] text-white px-10 py-2">
+                Professors
+              </span>
+              {isLoading && <span className="px-10">Loading...</span>}
+              {!isLoading &&
+                usernames?.map((data, i) => {
+                  return (
+                    <React.Fragment key={data + i}>
+                      {data?.about === "Professor" && (
+                        <Link
+                          key={i}
+                          className={`flex items-left justify-start px-10  ${
+                            router.asPath === `/team/${data?.username}`
+                              ? `underline`
+                              : ``
+                          }`}
+                          href={`/team/${data?.username}`}
+                        >
+                          <li className="h-[90%] flex justify-center items-center ">
+                            <span> {data?.fullname}</span>
+                          </li>
+                        </Link>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+            </div>
+            <div
+              id="Ph.Ds"
+              className="text-left flex flex-col gap-2 w-full mx-auto"
+            >
+              <span className="bg-[#293E88] text-white px-10 py-2">
+              Ph.Ds
+              </span>
+              {isLoading && <span className="px-10">Loading...</span>}
+              {!isLoading &&
+                usernames?.map((data, i) => {
+                  return (
+                    <React.Fragment key={data + i}>
+                      {data?.about === "Ph.D" && (
+                        <Link
+                          key={i}
+                          className={`flex items-left justify-start px-10  ${
+                            router.asPath === `/team/${data?.username}`
+                              ? `underline`
+                              : ``
+                          }`}
+                          href={`/team/${data?.username}`}
+                        >
+                          <li className="h-[90%] flex justify-center items-center ">
+                            <span> {data?.fullname}</span>
+                          </li>
+                        </Link>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+            </div>
+            <div
+              id="M.Techs"
+              className="text-left flex flex-col gap-2 w-full mx-auto"
+            >
+              <span className="bg-[#293E88] text-white px-10 py-2">
+              M.Techs
+              </span>
+              {isLoading && <span className="px-10">Loading...</span>}
+              {!isLoading &&
+                usernames?.map((data, i) => {
+                  return (
+                    <React.Fragment key={data + i}>
+                      {data?.about === "M.Tech" && (
+                        <Link
+                          key={i}
+                          className={`flex items-left justify-start px-10  ${
+                            router.asPath === `/team/${data?.username}`
+                              ? `underline`
+                              : ``
+                          }`}
+                          href={`/team/${data?.username}`}
+                        >
+                          <li className="h-[90%] flex justify-center items-center ">
+                            <span> {data?.fullname}</span>
+                          </li>
+                        </Link>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+            </div>
+            <div
+              id="B.Techs"
+              className="text-left flex flex-col gap-2 w-full mx-auto"
+            >
+              <span className="bg-[#293E88] text-white px-10 py-2">
+              B.Techs
+              </span>
+              {isLoading && <span className="px-10">Loading...</span>}
+              {!isLoading &&
+                usernames?.map((data, i) => {
+                  return (
+                    <React.Fragment key={data + i}>
+                      {data?.about === "B.Tech" && (
+                        <Link
+                          key={i}
+                          className={`flex items-left justify-start px-10  ${
+                            router.asPath === `/team/${data?.username}`
+                              ? `underline`
+                              : ``
+                          }`}
+                          href={`/team/${data?.username}`}
+                        >
+                          <li className="h-[90%] flex justify-center items-center ">
+                            <span> {data?.fullname}</span>
+                          </li>
+                        </Link>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+            </div>
           </ul>
         </div>
         <div className="w-[75%] mx-auto h-[90%]">
@@ -166,9 +273,12 @@ const Username = () => {
               <div className="py-3 text-blue-500">
                 <div className="flex flex-row items-center">
                   <AiTwotoneMail className="text-xl font-semibold" />
-                  <h2 className="text-xl font-normal py-1 px-2">
+                  <a
+                    href={`mailto:${user?.email}`}
+                    className="text-xl font-normal py-1 px-2"
+                  >
                     {user?.email}
-                  </h2>
+                  </a>
                 </div>
                 <div className="flex flex-row items-center">
                   <BsFillTelephoneFill className="text-xl font-semibold " />
@@ -316,34 +426,5 @@ const Username = () => {
     </main>
   );
 };
-
-// export async function getStaticPaths() {
-//   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-//     return {
-//       paths: [],
-//       fallback: "false",
-//     };
-//   }
-
-//   const res = await axios.get("https://abhayasha.onrender.com/userfullnames");
-//   const users = await res.data;
-
-//   const paths = users.map((user) => ({
-//     params: { username: user.username },
-//   }));
-
-//   return { paths, fallback: false };
-// }
-
-// export async function getStaticProps() {
-//   const res = await axios.get("https://abhayasha.onrender.com/userfullnames");
-//   const users = await res.data;
-//   console.log(users);
-//   return {
-//     props: {
-//       users,
-//     },
-//   };
-// }
 
 export default Username;

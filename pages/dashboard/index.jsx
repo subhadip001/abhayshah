@@ -570,18 +570,24 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="about">Add your Designation : </label>
-              <input
-                type="text"
-                name="about"
-                id="about"
-                value={about}
-                placeholder="Enter your experience/designation"
-                className="border outline-none px-3 py-2"
+              <select
                 onChange={(e) => {
                   setAbout(e.target.value);
                   setData({ ...data, about: e.target.value });
                 }}
-              />
+                defaultValue={about}
+                name="about"
+                id="about"
+                className="border outline-none  px-3 py-2"
+              >
+                <option value="" disabled>
+                  {about || <span className="text-gray-300">loading...</span>}
+                </option>
+                <option value="Professor">Professor</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="Ph.D">Ph.D</option>
+              </select>
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="interest">Area of Interest : </label>
