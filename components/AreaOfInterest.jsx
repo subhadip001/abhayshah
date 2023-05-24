@@ -3,7 +3,7 @@ import React from "react";
 const AreaOfInterest = (props) => {
   console.log(props.data);
   return (
-    <div>
+    <div id="interest">
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
           <h4 className="text-2xl font-bold pb-5">Area of Interest</h4>

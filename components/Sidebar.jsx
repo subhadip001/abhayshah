@@ -11,8 +11,8 @@ const Sidebar = () => {
   return (
     <>
       {router.asPath.includes("/dashboard") && (
-        <div className="block w-[15%] h-[100vh]">
-          <div className="flex flex-col h-[100vh] bg-[#efefef]">
+        <div className="block w-[15%] h-[85vh] static">
+          <div className="flex flex-col h-full bg-[#efefef]">
             <ul className="text-center flex flex-col gap-5 mt-5">
               <Link
                 className={`inline-block ${

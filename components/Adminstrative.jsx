@@ -2,7 +2,7 @@ import React from "react";
 
 const Administrative = (props) => {
   const renderTableRows = (data) => {
-    return data.map((item, index) => (
+    return data?.map((item, index) => (
       <tr
         key={index}
         className="hover:bg-gray-100 border-b border-gray-200 py-10"
@@ -19,7 +19,7 @@ const Administrative = (props) => {
   };
 
   return (
-    <div>
+    <div id="adminBack">
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
           <h1 className="text-2xl font-bold pb-5">Administrative Background</h1>

@@ -70,9 +70,7 @@ export default function Home() {
                   className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
                   placeholder="Enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></input>
+                />
               </label>
               <label className="block mb-4">
                 <span className="text-gray-700">Institution:</span>
@@ -81,9 +79,7 @@ export default function Home() {
                   className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
                   rows="3"
                   placeholder="Enter your institution"
-                  value={institution}
-                  onChange={(e) => setInstitution(e.target.value)}
-                ></input>
+                />
               </label>
               <label className="block mb-4">
                 <span className="text-gray-700">Reason:</span>
@@ -92,8 +88,6 @@ export default function Home() {
                   className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
                   placeholder="Enter your reason here"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
                 ></textarea>
               </label>
               <div className="flex justify-end">
@@ -127,14 +121,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="px-28 py-10">
-          <div className="flex flex-row items-end">
-            <div>
-              <Image src={HeroImage} alt="Hero Image" className="w-[60vw]" />
+        <div className="px-28 py-8 flex flex-col gap-10">
+          <h1 className="text-4xl font-thin mt-1 text-center">WELCOME!</h1>
+          <div className="flex flex-row items-center justify-center">
+            <div className="w-[20%]">
+              <Image src={HeroImage} alt="Hero Image" className="w-full aspect-auto" />
               <div className="flex flex-row py-5"></div>
             </div>
-            <div className="px-20">
-              <h1 className="text-4xl font-thin mt-10">WELCOME!</h1>
+            <div className="px-20 w-[70%]">
               <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
               <p className="text-2xl">Assistant Professor</p>
               <p className="text-xl text-[#0E66C9]">

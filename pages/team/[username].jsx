@@ -1,11 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Team from "./../../public/imageteam.png";
 
 import { AiTwotoneMail } from "react-icons/ai";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
 import AreaOfInterest from "../../components/AreaOfInterest";
@@ -29,12 +30,13 @@ const Username = () => {
   const [usernames, setUsernames] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingRight, setIsLoadingRight] = useState(false);
-
+  const [showOptions, setShowOptions] = useState(false);
   const [photo, setPhoto] = useState("");
   const [profession, setProfession] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
+  const optionsRef = useRef(null)
 
   const [area, setArea] = useState("");
   const [educational, setEducational] = useState("");
@@ -42,38 +44,33 @@ const Username = () => {
   const [selected, setSelected] = useState("interest");
 
   const renderComponent = () => {
-    switch (selected) {
-      case "interest":
-        return <AreaOfInterest data={user?.areaOfInterest} />;
-      case "professional":
-        return <ProfessionalBackground data={user?.profession} />;
-      case "honors":
-        return <HonorsAndAwards data={user?.honors} />;
-      case "educational":
-        return <EducationalDetails data={user?.education} />;
-      case "adnmistrative":
-        return <Adminstrative data={user?.administrative} />;
-      case "sponsored":
-        return <Sponsored data={user?.research} />;
-      // case "publications":
-      //   return <JournalPublications data={user?.research} />;
-      case "memberships":
-        return <Membership data={user?.memberships} />;
-      case "teching":
-        return <Teaching data={user?.teaching} />;
-      case "phd":
-        return <Phd data={user?.phdsupervision} />;
-      case "participate":
-        return <ShortTerm data={user?.shortterm} />;
-      case "special":
-        return <Special data={user?.special} />;
-      case "participation":
-        return <Seminars data={user?.seminars} />;
-      case "journal":
-        return <Journal data={user?.journal} />;
-      default:
-        return <AreaOfInterest data={user.areaOfInterest} />;
-    }
+    return (
+      <div className="flex flex-col gap-10 my-5">
+        {user?.areaOfInterest && <AreaOfInterest data={user?.areaOfInterest} />}
+        {user?.profession?.length !== 0 && (
+          <ProfessionalBackground data={user?.profession} />
+        )}
+        {user?.honors?.length !== 0 && <HonorsAndAwards data={user?.honors} />}
+        {user?.education?.length !== 0 && (
+          <EducationalDetails data={user?.education} />
+        )}
+        {user?.administrative?.length !== 0 && (
+          <Adminstrative data={user?.administrative} />
+        )}
+        {user?.research?.length !== 0 && <Sponsored data={user?.research} />}
+        {user?.memberships?.length !== 0 && (
+          <Membership data={user?.memberships} />
+        )}
+        {user?.teaching?.length !== 0 && <Teaching data={user?.teaching} />}
+        {user?.phdsupervision?.length !== 0 && (
+          <Phd data={user?.phdsupervision} />
+        )}
+        {user?.shortterm?.length !== 0 && <ShortTerm data={user?.shortterm} />}
+        {user?.special?.length !== 0 && <Special data={user?.special} />}
+        {user?.seminars?.length !== 0 && <Seminars data={user?.seminars} />}
+        {user?.journal?.length !== 0 && <Journal data={user?.journal} />}
+      </div>
+    );
   };
 
   const getUsernames = async () => {
@@ -102,7 +99,7 @@ const Username = () => {
       const res = await axios.get(
         `https://abhayasha.onrender.com/userdetails/${username}`
       );
-      //console.log(res.data);
+      console.log(res.data);
       setUser(res.data);
       setIsLoadingRight(false);
     } catch (error) {
@@ -115,19 +112,201 @@ const Username = () => {
     getUser();
   }, [username]);
 
+  const handleOutsideClick = (event) => {
+    if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+      setShowOptions(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const Options = () => {
+    return (
+      <div ref={optionsRef} className="flex absolute z-20 bg-white border-2 flex-col w-[18rem] h-[30vh] overflow-y-auto py-1 text-blue-800">
+        <Link
+          className={`text-center ${
+            selected === "interest" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("interest");
+            setShowOptions(false);
+          }}
+        >
+          Area of Interest
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "professional" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("professional");
+            setShowOptions(false);
+          }}
+        >
+          Professional Background
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "honors" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("honors");
+            setShowOptions(false);
+          }}
+        >
+          Honors and Awards
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "educational" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("educational");
+            setShowOptions(false);
+          }}
+        >
+          Educational Details
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "adnmistrative" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#adminBack`}
+          onClick={() => {
+            setSelected("adnmistrative");
+            setShowOptions(false);
+          }}
+        >
+          Adminstrative Background
+        </Link>
+
+        <Link
+          className={`text-center ${
+            selected === "sponsored" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("sponsored");
+            setShowOptions(false);
+          }}
+        >
+          Sponsored Research Projects
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "memberships" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("memberships");
+            setShowOptions(false);
+          }}
+        >
+          Memberships
+        </Link>
+
+        <Link
+          className={`text-center ${
+            selected === "teching" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("teching");
+            setShowOptions(false);
+          }}
+        >
+          Teching Engagements
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "phd" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("phd");
+            setShowOptions(false);
+          }}
+        >
+          PhDs Supervised
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "participate" ? "bg-blue-100 px-3  py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("participate");
+            setShowOptions(false);
+          }}
+        >
+          Participate in Short term Courses
+        </Link>
+
+        <Link
+          className={`text-center ${
+            selected === "special" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("special");
+            setShowOptions(false);
+          }}
+        >
+          Special Lectures Delivered
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "participation" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("participation");
+            setShowOptions(false);
+          }}
+        >
+          Participation in Seminars
+        </Link>
+        <Link
+          className={`text-center ${
+            selected === "journal" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+          }`}
+          href={`/team/${username}/#interest`}
+          onClick={() => {
+            setSelected("journal");
+            setShowOptions(false);
+          }}
+        >
+          Journal Publications
+        </Link>
+      </div>
+    );
+  };
+
   return (
-    <main className="w-[93%]">
-      <div className="h-[120vh]  flex justify-center gap-5 items-center">
-        <div className="w-[20%] h-[120vh] bg-blue-100">
-          <ul className="text-left flex flex-col gap-2 w-[95%] mx-auto">
+    <main className="w-full">
+      <div className="h-[120vh] flex justify-center items-center">
+        <div className="w-[20%] h-[120vh]">
+          <ul className="text-left flex flex-col gap-5 w-[93%] mx-auto">
             <div
               id="Professors"
-              className="text-left flex flex-col gap-2 w-full mx-auto"
+              className="text-left flex flex-col w-full mx-auto"
             >
-              <span className="bg-[#293E88] text-white px-10 py-2">
-                Professors
+              <span className="text-[#000] font-semibold px-5 py-2 text-xl">
+                Professor
               </span>
-              {isLoading && <span className="px-10">Loading...</span>}
+              {isLoading && (
+                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+              )}
               {!isLoading &&
                 usernames?.map((data, i) => {
                   return (
@@ -135,14 +314,14 @@ const Username = () => {
                       {data?.about === "Professor" && (
                         <Link
                           key={i}
-                          className={`flex items-left justify-start px-10  ${
-                            router.asPath === `/team/${data?.username}`
-                              ? `underline`
+                          className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
+                            router.asPath.includes(`/team/${data?.username}`) === true
+                              ? `bg-[#eaeaea]`
                               : ``
                           }`}
                           href={`/team/${data?.username}`}
                         >
-                          <li className="h-[90%] flex justify-center items-center ">
+                          <li className="h-[90%] flex justify-center items-center">
                             <span> {data?.fullname}</span>
                           </li>
                         </Link>
@@ -151,14 +330,13 @@ const Username = () => {
                   );
                 })}
             </div>
-            <div
-              id="Ph.Ds"
-              className="text-left flex flex-col gap-2 w-full mx-auto"
-            >
-              <span className="bg-[#293E88] text-white px-10 py-2">
-              Ph.Ds
+            <div id="Ph.Ds" className="text-left flex flex-col w-full mx-auto">
+              <span className="text-[#000] font-semibold px-5 py-2 text-xl">
+                Ph.D
               </span>
-              {isLoading && <span className="px-10">Loading...</span>}
+              {isLoading && (
+                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+              )}
               {!isLoading &&
                 usernames?.map((data, i) => {
                   return (
@@ -166,9 +344,9 @@ const Username = () => {
                       {data?.about === "Ph.D" && (
                         <Link
                           key={i}
-                          className={`flex items-left justify-start px-10  ${
-                            router.asPath === `/team/${data?.username}`
-                              ? `underline`
+                          className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
+                            router.asPath.includes(`/team/${data?.username}`) === true
+                              ? `bg-[#eaeaea]`
                               : ``
                           }`}
                           href={`/team/${data?.username}`}
@@ -184,12 +362,14 @@ const Username = () => {
             </div>
             <div
               id="M.Techs"
-              className="text-left flex flex-col gap-2 w-full mx-auto"
+              className="text-left flex flex-col w-full mx-auto"
             >
-              <span className="bg-[#293E88] text-white px-10 py-2">
-              M.Techs
+              <span className="text-[#000] font-semibold px-5 py-2 text-xl">
+                M.Tech
               </span>
-              {isLoading && <span className="px-10">Loading...</span>}
+              {isLoading && (
+                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+              )}
               {!isLoading &&
                 usernames?.map((data, i) => {
                   return (
@@ -197,9 +377,9 @@ const Username = () => {
                       {data?.about === "M.Tech" && (
                         <Link
                           key={i}
-                          className={`flex items-left justify-start px-10  ${
-                            router.asPath === `/team/${data?.username}`
-                              ? `underline`
+                          className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
+                            router.asPath.includes(`/team/${data?.username}`) === true
+                              ? `bg-[#eaeaea]`
                               : ``
                           }`}
                           href={`/team/${data?.username}`}
@@ -215,12 +395,14 @@ const Username = () => {
             </div>
             <div
               id="B.Techs"
-              className="text-left flex flex-col gap-2 w-full mx-auto"
+              className="text-left flex flex-col w-full mx-auto"
             >
-              <span className="bg-[#293E88] text-white px-10 py-2">
-              B.Techs
+              <span className="text-[#000] font-semibold px-5 py-2 text-xl">
+                B.Tech
               </span>
-              {isLoading && <span className="px-10">Loading...</span>}
+              {isLoading && (
+                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+              )}
               {!isLoading &&
                 usernames?.map((data, i) => {
                   return (
@@ -228,9 +410,9 @@ const Username = () => {
                       {data?.about === "B.Tech" && (
                         <Link
                           key={i}
-                          className={`flex items-left justify-start px-10  ${
-                            router.asPath === `/team/${data?.username}`
-                              ? `underline`
+                          className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
+                            router.asPath.includes(`/team/${data?.username}`) === true
+                              ? `bg-[#eaeaea]`
                               : ``
                           }`}
                           href={`/team/${data?.username}`}
@@ -246,180 +428,61 @@ const Username = () => {
             </div>
           </ul>
         </div>
-        <div className="w-[75%] mx-auto h-[90%]">
-          {/*<div className="h-[30%] relative">
-            {user?.fullname}
-            <div className="block w-[calc(8vw+10rem)] h-[calc(8vw+10rem)] top-[calc(3.5rem-1.5vw)] left-14 bg-[#CECECE] absolute z-30">
-              {user?.username}
-            </div>
-          </div>
-            <div className="h-[70%] bg-[#E7E7E7]">Descriptions</div>*/}
-          <div className="flex flex-row">
-            <div className="pb-5">
-              <Image
-                src={user?.photo}
-                alt="Picture of the author"
-                className="w-40 h-40 rounded-2xl"
-                width={160} // Set the width in pixels (40 * 4)
-                height={160} // Set the height in pixels (40 * 4)
-              />
-            </div>
-            <div className="px-10">
-              <h1 className="text-3xl font-semibold py-2">
-                {" "}
-                {user?.fullname}{" "}
-              </h1>
-              <h2 className="text-xl ">{user?.about}</h2>
-              <div className="py-3 text-blue-500">
+        <div className="w-[80vw] mx-auto h-[100%]">
+          <div className="flex flex-col h-[50vh] w-full relative">
+            <div className="cover flex bg-slate-600 h-[calc(10vw+5rem)] w-full"></div>
+            <div className="wrapper flex gap-3 min-w-[calc(26vw+10rem)] h-[calc(12vw+4rem)] left-[13%] top-[20%] absolute bg-transparent">
+              <div className="wrapper w-[calc(12vw+4rem)] h-[calc(12vw+4rem)] bg-slate-200">
+                <img
+                  className="w-full h-full object-cover"
+                  src={user?.photo}
+                  alt=""
+                />
+              </div>
+              <div className="text-blue-500 mt-auto text-[calc(1vw+0.25rem)]">
                 <div className="flex flex-row items-center">
-                  <AiTwotoneMail className="text-xl font-semibold" />
+                  <AiTwotoneMail className="font-semibold" />
                   <a
                     href={`mailto:${user?.email}`}
-                    className="text-xl font-normal py-1 px-2"
+                    className="font-normal py-1 px-2"
                   >
-                    {user?.email}
+                    {user?.email || "NA"}
                   </a>
                 </div>
                 <div className="flex flex-row items-center">
-                  <BsFillTelephoneFill className="text-xl font-semibold " />
-                  <h2 className="text-xl font-normal py-1 px-2">
-                    {user?.phone}
+                  <BsFillTelephoneFill className="font-semibold " />
+                  <h2 className="font-normal py-1 px-2">
+                    {user?.phone || "NA"}
                   </h2>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="">
-            <div className="flex flex-row justify-between items-center pt-2 text-blue-800">
-              <button
-                className={`button ${
-                  selected === "interest"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("interest")}
-              >
-                Area of Interest
-              </button>
-              <button
-                className={`button ${
-                  selected === "professional"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("professional")}
-              >
-                Professional Background
-              </button>
-              <button
-                className={`button ${
-                  selected === "honors" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("honors")}
-              >
-                Honors and Awards
-              </button>
-              <button
-                className={`${
-                  selected === "educational"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("educational")}
-              >
-                Educational Details
-              </button>
-              <button
-                className={`button ${
-                  selected === "adnmistrative"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("adnmistrative")}
-              >
-                Adminstrative Background
-              </button>
+          <div className="w-[95%] mx-auto">
+            <div className="flex gap-10 text-xl">
+              <span className="">Find : </span>
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setShowOptions(!showOptions);
+                  }}
+                  className="capitalize text-xl flex w-[18rem] justify-center gap-5 py-1 item-center border-2"
+                >
+                  {selected}
+                  {showOptions ? (
+                    <SlArrowUp className="mt-[0.3rem]" />
+                  ) : (
+                    <SlArrowDown className="mt-[0.3rem]" />
+                  )}
+                </button>
+                {showOptions && <Options />}
+              </div>
             </div>
-            <div className="flex flex-row justify-between items-center pt-2 text-blue-800">
-              <button
-                className={`button ${
-                  selected === "sponsored"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("sponsored")}
-              >
-                Sponsored Research Projects
-              </button>
-              <button
-                className={`button ${
-                  selected === "memberships"
-                    ? "bg-blue-100 px-3 py-1"
-                    : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("memberships")}
-              >
-                Memberships
-              </button>
-
-              <button
-                className={`${
-                  selected === "teching" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("teching")}
-              >
-                Teching Engagements
-              </button>
-              <button
-                className={`button ${
-                  selected === "phd" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("phd")}
-              >
-                PhDs Supervised
-              </button>
-              <button
-                className={`button ${
-                  selected === "participate"
-                    ? "bg-blue-100 px-3  py-1"
-                    : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("participate")}
-              >
-                Participate in Short term Courses
-              </button>
+            <hr className="w-full h-[0.2px] mt-4 bg-slate-700" />
+            <div className="content mt-5 overflow-y-auto h-[60vh]">
+              {renderComponent()}
             </div>
-            <div className="flex flex-row justify-start items-start pt-2 text-blue-800">
-              <button
-                className={`${
-                  selected === "special" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
-                }`}
-                onClick={() => setSelected("special")}
-              >
-                Special Lectures Delivered
-              </button>
-              <button
-                className={`${
-                  selected === "participation"
-                    ? "bg-blue-100 px-3 py-1 mx-6"
-                    : "py-1 px-3 mx-6"
-                }`}
-                onClick={() => setSelected("participation")}
-              >
-                Participation in Seminars
-              </button>
-              <button
-                className={`${
-                  selected === "journal" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
-                }`}
-                onClick={() => setSelected("journal")}
-              >
-                Journal Publications
-              </button>
-            </div>
-            <div className="w-full h-[0.2px] mt-4 bg-slate-700"></div>
-            <div className="content mt-5">{renderComponent()}</div>
           </div>
         </div>
       </div>

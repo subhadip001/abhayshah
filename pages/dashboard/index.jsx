@@ -581,7 +581,7 @@ const Dashboard = () => {
                 className="border outline-none  px-3 py-2"
               >
                 <option value="" disabled>
-                  {about || <span className="text-gray-300">loading...</span>}
+                  {about}
                 </option>
                 <option value="Professor">Professor</option>
                 <option value="B.Tech">B.Tech</option>

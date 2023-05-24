@@ -13,7 +13,7 @@ const Seminars = (props) => {
     }`;
   };
   const renderTableRows = (data) => {
-    return data.map((item, index) => (
+    return data?.map((item, index) => (
       <tr
         key={index}
         className="hover:bg-gray-100 border-b border-gray-200 py-10"
