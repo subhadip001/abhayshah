@@ -61,7 +61,7 @@ const leaveapplications = () => {
     }
   };
   const getAllLeaveAppsByUsername = async () => {
-    console.log("called")
+    console.log("called");
     if (username !== "admin") {
       setIsLoading(true);
       try {
@@ -83,9 +83,8 @@ const leaveapplications = () => {
 
   useEffect(() => {
     getLeaveApps();
+    getAllLeaveAppsByUsername();
   }, []);
-
-
 
   return (
     <div className="h-[85vh] w-[85%] overflow-y-auto">
@@ -178,27 +177,32 @@ const leaveapplications = () => {
             <section className="my-10 flex flex-col">
               <span className="text-4xl">Previous Applications</span>
               {isLoading && <span className="text-center">Loading...</span>}
-              {userLeaveapplications?.map((app, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <section className="border-2 capitalize flex px-5 py-3 mt-4 justify-between">
-                      <div className="flex flex-col gap-3">
-                        <span>Leave Type : {app?.appType}</span>
-                        <span>No. of Days : {app?.days}</span>
-                        <div className="flex gap-2">
-                          <span>
-                            Starting Date : {app?.sDate?.slice(0, 10)}
-                          </span>
-                          <span>Ending Date : {app?.eDate?.slice(0, 10)}</span>
+              {userLeaveapplications
+                ?.slice(0)
+                .reverse()
+                .map((app, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      <section className="border-2 capitalize flex px-5 py-3 mt-4 justify-between">
+                        <div className="flex flex-col gap-3">
+                          <span>Leave Type : {app?.appType}</span>
+                          <span>No. of Days : {app?.days}</span>
+                          <div className="flex gap-2">
+                            <span>
+                              Starting Date : {app?.sDate?.slice(0, 10)}
+                            </span>
+                            <span>
+                              Ending Date : {app?.eDate?.slice(0, 10)}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <span>Status : {app?.appStatus}</span>
-                      </div>
-                    </section>
-                  </React.Fragment>
-                );
-              })}
+                        <div>
+                          <span>Status : {app?.appStatus}</span>
+                        </div>
+                      </section>
+                    </React.Fragment>
+                  );
+                })}
             </section>
           </div>
         ) : (
