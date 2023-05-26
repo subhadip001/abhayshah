@@ -330,6 +330,7 @@ const Username = () => {
                   );
                 })}
             </div>
+            <hr />
             <div id="Ph.Ds" className="text-left flex flex-col w-full mx-auto">
               <span className="text-[#000] font-semibold px-5 py-2 text-xl">
                 Ph.D
@@ -360,6 +361,7 @@ const Username = () => {
                   );
                 })}
             </div>
+            <hr />
             <div
               id="M.Techs"
               className="text-left flex flex-col w-full mx-auto"
@@ -393,6 +395,7 @@ const Username = () => {
                   );
                 })}
             </div>
+            <hr />
             <div
               id="B.Techs"
               className="text-left flex flex-col w-full mx-auto"
