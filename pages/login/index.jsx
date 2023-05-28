@@ -29,7 +29,6 @@ function LoginForm() {
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      console.log(error.response.status);
     }
   };
 

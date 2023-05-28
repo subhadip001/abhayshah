@@ -1,6 +1,12 @@
 import { AuthContext } from "@/store/AuthContext";
 import axios from "axios";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { CgSpinner } from "react-icons/cg";
 
 const leaveapplications = () => {
@@ -30,6 +36,7 @@ const leaveapplications = () => {
             sDate: data["s-date"],
             eDate: data["e-date"],
             username: username,
+            fullName: auth?.fullname,
           }
         );
         console.log(data["application"]);
@@ -61,7 +68,6 @@ const leaveapplications = () => {
     }
   };
   const getAllLeaveAppsByUsername = async () => {
-    console.log("called");
     if (username !== "admin") {
       setIsLoading(true);
       try {
@@ -80,6 +86,24 @@ const leaveapplications = () => {
       }
     }
   };
+
+  const updateLeaveAppStatusHandler = useCallback(
+    async (uname, id, updatedStatus) => {
+      if (username === "admin") {
+        const res = await axios.post(
+          "https://abhayasha.onrender.com/updateApplicationStatus",
+          {
+            username: uname,
+            appId: id,
+            status: updatedStatus,
+          }
+        );
+        console.log(res.data);
+        getLeaveApps();
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     getLeaveApps();
@@ -207,32 +231,81 @@ const leaveapplications = () => {
           </div>
         ) : (
           <>
-            <div className="flex flex-col gap-10 h-[80vh] overflow-y-auto">
-              {leaveapplications?.map((data, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="card border-2 py-4 px-3 flex flex-col gap-5 bg-gray-200"
-                  >
-                    <div className="flex flex-col gap-2">
-                      <span className="text-lg font-semibold">
-                        {data?.appType}
-                      </span>
-                      <div className="mt-2 whitespace-pre-wrap bg-gray-100 py-5 px-5 w-[95%] mx-auto">
-                        {data?.appDesc}
-                      </div>
-                    </div>
-                    <span className="text-xs">
-                      <i>- by {data?.appOwner}</i>
-                    </span>
-                  </div>
-                );
-              })}
-              {isLoading && (
-                <div className="flex justify-center item-center">
-                  Loading...
-                </div>
-              )}
+            <div className="flex flex-col gap-10">
+              {isLoading && <span className="text-center">Loading...</span>}
+              {leaveapplications
+                ?.slice(0)
+                .reverse()
+                .map((app, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      <section className="border-2 capitalize flex px-5 py-3 justify-between">
+                        <div className="flex flex-col gap-3">
+                          <span>Name : {app?.appOwnerName}</span>
+                          <span>Leave Type : {app?.appType}</span>
+                          <span>No. of Days : {app?.days}</span>
+                          <div className="flex gap-3">
+                            <span>
+                              Starting Date : {app?.sDate?.slice(0, 10)}
+                            </span>
+                            <span>
+                              Ending Date : {app?.eDate?.slice(0, 10)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col justify-between w-[25%]">
+                          {app?.appDesc?.length > 120 ? (
+                            <span>Reason : {app?.appDesc.slice(0, 120)}...</span>
+                          ) : (
+                            <span>Reason : {app?.appDesc}</span>
+                          )}
+                        </div>
+                        <div className="flex flex-col justify-center gap-5">
+                          {app?.appStatus === "Pending" ? (
+                            <>
+                              <button
+                                onClick={() => {
+                                  updateLeaveAppStatusHandler(
+                                    app?.appOwner,
+                                    app?._id,
+                                    "Accepted"
+                                  );
+                                }}
+                                className="px-3 py-1 font-semibold text-green-500 transition-all hover:text-white border border-green-500 hover:bg-green-500"
+                              >
+                                Acccept
+                              </button>
+                              <button
+                                onClick={() => {
+                                  updateLeaveAppStatusHandler(
+                                    app?.appOwner,
+                                    app?._id,
+                                    "Rejected"
+                                  );
+                                }}
+                                className="px-3 py-1 font-semibold text-red-500 border border-red-500 hover:bg-red-500 transition-all hover:text-white"
+                              >
+                                Reject
+                              </button>
+                            </>
+                          ) : app?.appStatus === "Accepted" ? (
+                            <>
+                              <button className="px-3 py-1 font-semibold text-white bg-green-500 cursor-not-allowed">
+                                Acccepted
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <button className="px-3 py-1 font-semibold text-white bg-red-500 cursor-not-allowed">
+                                Rejected
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </section>
+                    </React.Fragment>
+                  );
+                })}
             </div>
           </>
         )}
