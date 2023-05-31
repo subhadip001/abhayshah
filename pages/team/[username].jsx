@@ -2,8 +2,6 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Team from "./../../public/imageteam.png";
 
 import { AiTwotoneMail } from "react-icons/ai";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
