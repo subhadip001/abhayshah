@@ -39,19 +39,33 @@ const Resources = () => {
             return (
               <div
                 key={i}
-                className="card border-2 py-4 px-3 flex flex-col gap-5 bg-gray-200"
+                className="card border-2 py-4 px-5 flex flex-col gap-5"
               >
                 <div className="flex flex-col gap-2">
-                  <span className="text-lg font-semibold">{data?.docname}</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold">
+                      {data?.docname}
+                    </span>
+                    <span className="text-xs">
+                      <i>- by {data?.docOwnerName}</i>
+                    </span>
+                  </div>
                   <p className="text-gray-700">{data?.docDesc}</p>
                 </div>
-                <a
-                  href={data?.docLink}
-                  target="_blank"
-                  className="w-[7%] text-center bg-[#3B82F6] text-white py-1"
-                >
-                  Open File
-                </a>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-xs">
+                    <i>posted on : {data?.docDate.slice(0, 10)}</i>
+                  </span>
+
+                  <a
+                    href={data?.docLink}
+                    target="_blank"
+                    className="text-center bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold"
+                  >
+                    Open File
+                  </a>
+                </div>
               </div>
             );
           })}

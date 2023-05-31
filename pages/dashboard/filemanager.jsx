@@ -36,6 +36,7 @@ const filemanager = () => {
           "https://abhayasha.onrender.com/addResource",
           {
             username: auth.username,
+            docOwnerName: auth.fullname,
             docname: docname,
             docType: data["d-type"],
             docDesc: docDesc,
@@ -55,9 +56,11 @@ const filemanager = () => {
           "https://abhayasha.onrender.com/addPublications",
           {
             username: auth.username,
+            docOwnerName: auth.fullname,
             docname: docname,
             docDesc: docDesc,
             docLink: downloadURL,
+            publicationType: data["p-type"],
           }
         );
         console.log(res.data);
@@ -76,6 +79,11 @@ const filemanager = () => {
             docname: docname,
             docDesc: docDesc,
             docLink: downloadURL,
+            projectType: data["p-type"],
+            fundingAgency: data["f-agency"],
+            projectNumber: data["p-number"],
+            sDate: data["s-date"],
+            eDate: data["e-date"],
           }
         );
         console.log(res.data);
@@ -108,6 +116,7 @@ const filemanager = () => {
 
     if (!file) {
       console.log("No file selected");
+      alert("Please select a file");
       return;
     }
     const app = initializeApp(firebaseConfig);
@@ -181,7 +190,7 @@ const filemanager = () => {
               fileTab === 3 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
             } cursor-pointer`}
           >
-            Projects
+            Research Projects
           </div>
         </div>
         <form
@@ -190,13 +199,13 @@ const filemanager = () => {
         >
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label htmlFor="fullname">Document Name : </label>
+              <label htmlFor="docname">Document Title : </label>
               <input
                 type="text"
                 name="docname"
                 id="docname"
                 required
-                placeholder="Enter Document name"
+                placeholder="Enter Document title"
                 className="border outline-none  px-3 py-2"
                 value={docname}
                 onChange={(e) => {
@@ -204,6 +213,91 @@ const filemanager = () => {
                 }}
               />
             </div>
+            {fileTab === 2 && (
+              <div className="flex flex-col gap-2">
+                <label htmlFor="p-type">Publication Type : </label>
+                <select
+                  className="border outline-none  px-3 py-2"
+                  name="p-type"
+                  id="p-type"
+                >
+                  <option value="" className="text-gray-400">
+                    Select a Publication type
+                  </option>
+                  <option value="Conferences">Conferences</option>
+                  <option value="Chapters">Chapters</option>
+                  <option value="Journals">Journals</option>
+                  <option value="Patents">Patents</option>
+                  <option value="Favorites">Favorites</option>
+                </select>
+              </div>
+            )}
+            {fileTab === 3 && (
+              <>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="f-agency">Funding Agency : </label>
+                  <input
+                    type="text"
+                    name="f-agency"
+                    id="f-agency"
+                    required
+                    placeholder="Enter name of funding agency"
+                    className="border outline-none  px-3 py-2"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="f-agency">Project Number : </label>
+                  <input
+                    type="number"
+                    name="p-number"
+                    id="p-number"
+                    required
+                    placeholder="Enter the project number"
+                    className="border outline-none  px-3 py-2"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="p-type">Project Type : </label>
+                  <select
+                    className="border outline-none  px-3 py-2"
+                    name="p-type"
+                    id="p-type"
+                  >
+                    <option value="" className="text-gray-400">
+                      Select a project type
+                    </option>
+                    <option value="Research">Research</option>
+                    <option value="Consultancy">Consultancy</option>
+                    <option value="Institute/SRIC_funded">
+                      Institute/SRIC_funded
+                    </option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+                <div className="grid grid-cols-2 gap-10">
+                  <div className="flex flex-col gap-2 col-span-1">
+                    <label htmlFor="fullname">Starting Date : </label>
+                    <input
+                      type="date"
+                      name="s-date"
+                      id="s-date"
+                      required
+                      className="border outline-none  px-3 py-2"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 col-span-1">
+                    <label htmlFor="fullname">Ending Date : </label>
+                    <input
+                      type="date"
+                      name="e-date"
+                      id="e-date"
+                      required
+                      className="border outline-none  px-3 py-2"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
             {fileTab === 1 && (
               <div className="flex gap-10 items-center ml-1">
                 <div className="flex gap-2 items-center">
@@ -234,7 +328,7 @@ const filemanager = () => {
               </div>
             )}
             <div className="flex flex-col gap-2">
-              <label htmlFor="about">Document Description : </label>
+              <label htmlFor="about">Project Description : </label>
               <textarea
                 type="text"
                 name="docDesc"

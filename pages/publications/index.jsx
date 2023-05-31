@@ -53,48 +53,80 @@ const Publications = () => {
               }}
               className={activeNav === 1 ? activeTabClass : tabClass}
             >
-              All(28)
+              All({resources.length})
             </span>
-            <span
-              onClick={() => {
-                setActiveNav(2);
-              }}
-              className={activeNav === 2 ? activeTabClass : tabClass}
-            >
-              Conferences(12)
-            </span>
-            <span
-              onClick={() => {
-                setActiveNav(3);
-              }}
-              className={activeNav === 3 ? activeTabClass : tabClass}
-            >
-              Chapters(8)
-            </span>
-            <span
-              onClick={() => {
-                setActiveNav(4);
-              }}
-              className={activeNav === 4 ? activeTabClass : tabClass}
-            >
-              Journals(14)
-            </span>
-            <span
-              onClick={() => {
-                setActiveNav(5);
-              }}
-              className={activeNav === 5 ? activeTabClass : tabClass}
-            >
-              Patents(3)
-            </span>
-            <span
-              onClick={() => {
-                setActiveNav(6);
-              }}
-              className={activeNav === 6 ? activeTabClass : tabClass}
-            >
-              Favorites(6)
-            </span>
+            {resources.filter(
+              (project) => project?.publicationType === "Conferences"
+            ).length !== 0 && (
+              <span
+                onClick={() => {
+                  setActiveNav(2);
+                }}
+                className={activeNav === 2 ? activeTabClass : tabClass}
+              >
+                Conferences(
+                {
+                  resources.filter(
+                    (project) => project?.publicationType === "Conferences"
+                  ).length
+                }
+                )
+              </span>
+            )}
+            {resources.filter(
+              (project) => project?.publicationType === "Chapters"
+            ).length !== 0 && (
+              <span
+                onClick={() => {
+                  setActiveNav(3);
+                }}
+                className={activeNav === 3 ? activeTabClass : tabClass}
+              >
+                Chapters(
+                {
+                  resources.filter(
+                    (project) => project?.publicationType === "Chapters"
+                  ).length
+                }
+                )
+              </span>
+            )}
+            {resources.filter(
+              (project) => project?.publicationType === "Journals"
+            ).length !== 0 && (
+              <span
+                onClick={() => {
+                  setActiveNav(4);
+                }}
+                className={activeNav === 4 ? activeTabClass : tabClass}
+              >
+                Journals(
+                {
+                  resources.filter(
+                    (project) => project?.publicationType === "Journals"
+                  ).length
+                }
+                )
+              </span>
+            )}
+            {resources.filter(
+              (project) => project?.publicationType === "Patents"
+            ).length !== 0 && (
+              <span
+                onClick={() => {
+                  setActiveNav(5);
+                }}
+                className={activeNav === 5 ? activeTabClass : tabClass}
+              >
+                Patents(
+                {
+                  resources.filter(
+                    (project) => project?.publicationType === "Patents"
+                  ).length
+                }
+                )
+              </span>
+            )}
           </nav>
           <div className="flex items-center w-[30%] h-[90%] bg-white my-auto">
             <FiSearch className="w-[8%]" />
@@ -111,38 +143,190 @@ const Publications = () => {
       </div>
 
       <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
-        <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
-          <div className="flex flex-wrap">
-            {search(resources)?.map((data, i) => {
-              return (
-                <div
-                  key={i}
-                  className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-[30%] mb-5 mr-10"
-                >
-                  <div className="flex flex-col gap-2">
-                    <span className="text-lg font-semibold">
-                      {data?.docname}
-                    </span>
-                    <p className="text-gray-700">{data?.docDesc}</p>
-                  </div>
-                  <span className="text-xs">
-                    <i>- by {data?.docOwner}</i>
-                  </span>
-                  <a
-                    href={data?.docLink}
-                    target="_blank"
-                    className="text-center bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+        {activeNav === 1 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-col flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
                   >
-                    Open File
-                  </a>
-                </div>
-              );
-            })}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-lg font-semibold">
+                        {data?.docname}
+                      </span>
+                      <p className="text-gray-700">{data?.docDesc}</p>
+                    </div>
+                    <span className="text-xs">
+                      <i>- by {data?.docOwnerName}</i>
+                    </span>
+                    <a
+                      href={data?.docLink}
+                      target="_blank"
+                      className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                    >
+                      Open File
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
           </div>
-          {isLoading && (
-            <div className="flex justify-center item-center">Loading...</div>
-          )}
-        </div>
+        ) : activeNav === 2 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-col flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <React.Fragment key={data + i}>
+                    {data?.publicationType === "Conferences" && (
+                      <div
+                        key={i}
+                        className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <span className="text-lg font-semibold">
+                            {data?.docname}
+                          </span>
+                          <p className="text-gray-700">{data?.docDesc}</p>
+                        </div>
+                        <span className="text-xs">
+                          <i>- by {data?.docOwnerName}</i>
+                        </span>
+                        <a
+                          href={data?.docLink}
+                          target="_blank"
+                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                        >
+                          Open File
+                        </a>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
+          </div>
+        ) : activeNav === 3 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <React.Fragment key={data + i}>
+                    {data?.projectType === "Chapters" && (
+                      <div
+                        key={i}
+                        className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <span className="text-lg font-semibold">
+                            {data?.docname}
+                          </span>
+                          <p className="text-gray-700">{data?.docDesc}</p>
+                        </div>
+                        <span className="text-xs">
+                          <i>- by {data?.docOwnerName}</i>
+                        </span>
+                        <a
+                          href={data?.docLink}
+                          target="_blank"
+                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                        >
+                          Open File
+                        </a>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
+          </div>
+        ) : activeNav === 4 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <React.Fragment key={data + i}>
+                    {data?.projectType === "Journals" && (
+                      <div
+                        key={i}
+                        className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <span className="text-lg font-semibold">
+                            {data?.docname}
+                          </span>
+                          <p className="text-gray-700">{data?.docDesc}</p>
+                        </div>
+                        <span className="text-xs">
+                          <i>- by {data?.docOwnerName}</i>
+                        </span>
+                        <a
+                          href={data?.docLink}
+                          target="_blank"
+                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                        >
+                          Open File
+                        </a>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
+          </div>
+        ) : activeNav === 4 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <React.Fragment key={data + i}>
+                    {data?.projectType === "Patents" && (
+                      <div
+                        key={i}
+                        className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <span className="text-lg font-semibold">
+                            {data?.docname}
+                          </span>
+                          <p className="text-gray-700">{data?.docDesc}</p>
+                        </div>
+                        <span className="text-xs">
+                          <i>- by {data?.docOwnerName}</i>
+                        </span>
+                        <a
+                          href={data?.docLink}
+                          target="_blank"
+                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                        >
+                          Open File
+                        </a>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </section>
   );
