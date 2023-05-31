@@ -6,7 +6,7 @@ import axios from "axios";
 const inter = Inter({ subsets: ["latin"] });
 
 import Image from "next/image";
-import HeroImage from "./../public/hero-image.png";
+import HeroImage from "./../public/hero-image.jpg";
 import NewsImage from "./../public/news.png";
 
 export default function Home() {
@@ -125,7 +125,11 @@ export default function Home() {
           <h1 className="text-4xl font-thin mt-1 text-center">WELCOME!</h1>
           <div className="flex flex-row items-center justify-center">
             <div className="w-[20%]">
-              <Image src={HeroImage} alt="Hero Image" className="w-full aspect-auto" />
+              <Image
+                src={HeroImage}
+                alt="Hero Image"
+                className="w-full aspect-auto"
+              />
               <div className="flex flex-row py-5"></div>
             </div>
             <div className="px-20 w-[70%]">

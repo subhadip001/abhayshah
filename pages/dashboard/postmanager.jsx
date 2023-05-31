@@ -49,15 +49,14 @@ const postmanager = () => {
         setIsLoading(false);
       }
     } else if (fileTab === 2) {
-      return;
       try {
         const res = await axios.post(
-          "https://abhayasha.onrender.com/addPublications",
+          "https://abhayasha.onrender.com/postNews",
           {
             username: auth.username,
-            docname: docname,
-            docDesc: docDesc,
-            docLink: downloadURL,
+            title: docname,
+            desc: docDesc,
+            photoLink: downloadURL,
           }
         );
         console.log(res.data);
@@ -69,9 +68,8 @@ const postmanager = () => {
       }
     } else if (fileTab === 3) {
       try {
-        return;
         const res = await axios.post(
-          "https://abhayasha.onrender.com/addProjects",
+          "https://abhayasha.onrender.com/",
           {
             username: auth.username,
             docname: docname,
@@ -109,6 +107,7 @@ const postmanager = () => {
 
     if (!file) {
       console.log("No file selected");
+      alert("No Image selected");
       return;
     }
     const app = initializeApp(firebaseConfig);
@@ -235,6 +234,38 @@ const postmanager = () => {
                 }}
               />
             </div>
+            {fileTab === 2 && (
+              <>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="doc">Attach Document : </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="file"
+                      onChange={handleFileUpload}
+                      id="doc"
+                      required
+                      placeholder="Document"
+                      className="border outline-none  px-3 py-2"
+                    />
+                    <button
+                      onClick={uploadFile}
+                      type="button"
+                      className="bg-[#3B82F6] px-2 py-1 text-white flex justify-center items-center"
+                    >
+                      {false ? (
+                        <CgSpinner className="animate-spin" />
+                      ) : (
+                        "Upload"
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  {progress > 0 && <p>Upload progress: {progress}%</p>}
+                  {downloadURL && <p>File uploaded successfully!</p>}
+                </div>
+              </>
+            )}
           </div>
           <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">
             {isLoading ? (

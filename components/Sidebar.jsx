@@ -59,6 +59,14 @@ const Sidebar = () => {
               >
                 File Manager
               </Link>
+              <Link
+                className={`inline-block ${
+                  router.asPath === "/dashboard/postmanager" ? `underline` : ``
+                }`}
+                href={"/dashboard/postmanager"}
+              >
+                Post Manager
+              </Link>
             </ul>
           </div>
         </div>
