@@ -129,7 +129,7 @@ const ResearchProjects = () => {
           <div className="flex items-center w-[30%] h-[90%] bg-white my-auto">
             <FiSearch className="w-[8%]" />
             <input
-              placeholder="Search using title"
+              placeholder="Search using title / description / date"
               className="px-2 py-1 w-full outline-none"
               type="text"
               onChange={(e) => {

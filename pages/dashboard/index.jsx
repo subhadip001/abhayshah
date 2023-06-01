@@ -628,7 +628,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <button className="w-60 flex justify-center items-center mb-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button className="w-60 flex justify-center items-center mb-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
             {isLoading ? <CgSpinner className="animate-spin" /> : "Update"}
           </button>
         </form>
@@ -643,7 +643,7 @@ const Dashboard = () => {
               </div>
               <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="rounded-lg text-sm font-medium text-gray-700 text-left">
+                  <tr className="text-sm font-medium text-gray-700 text-left">
                     <th className="px-4 py-2 bg-gray-200">From</th>
                     <th className="px-4 py-2 bg-gray-200">To</th>
                     <th className="px-4 py-2 bg-gray-200">Designation</th>
@@ -664,7 +664,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.from}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -677,7 +677,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.to}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -690,7 +690,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.designation}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -703,7 +703,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.organisation}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -714,7 +714,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                               onClick={handleSaveEditedAdmin}
                             >
                               Save
@@ -722,7 +722,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => {
                                 setEditingAdmin(false);
                                 setEditedAdminIndex(null);
@@ -741,7 +741,7 @@ const Dashboard = () => {
                           <td className="px-4 py-4">{item.organisation}</td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                               onClick={() => handleEditProfession(index)}
                             >
                               Edit
@@ -749,7 +749,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => handleDeleteProfession(index)}
                             >
                               Delete
@@ -765,7 +765,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedProfessionItem.from}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedProfessionItem({
                               ...editedProfessionItem,
@@ -778,7 +778,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedProfessionItem.to}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedProfessionItem({
                               ...editedProfessionItem,
@@ -791,7 +791,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedProfessionItem.designation}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedProfessionItem({
                               ...editedProfessionItem,
@@ -804,7 +804,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedProfessionItem.organisation}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedProfessionItem({
                               ...editedProfessionItem,
@@ -815,7 +815,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                           onClick={handleSaveEditedProfession}
                         >
                           Save
@@ -823,7 +823,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                           onClick={() => {
                             setEditingProfession(false);
                             setEditedProfessionIndex(null);
@@ -839,7 +839,7 @@ const Dashboard = () => {
               </table>
               <div className="mt-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                   onClick={() => {
                     setEditingProfession(true);
                     setEditedProfessionIndex(null);
@@ -863,7 +863,7 @@ const Dashboard = () => {
               </div>
               <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="rounded-lg text-sm font-medium text-gray-700 text-left">
+                  <tr className="text-sm font-medium text-gray-700 text-left">
                     <th className="px-4 py-2 bg-gray-200">Award</th>
                     <th className="px-4 py-2 bg-gray-200">Institute</th>
                     <th className="px-4 py-2 bg-gray-200">Year Awarded</th>
@@ -883,7 +883,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedHonorItem.award}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedHonorItem({
                                   ...editedHonorItem,
@@ -896,7 +896,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedHonorItem.institute}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedHonorItem({
                                   ...editedHonorItem,
@@ -909,7 +909,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedHonorItem.yearAwarded}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedHonorItem({
                                   ...editedHonorItem,
@@ -921,7 +921,7 @@ const Dashboard = () => {
 
                           <td className="px-4 py-4">
                             <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                               onClick={handleSaveEditedHonor}
                             >
                               Save
@@ -929,7 +929,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => {
                                 setEditingHonor(false);
                                 setEditedHonorIndex(null);
@@ -947,7 +947,7 @@ const Dashboard = () => {
                           <td className="px-4 py-4">{item.yearAwarded}</td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                               onClick={() => handleEditHonor(index)}
                             >
                               Edit
@@ -955,7 +955,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => handleDeleteHonor(index)}
                             >
                               Delete
@@ -971,7 +971,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedHonorItem.award}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedHonorItem({
                               ...editedHonorItem,
@@ -984,7 +984,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedHonorItem.institute}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedHonorItem({
                               ...editedHonorItem,
@@ -997,7 +997,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedHonorItem.yearAwarded}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedHonorItem({
                               ...editedHonorItem,
@@ -1008,7 +1008,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                           onClick={handleSaveEditedHonor}
                         >
                           Save
@@ -1016,7 +1016,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                           onClick={() => {
                             setEditingHonor(false);
                             setEditedHonorIndex(null);
@@ -1032,7 +1032,7 @@ const Dashboard = () => {
               </table>
               <div className="mt-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                   onClick={() => {
                     setEditingHonor(true);
                     setEditedHonorIndex(null);
@@ -1055,7 +1055,7 @@ const Dashboard = () => {
               </div>
               <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="rounded-lg text-sm font-medium text-gray-700 text-left">
+                  <tr className="text-sm font-medium text-gray-700 text-left">
                     <th className="px-4 py-2 bg-gray-200">Degree</th>
                     <th className="px-4 py-2 bg-gray-200">Subject</th>
                     <th className="px-4 py-2 bg-gray-200">University</th>
@@ -1076,7 +1076,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedEducationItem.degree}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedEducationItem({
                                   ...editedEducationItem,
@@ -1089,7 +1089,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedEducationItem.subject}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedEducationItem({
                                   ...editedEducationItem,
@@ -1102,7 +1102,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedEducationItem.university}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedEducationItem({
                                   ...editedEducationItem,
@@ -1115,7 +1115,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedEducationItem.yearStudied}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedEducationItem({
                                   ...editedEducationItem,
@@ -1126,7 +1126,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                               onClick={handleSaveEditedEducation}
                             >
                               Save
@@ -1134,7 +1134,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => {
                                 setEditingEducation(false);
                                 setEditedEducationIndex(null);
@@ -1153,7 +1153,7 @@ const Dashboard = () => {
                           <td className="px-4 py-4">{item.yearStudied}</td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                               onClick={() => handleEditEducation(index)}
                             >
                               Edit
@@ -1161,7 +1161,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => handleDeleteEducation(index)}
                             >
                               Delete
@@ -1177,7 +1177,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedEducationItem.degree}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedEducationItem({
                               ...editedEducationItem,
@@ -1190,7 +1190,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedEducationItem.subject}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedEducationItem({
                               ...editedEducationItem,
@@ -1203,7 +1203,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedEducationItem.university}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedEducationItem({
                               ...editedEducationItem,
@@ -1216,7 +1216,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedEducationItem.yearStudied}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedEducationItem({
                               ...editedEducationItem,
@@ -1227,7 +1227,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                           onClick={handleSaveEditedEducation}
                         >
                           Save
@@ -1235,7 +1235,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 "
                           onClick={() => {
                             setEditingEducation(false);
                             setEditedEducationIndex(null);
@@ -1251,7 +1251,7 @@ const Dashboard = () => {
               </table>
               <div className="mt-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                   onClick={() => {
                     setEditingEducation(true);
                     setEditedEducationIndex(null);
@@ -1277,7 +1277,7 @@ const Dashboard = () => {
               </div>
               <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="rounded-lg text-sm font-medium text-gray-700 text-left">
+                  <tr className="text-sm font-medium text-gray-700 text-left">
                     <th className="px-4 py-2 bg-gray-200">From</th>
                     <th className="px-4 py-2 bg-gray-200">To</th>
                     <th className="px-4 py-2 bg-gray-200">Designation</th>
@@ -1299,7 +1299,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.from}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -1312,7 +1312,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.to}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -1325,7 +1325,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.designation}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -1338,7 +1338,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.organisation}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -1351,7 +1351,7 @@ const Dashboard = () => {
                             <input
                               type="text"
                               value={editedAdminItem.level}
-                              className="border rounded py-1 px-2 w-full border-gray-400"
+                              className="border py-1 px-2 w-full border-gray-400"
                               onChange={(e) =>
                                 setEditedAdminItem({
                                   ...editedAdminItem,
@@ -1362,7 +1362,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                               onClick={handleSaveEditedAdmin}
                             >
                               Save
@@ -1370,7 +1370,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => {
                                 setEditingAdmin(false);
                                 setEditedAdminIndex(null);
@@ -1390,7 +1390,7 @@ const Dashboard = () => {
                           <td className="px-4 py-4">{item.level}</td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                               onClick={() => handleEditAdmin(index)}
                             >
                               Edit
@@ -1398,7 +1398,7 @@ const Dashboard = () => {
                           </td>
                           <td className="px-4 py-4">
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                               onClick={() => handleDeleteAdmin(index)}
                             >
                               Delete
@@ -1414,7 +1414,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedAdminItem.from}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedAdminItem({
                               ...editedAdminItem,
@@ -1427,7 +1427,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedAdminItem.to}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedAdminItem({
                               ...editedAdminItem,
@@ -1440,7 +1440,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedAdminItem.designation}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedAdminItem({
                               ...editedAdminItem,
@@ -1453,7 +1453,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedAdminItem.organisation}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedAdminItem({
                               ...editedAdminItem,
@@ -1466,7 +1466,7 @@ const Dashboard = () => {
                         <input
                           type="text"
                           value={editedAdminItem.level}
-                          className="border rounded py-1 px-2 w-full border-gray-400"
+                          className="border py-1 px-2 w-full border-gray-400"
                           onChange={(e) =>
                             setEditedAdminItem({
                               ...editedAdminItem,
@@ -1477,7 +1477,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
                           onClick={handleSaveEditedAdmin}
                         >
                           Save
@@ -1485,7 +1485,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4"
                           onClick={() => {
                             setEditingAdmin(false);
                             setEditedAdminIndex(null);
@@ -1501,7 +1501,7 @@ const Dashboard = () => {
               </table>
               <div className="mt-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
                   onClick={() => {
                     setEditingAdmin(true);
                     setEditedAdminIndex(null);
@@ -1520,7 +1520,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <button className="w-60 flex justify-center items-center mb-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button className="w-60 flex justify-center items-center mb-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
             {isLoading ? <CgSpinner className="animate-spin" /> : "Update"}
           </button>
         </form>

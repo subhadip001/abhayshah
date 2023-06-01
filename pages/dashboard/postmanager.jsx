@@ -50,15 +50,12 @@ const postmanager = () => {
       }
     } else if (fileTab === 2) {
       try {
-        const res = await axios.post(
-          "https://abhayasha.onrender.com/postNews",
-          {
-            username: auth.username,
-            title: docname,
-            desc: docDesc,
-            photoLink: downloadURL,
-          }
-        );
+        const res = await axios.post("https://abhayasha.onrender.com/postNews", {
+          username: auth.username,
+          title: docname,
+          desc: docDesc,
+          photoLink: downloadURL,
+        });
         console.log(res.data);
         setIsLoading(false);
         setIsAdded(true);
@@ -68,15 +65,12 @@ const postmanager = () => {
       }
     } else if (fileTab === 3) {
       try {
-        const res = await axios.post(
-          "https://abhayasha.onrender.com/",
-          {
-            username: auth.username,
-            docname: docname,
-            docDesc: docDesc,
-            docLink: downloadURL,
-          }
-        );
+        const res = await axios.post("https://abhayasha.onrender.com/postEvent", {
+          username: auth.username,
+          title: docname,
+          desc: docDesc,
+          eventDate: data["ev-date"],
+        });
         console.log(res.data);
         setIsLoading(false);
         setIsAdded(true);
@@ -210,6 +204,18 @@ const postmanager = () => {
                 }}
               />
             </div>
+            {fileTab === 3 && (
+              <div className="flex flex-col gap-2">
+                <label htmlFor="ev-date">Event Date</label>
+                <input
+                  type="date"
+                  name="ev-date"
+                  id="ev-date"
+                  required
+                  className="border outline-none  px-3 py-2"
+                />
+              </div>
+            )}
 
             <div className="flex flex-col gap-2">
               <label htmlFor="about">

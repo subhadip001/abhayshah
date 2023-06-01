@@ -13,6 +13,8 @@ export default function Home() {
   const auth = useContext(AuthContext);
   const username = auth.username;
   const [problems, setProblems] = useState([]);
+  const [news, setNews] = useState([]);
+  const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -32,8 +34,36 @@ export default function Home() {
     }
   };
 
+  const getNews = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get("https://abhayasha.onrender.com/getAllNews");
+      console.log(res.data);
+      setNews(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  const getEvents = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get("https://abhayasha.onrender.com/getAllEvents");
+      console.log(res.data);
+      setEvents(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getProblems();
+    getNews();
+    getEvents();
   }, []);
 
   const handleSubmit = (e) => {
@@ -54,11 +84,35 @@ export default function Home() {
     }
   }, []);
 
+  function formatNewsDate(dateString) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleString("en-US", options);
+
+    return formattedDate;
+  }
+
+  function formatDate(dateString) {
+    const options = { day: "2-digit", month: "short" };
+    const date = new Date(dateString);
+    const formattedDay = date.toLocaleString("en-US", { day: "2-digit" });
+    const formattedMonth = date.toLocaleString("en-US", { month: "short" });
+
+    return (
+      <>
+        <div className="py-10">
+          <h2 className="text-xl py-1">{formattedDay}</h2>
+          <p className="text-lg font-bold">{formattedMonth}</p>
+        </div>
+      </>
+    );
+  }
+
   const Popup = ({ className }) => {
     return (
       <div>
         <div className={className}>
-          <div className="bg-white rounded-lg p-8 w-[50vw]">
+          <div className="bg-white p-8 w-[50vw]">
             <h2 className="text-lg font-bold mb-4">
               Why are you visiting this page?
             </h2>
@@ -67,7 +121,7 @@ export default function Home() {
                 <span className="text-gray-700">Name:</span>
 
                 <input
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
+                  className="form-textarea mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
                   placeholder="Enter your name"
                 />
@@ -76,7 +130,7 @@ export default function Home() {
                 <span className="text-gray-700">Institution:</span>
 
                 <input
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+                  className="form-textarea mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
                   rows="3"
                   placeholder="Enter your institution"
                 />
@@ -85,7 +139,7 @@ export default function Home() {
                 <span className="text-gray-700">Reason:</span>
 
                 <textarea
-                  className="form-textarea mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
+                  className="form-textarea mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  p-2"
                   rows="3"
                   placeholder="Enter your reason here"
                 ></textarea>
@@ -99,7 +153,7 @@ export default function Home() {
                   Close
                 </button>
                 <button
-                  className="bg-blue-500 text-white rounded-lg px-4 py-2"
+                  className="bg-blue-500 text-white px-4 py-2"
                   type="submit"
                 >
                   Submit
@@ -158,39 +212,20 @@ export default function Home() {
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
           <div className="flex flex-row justify-between">
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
-              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
-              <div className="py-5 w-80 px-5">
-                <p className="text-2xl font-bold">Internal Meeting</p>
-                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
-                <p>
-                  We are working with Semiconductor Research Corporation (SRC)
-                  on Machine Learning augmented Compact Models.
-                </p>
-              </div>
-            </div>
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
-              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
-              <div className="py-5 w-80 px-5">
-                <p className="text-2xl font-bold">Internal Meeting</p>
-                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
-                <p>
-                  We are working with Semiconductor Research Corporation (SRC)
-                  on Machine Learning augmented Compact Models.
-                </p>
-              </div>
-            </div>
-            <div className="mt-10 rounded-2xl shadow-2xl bg-[#dfdfdf] w-[25vw]">
-              <Image src={NewsImage} className="w-[25vw] h-80 rounded-t-2xl" />
-              <div className="py-5 w-80 px-5">
-                <p className="text-2xl font-bold">Internal Meeting</p>
-                <p className="text-xl text-[#272727]">10 Feb, 2023</p>
-                <p>
-                  We are working with Semiconductor Research Corporation (SRC)
-                  on Machine Learning augmented Compact Models.
-                </p>
-              </div>
-            </div>
+            {news?.map((data, i) => {
+              return (
+                <div key={i} className="mt-10 bg-[#dfdfdf] w-[25vw]">
+                  <img src={data?.photoLink} className="w-[25vw] h-80" />
+                  <div className="py-5 w-80 px-5">
+                    <p className="text-2xl font-bold">{data?.title}</p>
+                    <p className="text-xl text-[#272727]">
+                      {formatNewsDate(data?.dateOfNews)}
+                    </p>
+                    <p>{data?.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -200,62 +235,17 @@ export default function Home() {
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
           <div>
-            <div className="flex flex-row items-center">
-              <div className="py-10">
-                <h2 className="text-xl py-1">14</h2>
-                <p className="text-lg font-bold">MAR</p>
-              </div>
-              <div className="px-12">
-                <h2 className="text-2xl font-bold">Short Term Course</h2>
-                <p className="py-1">
-                  Training on Remote Sensing and GIS Technology for
-                  Environmental Monitoring, Planning and Management Under the
-                  aegis of Continuing Education Centre.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row items-center">
-              <div className="py-10">
-                <h2 className="text-xl py-1">14</h2>
-                <p className="text-lg font-bold">MAR</p>
-              </div>
-              <div className="px-12">
-                <h2 className="text-2xl font-bold">Short Term Course</h2>
-                <p className="py-1">
-                  Training on Remote Sensing and GIS Technology for
-                  Environmental Monitoring, Planning and Management Under the
-                  aegis of Continuing Education Centre.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row items-center">
-              <div className="py-10">
-                <h2 className="text-xl py-1">14</h2>
-                <p className="text-lg font-bold">MAR</p>
-              </div>
-              <div className="px-12">
-                <h2 className="text-2xl font-bold">Short Term Course</h2>
-                <p className="py-1">
-                  Training on Remote Sensing and GIS Technology for
-                  Environmental Monitoring, Planning and Management Under the
-                  aegis of Continuing Education Centre.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row items-center">
-              <div className="py-10">
-                <h2 className="text-xl py-1">14</h2>
-                <p className="text-lg font-bold">MAR</p>
-              </div>
-              <div className="px-12">
-                <h2 className="text-2xl font-bold">Short Term Course</h2>
-                <p className="py-1">
-                  Training on Remote Sensing and GIS Technology for
-                  Environmental Monitoring, Planning and Management Under the
-                  aegis of Continuing Education Centre.
-                </p>
-              </div>
-            </div>
+            {events?.map((data, i) => {
+              return (
+                <div className="flex flex-row items-center">
+                  {formatDate(data?.eventDate)}
+                  <div className="px-12">
+                    <h2 className="text-2xl font-bold">{data?.title}</h2>
+                    <p className="py-1">{data?.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -266,10 +256,10 @@ export default function Home() {
           </div>
           <div className="my-10 mx-20">
             <h2 className="text-2xl font-bold pb-5 text-[#191919]">
-              {problems[0]?.question}
+              {problems[1]?.question}
             </h2>
-            <input className="w-full bg-gray-200 border-blue-600 h-10 border rounded-lg active:border-green-600 px-2 "></input>
-            <button className="h-10 bg-blue-500 px-20 my-10 rounded-lg hover:bg-blue-600 transition-all">
+            <input className="w-full bg-gray-200 border-blue-600 h-10 border active:border-green-600 px-2 "></input>
+            <button className="h-10 bg-blue-500 px-20 my-10 hover:bg-blue-600 transition-all">
               Submit
             </button>
           </div>
