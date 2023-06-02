@@ -1,4 +1,3 @@
-import Sidebar from "@/components/TeamSidebar";
 import { AuthContext } from "@/store/AuthContext";
 import axios from "axios";
 import { useRouter } from "next/router";

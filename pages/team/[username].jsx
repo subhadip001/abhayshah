@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiTwotoneMail } from "react-icons/ai";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import { CgSpinner } from "react-icons/cg";
 
 import AreaOfInterest from "../../components/AreaOfInterest";
 import EducationalDetails from "../../components/EducationalDetails";
@@ -34,7 +35,7 @@ const Username = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const optionsRef = useRef(null)
+  const optionsRef = useRef(null);
 
   const [area, setArea] = useState("");
   const [educational, setEducational] = useState("");
@@ -126,7 +127,10 @@ const Username = () => {
 
   const Options = () => {
     return (
-      <div ref={optionsRef} className="flex absolute z-20 bg-white border-2 flex-col w-[18rem] h-[30vh] overflow-y-auto py-1 text-blue-800">
+      <div
+        ref={optionsRef}
+        className="flex absolute z-20 bg-white border-2 flex-col w-[18rem] h-[30vh] overflow-y-auto py-1 text-blue-800"
+      >
         <Link
           className={`text-center ${
             selected === "interest" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
@@ -143,7 +147,7 @@ const Username = () => {
           className={`text-center ${
             selected === "professional" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#professional`}
           onClick={() => {
             setSelected("professional");
             setShowOptions(false);
@@ -155,7 +159,7 @@ const Username = () => {
           className={`text-center ${
             selected === "honors" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#honors`}
           onClick={() => {
             setSelected("honors");
             setShowOptions(false);
@@ -167,7 +171,7 @@ const Username = () => {
           className={`text-center ${
             selected === "educational" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#educational`}
           onClick={() => {
             setSelected("educational");
             setShowOptions(false);
@@ -192,7 +196,7 @@ const Username = () => {
           className={`text-center ${
             selected === "sponsored" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#sponsored`}
           onClick={() => {
             setSelected("sponsored");
             setShowOptions(false);
@@ -204,7 +208,7 @@ const Username = () => {
           className={`text-center ${
             selected === "memberships" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#memberships`}
           onClick={() => {
             setSelected("memberships");
             setShowOptions(false);
@@ -215,9 +219,9 @@ const Username = () => {
 
         <Link
           className={`text-center ${
-            selected === "teching" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
+            selected === "teaching" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#teaching`}
           onClick={() => {
             setSelected("teching");
             setShowOptions(false);
@@ -229,7 +233,7 @@ const Username = () => {
           className={`text-center ${
             selected === "phd" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#phd`}
           onClick={() => {
             setSelected("phd");
             setShowOptions(false);
@@ -241,7 +245,7 @@ const Username = () => {
           className={`text-center ${
             selected === "participate" ? "bg-blue-100 px-3  py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#participate`}
           onClick={() => {
             setSelected("participate");
             setShowOptions(false);
@@ -254,7 +258,7 @@ const Username = () => {
           className={`text-center ${
             selected === "special" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#special`}
           onClick={() => {
             setSelected("special");
             setShowOptions(false);
@@ -266,7 +270,7 @@ const Username = () => {
           className={`text-center ${
             selected === "participation" ? "bg-blue-100 px-3 py-1" : "py-1 px-3"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#participation`}
           onClick={() => {
             setSelected("participation");
             setShowOptions(false);
@@ -278,7 +282,7 @@ const Username = () => {
           className={`text-center ${
             selected === "journal" ? "bg-blue-100 px-3 py-1" : "px-3 py-1"
           }`}
-          href={`/team/${username}/#interest`}
+          href={`/team/${username}/#journal`}
           onClick={() => {
             setSelected("journal");
             setShowOptions(false);
@@ -313,7 +317,9 @@ const Username = () => {
                         <Link
                           key={i}
                           className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
-                            router.asPath.includes(`/team/${data?.username}`) === true
+                            router.asPath.includes(
+                              `/team/${data?.username}`
+                            ) === true
                               ? `bg-[#eaeaea]`
                               : ``
                           }`}
@@ -334,7 +340,10 @@ const Username = () => {
                 Ph.D
               </span>
               {isLoading && (
-                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                <div className="flex flex-col gap-2">
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                </div>
               )}
               {!isLoading &&
                 usernames?.map((data, i) => {
@@ -344,7 +353,9 @@ const Username = () => {
                         <Link
                           key={i}
                           className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
-                            router.asPath.includes(`/team/${data?.username}`) === true
+                            router.asPath.includes(
+                              `/team/${data?.username}`
+                            ) === true
                               ? `bg-[#eaeaea]`
                               : ``
                           }`}
@@ -368,7 +379,10 @@ const Username = () => {
                 M.Tech
               </span>
               {isLoading && (
-                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                <div className="flex flex-col gap-2">
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                </div>
               )}
               {!isLoading &&
                 usernames?.map((data, i) => {
@@ -378,7 +392,9 @@ const Username = () => {
                         <Link
                           key={i}
                           className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
-                            router.asPath.includes(`/team/${data?.username}`) === true
+                            router.asPath.includes(
+                              `/team/${data?.username}`
+                            ) === true
                               ? `bg-[#eaeaea]`
                               : ``
                           }`}
@@ -402,7 +418,10 @@ const Username = () => {
                 B.Tech
               </span>
               {isLoading && (
-                <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                <div className="flex flex-col gap-2">
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                  <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
+                </div>
               )}
               {!isLoading &&
                 usernames?.map((data, i) => {
@@ -412,7 +431,9 @@ const Username = () => {
                         <Link
                           key={i}
                           className={`flex items-left justify-start px-5 py-2 hover:bg-[#f3f3f3]  ${
-                            router.asPath.includes(`/team/${data?.username}`) === true
+                            router.asPath.includes(
+                              `/team/${data?.username}`
+                            ) === true
                               ? `bg-[#eaeaea]`
                               : ``
                           }`}
@@ -434,11 +455,17 @@ const Username = () => {
             <div className="cover flex bg-slate-600 h-[calc(10vw+5rem)] w-full"></div>
             <div className="wrapper flex gap-3 min-w-[calc(26vw+10rem)] h-[calc(12vw+4rem)] left-[13%] top-[20%] absolute bg-transparent">
               <div className="wrapper w-[calc(12vw+4rem)] h-[calc(12vw+4rem)] bg-slate-200">
-                <img
-                  className="w-full h-full object-cover"
-                  src={user?.photo}
-                  alt=""
-                />
+                {isLoadingRight ? (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <CgSpinner className="animate-spin text-4xl" />
+                  </div>
+                ) : (
+                  <img
+                    className="w-full h-full object-cover"
+                    src={user?.photo}
+                    alt=""
+                  />
+                )}
               </div>
               <div className="text-blue-500 mt-auto text-[calc(1vw+0.25rem)]">
                 <div className="flex flex-row items-center">
@@ -482,7 +509,13 @@ const Username = () => {
             </div>
             <hr className="w-full h-[0.2px] mt-4 bg-slate-700" />
             <div className="content mt-5 overflow-y-auto h-[60vh]">
-              {renderComponent()}
+              {isLoadingRight ? (
+                <span className="mt-5 mx-auto flex text-2xl items-center justify-center gap-2">
+                  <CgSpinner className="animate-spin" />
+                </span>
+              ) : (
+                renderComponent()
+              )}
             </div>
           </div>
         </div>

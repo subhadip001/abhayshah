@@ -17,7 +17,7 @@ const HonorsAndAwards = (props) => {
   };
 
   return (
-    <div>
+    <div id="honors">
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
           <h4 className="text-2xl font-bold pb-5">Honors and Rewards</h4>

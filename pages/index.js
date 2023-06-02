@@ -50,7 +50,9 @@ export default function Home() {
   const getEvents = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("https://abhayasha.onrender.com/getAllEvents");
+      const res = await axios.get(
+        "https://abhayasha.onrender.com/getAllEvents"
+      );
       console.log(res.data);
       setEvents(res.data);
       setIsLoading(false);
@@ -107,6 +109,23 @@ export default function Home() {
       </>
     );
   }
+
+  const CardSkeleton = () => {
+    return (
+      <div
+        role="status"
+        className="max-w-sm border-gray-200 shadow animate-pulse dark:border-gray-700 w-[25vw]"
+      >
+        <div className="flex items-center justify-center w-[25vw] h-80 mb-4 bg-gray-300 dark:bg-gray-700"></div>
+        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+        <div claclassName="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  };
 
   const Popup = ({ className }) => {
     return (
@@ -211,10 +230,11 @@ export default function Home() {
             <h1 className="text-[#191919] text-3xl font-bold">NEWS</h1>
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between mt-10">
+            {isLoading && <CardSkeleton />}
             {news?.map((data, i) => {
               return (
-                <div key={i} className="mt-10 bg-[#dfdfdf] w-[25vw]">
+                <div key={i} className="bg-[#dfdfdf] w-[25vw]">
                   <img src={data?.photoLink} className="w-[25vw] h-80" />
                   <div className="py-5 w-80 px-5">
                     <p className="text-2xl font-bold">{data?.title}</p>

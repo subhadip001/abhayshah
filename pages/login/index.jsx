@@ -8,7 +8,7 @@ import { CgSpinner } from "react-icons/cg";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [notice, setNotice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const auth = useContext(AuthContext);
@@ -28,6 +28,11 @@ function LoginForm() {
       router.push("/dashboard");
     } catch (error) {
       console.log(error);
+      setNotice(error.response.data.message);
+      setTimeout(() => {
+        setNotice("");
+        clearTimeout();
+      }, 3000);
       setIsLoading(false);
     }
   };
@@ -67,6 +72,11 @@ function LoginForm() {
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
             </div>
+            {notice && (
+              <div>
+                <span className="text-red-600">{notice}</span>
+              </div>
+            )}
             <button
               className="bg-blue-500 h-10 flex justify-center items-center text-white font-semibold"
               type="submit"

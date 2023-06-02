@@ -16,7 +16,7 @@ const EducationalDetails = (props) => {
   };
 
   return (
-    <div>
+    <div id="educational">
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
           <h1 className="text-2xl font-bold pb-5">Educational Details</h1>

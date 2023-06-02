@@ -12,6 +12,7 @@ function SignupForm() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [notice, setNotice] = useState("");
 
   const router = useRouter();
 
@@ -22,6 +23,12 @@ function SignupForm() {
     setIsLoading(true);
     if (password !== confirm) {
       console.log("confirm password doesnot match");
+      setNotice("Confirm password doesnot match");
+      setTimeout(() => {
+        setNotice("");
+        clearTimeout();
+      }, 3000);
+      setIsLoading(false);
       return;
     }
 
@@ -38,7 +45,12 @@ function SignupForm() {
       router.push("/login");
     } catch (error) {
       setIsLoading(false);
-      console.error(error.message);
+      console.error(error);
+      setNotice(error.response.data.message);
+      setTimeout(() => {
+        setNotice("");
+        clearTimeout();
+      }, 3000);
     }
   };
 
@@ -112,6 +124,11 @@ function SignupForm() {
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
             </div>
+            {notice && (
+              <div>
+                <span className="text-red-600">{notice}</span>
+              </div>
+            )}
             <button
               className="bg-blue-500 flex justify-center items-center h-10 text-white font-semibold"
               type="submit"

@@ -20,7 +20,7 @@ const ProfessionalBackground = (props) => {
   };
 
   return (
-    <div>
+    <div id="professional">
       <div className="overflow-auto">
         <div className="flex flex-col items-start">
           <h4 className="text-2xl font-bold pb-5">Professional background</h4>
