@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 import Image from "next/image";
 import HeroImage from "./../public/hero-image.jpg";
-import NewsImage from "./../public/news.png";
 
 export default function Home() {
   const auth = useContext(AuthContext);

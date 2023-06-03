@@ -452,7 +452,13 @@ const Username = () => {
         </div>
         <div className="w-[80vw] mx-auto h-[100%]">
           <div className="flex flex-col h-[50vh] w-full relative">
-            <div className="cover flex bg-slate-600 h-[calc(10vw+5rem)] w-full"></div>
+            <div className="cover flex h-[calc(10vw+5rem)] w-full">
+              <img
+                src="https://w0.peakpx.com/wallpaper/272/935/HD-wallpaper-waves-blue-gradient-modern-abstraction-abstract.jpg"
+                className="h-full w-full"
+                alt=""
+              />
+            </div>
             <div className="wrapper flex gap-3 min-w-[calc(26vw+10rem)] h-[calc(12vw+4rem)] left-[13%] top-[20%] absolute bg-transparent">
               <div className="wrapper w-[calc(12vw+4rem)] h-[calc(12vw+4rem)] bg-slate-200">
                 {isLoadingRight ? (
@@ -462,7 +468,10 @@ const Username = () => {
                 ) : (
                   <img
                     className="w-full h-full object-cover"
-                    src={user?.photo}
+                    src={
+                      user?.photo ||
+                      "https://static.wixstatic.com/media/2c1c3e_e49ffc1dd0d94d3dbb56b1f745ac6b59~mv2.png/v1/fill/w_336,h_336,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/blank%20profile.png"
+                    }
                     alt=""
                   />
                 )}
