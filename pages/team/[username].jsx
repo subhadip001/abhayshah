@@ -457,6 +457,7 @@ const Username = () => {
                 src="https://w0.peakpx.com/wallpaper/272/935/HD-wallpaper-waves-blue-gradient-modern-abstraction-abstract.jpg"
                 className="h-full w-full"
                 alt=""
+                draggable="false"
               />
             </div>
             <div className="wrapper flex gap-3 min-w-[calc(26vw+10rem)] h-[calc(12vw+4rem)] left-[13%] top-[20%] absolute bg-transparent">
@@ -473,6 +474,7 @@ const Username = () => {
                       "https://static.wixstatic.com/media/2c1c3e_e49ffc1dd0d94d3dbb56b1f745ac6b59~mv2.png/v1/fill/w_336,h_336,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/blank%20profile.png"
                     }
                     alt=""
+                    draggable="false"
                   />
                 )}
               </div>

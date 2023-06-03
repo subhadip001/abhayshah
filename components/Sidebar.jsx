@@ -32,6 +32,18 @@ const Sidebar = () => {
               >
                 Leave Applications
               </Link>
+              {username === "admin" && (
+                <Link
+                  className={`inline-block ${
+                    router.asPath === "/dashboard/opp-apps"
+                      ? `underline`
+                      : ``
+                  }`}
+                  href={"/dashboard/opp-apps"}
+                >
+                  Opportunity Apps
+                </Link>
+              )}
 
               <Link
                 className={`inline-block ${
