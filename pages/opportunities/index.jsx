@@ -1,5 +1,5 @@
-import FileUploader from "@/components/FileUploader";
 import React, { useState } from "react";
+import FileUploader from "@/components/FileUploader";
 
 const Opportunities = () => {
   const [projType, setProjType] = useState("lab");
