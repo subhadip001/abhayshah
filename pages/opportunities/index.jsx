@@ -1,4 +1,4 @@
-import FileUploader from "@/components/fileUploader";
+import FileUploader from "@/components/FileUploader";
 import React, { useState } from "react";
 
 const Opportunities = () => {
