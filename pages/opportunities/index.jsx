@@ -20,7 +20,7 @@ const Opportunities = () => {
     setSpinner(true);
     try {
       const res = await axios.post(
-        "https://abhayasha.onrender.com/postOppRequest",
+        "https://abhay-sah-api.subhadipmandal.engineer/postOppRequest",
         {
           nameOfStudent: data["name"],
           branch: data["branch"],

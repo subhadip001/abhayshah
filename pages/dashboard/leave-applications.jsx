@@ -28,7 +28,7 @@ const leaveapplications = () => {
     if (username !== "admin") {
       try {
         const res = await axios.post(
-          "https://abhayasha.onrender.com/addLeaveApp",
+          "https://abhay-sah-api.subhadipmandal.engineer/addLeaveApp",
           {
             appType: data["a-type"],
             appDesc: data["application"],
@@ -56,7 +56,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          "https://abhayasha.onrender.com/getAllLeaveApps"
+          "https://abhay-sah-api.subhadipmandal.engineer/getAllLeaveApps"
         );
         console.log(res.data);
         setLeaveApplications(res.data);
@@ -72,7 +72,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(
-          "https://abhayasha.onrender.com/getLeaveAppsByUsername",
+          "https://abhay-sah-api.subhadipmandal.engineer/getLeaveAppsByUsername",
           {
             username: username,
           }
@@ -91,7 +91,7 @@ const leaveapplications = () => {
     async (uname, id, updatedStatus) => {
       if (username === "admin") {
         const res = await axios.post(
-          "https://abhayasha.onrender.com/updateApplicationStatus",
+          "https://abhay-sah-api.subhadipmandal.engineer/updateApplicationStatus",
           {
             username: uname,
             appId: id,
@@ -255,7 +255,9 @@ const leaveapplications = () => {
                         </div>
                         <div className="flex flex-col justify-between w-[25%]">
                           {app?.appDesc?.length > 120 ? (
-                            <span>Reason : {app?.appDesc.slice(0, 120)}...</span>
+                            <span>
+                              Reason : {app?.appDesc.slice(0, 120)}...
+                            </span>
                           ) : (
                             <span>Reason : {app?.appDesc}</span>
                           )}

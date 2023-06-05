@@ -12,7 +12,7 @@ const PublicResouces = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhayasha.onrender.com/getAllPublicResorces"
+        "https://abhay-sah-api.subhadipmandal.engineer/getAllPublicResorces"
       );
       console.log(res.data);
       setResources(res.data);

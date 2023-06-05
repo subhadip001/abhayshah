@@ -33,12 +33,15 @@ function SignupForm() {
     }
 
     try {
-      const res = await axios.post("https://abhayasha.onrender.com/signup", {
-        username: username,
-        fullname: fullname,
-        email: email,
-        password: password,
-      });
+      const res = await axios.post(
+        "https://abhay-sah-api.subhadipmandal.engineer/signup",
+        {
+          username: username,
+          fullname: fullname,
+          email: email,
+          password: password,
+        }
+      );
 
       console.log(res);
       setIsLoading(false);

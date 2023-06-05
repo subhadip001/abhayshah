@@ -76,7 +76,7 @@ const Username = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhayasha.onrender.com/userfullnames"
+        "https://abhay-sah-api.subhadipmandal.engineer/userfullnames"
       );
       const users = res.data;
       setUsernames(res.data);
@@ -96,7 +96,7 @@ const Username = () => {
     setIsLoadingRight(true);
     try {
       const res = await axios.get(
-        `https://abhayasha.onrender.com/userdetails/${username}`
+        `https://abhay-sah-api.subhadipmandal.engineer/userdetails/${username}`
       );
       console.log(res.data);
       setUser(res.data);

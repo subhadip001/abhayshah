@@ -18,10 +18,13 @@ function LoginForm() {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post("https://abhayasha.onrender.com/login", {
-        username: username,
-        password: password,
-      });
+      const res = await axios.post(
+        "https://abhay-sah-api.subhadipmandal.engineer/login",
+        {
+          username: username,
+          password: password,
+        }
+      );
       auth.login(res.data.token, res.data.username, res.data.fullname);
       console.log(res.status);
       setIsLoading(false);

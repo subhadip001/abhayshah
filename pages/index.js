@@ -23,7 +23,9 @@ export default function Home() {
   const getProblems = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("https://abhayasha.onrender.com/getProblems");
+      const res = await axios.get(
+        "https://abhay-sah-api.subhadipmandal.engineer/getProblems"
+      );
       console.log(res.data);
       setProblems(res.data);
       setIsLoading(false);
@@ -36,7 +38,9 @@ export default function Home() {
   const getNews = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("https://abhayasha.onrender.com/getAllNews");
+      const res = await axios.get(
+        "https://abhay-sah-api.subhadipmandal.engineer/getAllNews"
+      );
       console.log(res.data);
       setNews(res.data);
       setIsLoading(false);
@@ -50,7 +54,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhayasha.onrender.com/getAllEvents"
+        "https://abhay-sah-api.subhadipmandal.engineer/getAllEvents"
       );
       console.log(res.data);
       setEvents(res.data);

@@ -33,7 +33,7 @@ const postmanager = () => {
     if (fileTab === 1) {
       try {
         const res = await axios.post(
-          "https://abhayasha.onrender.com/postProblems",
+          "https://abhay-sah-api.subhadipmandal.engineer/postProblems",
           {
             authorUsername: auth.username || "admin",
             authorFullname: auth.fullname || "Abhay Shah",
@@ -50,12 +50,15 @@ const postmanager = () => {
       }
     } else if (fileTab === 2) {
       try {
-        const res = await axios.post("https://abhayasha.onrender.com/postNews", {
-          username: auth.username,
-          title: docname,
-          desc: docDesc,
-          photoLink: downloadURL,
-        });
+        const res = await axios.post(
+          "https://abhay-sah-api.subhadipmandal.engineer/postNews",
+          {
+            username: auth.username,
+            title: docname,
+            desc: docDesc,
+            photoLink: downloadURL,
+          }
+        );
         console.log(res.data);
         setIsLoading(false);
         setIsAdded(true);
@@ -65,12 +68,15 @@ const postmanager = () => {
       }
     } else if (fileTab === 3) {
       try {
-        const res = await axios.post("https://abhayasha.onrender.com/postEvent", {
-          username: auth.username,
-          title: docname,
-          desc: docDesc,
-          eventDate: data["ev-date"],
-        });
+        const res = await axios.post(
+          "https://abhay-sah-api.subhadipmandal.engineer/postEvent",
+          {
+            username: auth.username,
+            title: docname,
+            desc: docDesc,
+            eventDate: data["ev-date"],
+          }
+        );
         console.log(res.data);
         setIsLoading(false);
         setIsAdded(true);
