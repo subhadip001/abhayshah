@@ -15,7 +15,7 @@ const OppsApps = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://abhay-sah-api.subhadipmandal.engineer/getAllOppsReqs",
+        "https://api.subhadipmandal.engineer/abhay/getAllOppsReqs",
         {
           username,
         }

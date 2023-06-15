@@ -28,7 +28,7 @@ const leaveapplications = () => {
     if (username !== "admin") {
       try {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/addLeaveApp",
+          "https://api.subhadipmandal.engineer/abhay/addLeaveApp",
           {
             appType: data["a-type"],
             appDesc: data["application"],
@@ -56,7 +56,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          "https://abhay-sah-api.subhadipmandal.engineer/getAllLeaveApps"
+          "https://api.subhadipmandal.engineer/abhay/getAllLeaveApps"
         );
         console.log(res.data);
         setLeaveApplications(res.data);
@@ -72,7 +72,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/getLeaveAppsByUsername",
+          "https://api.subhadipmandal.engineer/abhay/getLeaveAppsByUsername",
           {
             username: username,
           }
@@ -91,7 +91,7 @@ const leaveapplications = () => {
     async (uname, id, updatedStatus) => {
       if (username === "admin") {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/updateApplicationStatus",
+          "https://api.subhadipmandal.engineer/abhay/updateApplicationStatus",
           {
             username: uname,
             appId: id,

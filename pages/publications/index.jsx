@@ -15,7 +15,7 @@ const Publications = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhay-sah-api.subhadipmandal.engineer/getAllPublications"
+        "https://api.subhadipmandal.engineer/abhay/getAllPublications"
       );
       console.log(res.data);
       setResources(res.data);

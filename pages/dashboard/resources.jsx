@@ -12,7 +12,7 @@ const Resources = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://abhay-sah-api.subhadipmandal.engineer/getResourcesByUsername",
+        "https://api.subhadipmandal.engineer/abhay/getResourcesByUsername",
         {
           username: username,
         }

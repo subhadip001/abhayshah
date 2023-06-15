@@ -34,7 +34,7 @@ function SignupForm() {
 
     try {
       const res = await axios.post(
-        "https://abhay-sah-api.subhadipmandal.engineer/signup",
+        "https://api.subhadipmandal.engineer/abhay/signup",
         {
           username: username,
           fullname: fullname,

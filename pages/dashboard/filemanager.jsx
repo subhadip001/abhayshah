@@ -33,7 +33,7 @@ const filemanager = () => {
     if (fileTab === 1) {
       try {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/addResource",
+          "https://api.subhadipmandal.engineer/abhay/addResource",
           {
             username: auth.username,
             docOwnerName: auth.fullname,
@@ -53,7 +53,7 @@ const filemanager = () => {
     } else if (fileTab === 2) {
       try {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/addPublications",
+          "https://api.subhadipmandal.engineer/abhay/addPublications",
           {
             username: auth.username,
             docOwnerName: auth.fullname,
@@ -73,7 +73,7 @@ const filemanager = () => {
     } else if (fileTab === 3) {
       try {
         const res = await axios.post(
-          "https://abhay-sah-api.subhadipmandal.engineer/addProjects",
+          "https://api.subhadipmandal.engineer/abhay/addProjects",
           {
             username: auth.username,
             docname: docname,

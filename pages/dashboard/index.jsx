@@ -37,7 +37,7 @@ const Dashboard = () => {
     console.log(auth.username);
     try {
       const res = await axios.post(
-        "https://abhay-sah-api.subhadipmandal.engineer/getUserdetailsByUsername",
+        "https://api.subhadipmandal.engineer/abhay/getUserdetailsByUsername",
         {
           username: auth.username,
         }
@@ -62,7 +62,7 @@ const Dashboard = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://abhay-sah-api.subhadipmandal.engineer/updateUserdetails",
+        "https://api.subhadipmandal.engineer/abhay/updateUserdetails",
         {
           username: auth.username,
           data: {

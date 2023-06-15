@@ -24,7 +24,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhay-sah-api.subhadipmandal.engineer/getProblems"
+        "https://api.subhadipmandal.engineer/abhay/getProblems"
       );
       console.log(res.data);
       setProblems(res.data);
@@ -39,7 +39,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhay-sah-api.subhadipmandal.engineer/getAllNews"
+        "https://api.subhadipmandal.engineer/abhay/getAllNews"
       );
       console.log(res.data);
       setNews(res.data);
@@ -54,7 +54,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://abhay-sah-api.subhadipmandal.engineer/getAllEvents"
+        "https://api.subhadipmandal.engineer/abhay/getAllEvents"
       );
       console.log(res.data);
       setEvents(res.data);
@@ -196,8 +196,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className="px-28 py-8 flex flex-col gap-10">
+      <main className="grad-back">
+        <div className="px-28 py-8 flex flex-col gap-10 ">
           <h1 className="text-4xl font-thin mt-1 text-center">WELCOME!</h1>
           <div className="flex flex-row items-center justify-center">
             <div className="w-[20%]">
