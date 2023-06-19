@@ -11,6 +11,24 @@ const Opportunities = () => {
   const navClass = "px-3 py-1 bg-gray-200 cursor-pointer";
   const activeNavClass = "px-3 py-1 bg-blue-600 text-white";
 
+  const handleSendMail = async (nameOfStudent, branch, message) => {
+    try {
+      const res = await axios.post(
+        "https://api.subhadipmandal.engineer/abhay/send-email",
+        {
+          fileUrl: downloadURL,
+          recipientEmail: "mnhacker2001@gmail.com",
+          nameOfStudent,
+          branch,
+          message,
+        }
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -31,6 +49,7 @@ const Opportunities = () => {
       console.log(res.data);
       setSpinner(false);
       setIsSubmitted(true);
+      handleSendMail(data["name"], data["branch"], data["message"]);
     } catch (error) {
       console.log(error);
       setSpinner(false);
