@@ -196,27 +196,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="grad-back">
-        <div className="px-28 py-8 flex flex-col gap-10 ">
-          <h1 className="text-4xl font-thin mt-1 text-center">WELCOME!</h1>
-          <div className="flex flex-row items-center justify-center">
-            <div className="w-[20%]">
+      <main className="">
+        <div className="py-20 flex flex-col gap-20 back-image">
+          <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">WELCOME!</h1>
+          <div className="flex bg-[#d2d2d22c] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
+            <div className="">
               <Image
                 src={HeroImage}
                 alt="Hero Image"
-                className="w-full aspect-auto"
+                className="h-full"
               />
-              <div className="flex flex-row py-5"></div>
+              
             </div>
-            <div className="px-20 w-[70%]">
+            <div className="w-[70%]">
               <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
               <p className="text-2xl">Assistant Professor</p>
-              <p className="text-xl text-[#0E66C9]">
+              <p className="text-xl text-[#0E66C9] font-semibold">
                 Department of Electronics & Communication Engineering, IIT
                 Roorkee
               </p>
 
-              <p className="py-10">
+              <p className="py-10 font-semibold">
                 I joined the department in March 2020. Prior to that, I was a
                 Lead Architect at Radisys India Pvt. Ltd. Bangalore. I obtained
                 my Ph.D. from the Electrical Department at Indian Institute of
@@ -228,6 +228,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
         <div className="py-20 px-32">
           <div>
             <h1 className="text-[#191919] text-3xl font-bold">NEWS</h1>
