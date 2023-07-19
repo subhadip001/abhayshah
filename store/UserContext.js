@@ -13,7 +13,7 @@ const UserContextProvider = (props) => {
   const getList = async () => {
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/userdetails"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/userdetails"
       );
       setUserData(res.data);
     } catch (err) {

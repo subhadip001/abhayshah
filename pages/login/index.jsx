@@ -19,7 +19,7 @@ function LoginForm() {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://api.subhadipmandal.engineer/abhay/login",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/login",
         {
           username: username,
           password: password,

@@ -11,6 +11,8 @@ const Opportunities = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navClass = "px-3 py-1 bg-gray-200 cursor-pointer";
   const activeNavClass = "px-3 py-1 bg-blue-600 text-white";
+  const baseUrl =
+    "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay";
 
   const handleSendMail = async (
     nameOfStudent,
@@ -21,7 +23,7 @@ const Opportunities = () => {
   ) => {
     try {
       const res = await axios.post(
-        "https://api.subhadipmandal.engineer/abhay/send-email",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/send-email",
         {
           fileUrl: downloadURL,
           recipientEmail: "mnhacker2001@gmail.com",
@@ -47,7 +49,7 @@ const Opportunities = () => {
     setSpinner(true);
     try {
       const res = await axios.post(
-        "https://api.subhadipmandal.engineer/abhay/postOppRequest",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postOppRequest",
         {
           nameOfStudent: data["name"],
           branch: data["branch"],

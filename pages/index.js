@@ -24,7 +24,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/getProblems"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getProblems"
       );
       console.log(res.data);
       setProblems(res.data);
@@ -39,7 +39,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/getAllNews"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllNews"
       );
       console.log(res.data);
       setNews(res.data);
@@ -54,7 +54,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/getAllEvents"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllEvents"
       );
       console.log(res.data);
       setEvents(res.data);
@@ -123,7 +123,7 @@ export default function Home() {
         <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
         <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
         <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-        <div claclassName="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
 
         <span className="sr-only">Loading...</span>
       </div>
@@ -198,15 +198,12 @@ export default function Home() {
       </Head>
       <main className="">
         <div className="py-20 flex flex-col gap-20 back-image">
-          <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">WELCOME!</h1>
+          <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">
+            WELCOME!
+          </h1>
           <div className="flex bg-[#d2d2d22c] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
             <div className="">
-              <Image
-                src={HeroImage}
-                alt="Hero Image"
-                className="h-full"
-              />
-              
+              <Image src={HeroImage} alt="Hero Image" className="h-full" />
             </div>
             <div className="w-[70%]">
               <p className="text-4xl font-bold py-5">Abhay Kumar Sah</p>
@@ -228,7 +225,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         <div className="py-20 px-32">
           <div>
             <h1 className="text-[#191919] text-3xl font-bold">NEWS</h1>
@@ -261,7 +258,7 @@ export default function Home() {
           <div>
             {events?.map((data, i) => {
               return (
-                <div className="flex flex-row items-center">
+                <div key={i} className="flex flex-row items-center">
                   {formatDate(data?.eventDate)}
                   <div className="px-12">
                     <h2 className="text-2xl font-bold">{data?.title}</h2>

@@ -76,7 +76,7 @@ const Username = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/userfullnames"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/userfullnames"
       );
       const users = res.data;
       setUsernames(res.data);
@@ -96,7 +96,7 @@ const Username = () => {
     setIsLoadingRight(true);
     try {
       const res = await axios.get(
-        `https://api.subhadipmandal.engineer/abhay/userdetails/${username}`
+        `https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/userdetails/${username}`
       );
       console.log(res.data);
       setUser(res.data);

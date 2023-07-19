@@ -15,7 +15,7 @@ const Publications = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://api.subhadipmandal.engineer/abhay/getAllPublications"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllPublications"
       );
       console.log(res.data);
       setResources(res.data);

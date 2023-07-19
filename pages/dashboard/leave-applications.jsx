@@ -28,7 +28,7 @@ const leaveapplications = () => {
     if (username !== "admin") {
       try {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/addLeaveApp",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/addLeaveApp",
           {
             appType: data["a-type"],
             appDesc: data["application"],
@@ -56,7 +56,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          "https://api.subhadipmandal.engineer/abhay/getAllLeaveApps"
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllLeaveApps"
         );
         console.log(res.data);
         setLeaveApplications(res.data);
@@ -72,7 +72,7 @@ const leaveapplications = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/getLeaveAppsByUsername",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getLeaveAppsByUsername",
           {
             username: username,
           }
@@ -91,7 +91,7 @@ const leaveapplications = () => {
     async (uname, id, updatedStatus) => {
       if (username === "admin") {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/updateApplicationStatus",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/updateApplicationStatus",
           {
             username: uname,
             appId: id,

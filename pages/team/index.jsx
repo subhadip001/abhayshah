@@ -28,7 +28,7 @@ const Team = ({ users }) => {
 // }
 
 // export async function getStaticProps() {
-//   const res = await axios.get("https://api.subhadipmandal.engineer/abhay/userfullnames");
+//   const res = await axios.get("https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/userfullnames");
 //   const users = await res.data;
 //   console.log(users);
 //   return {

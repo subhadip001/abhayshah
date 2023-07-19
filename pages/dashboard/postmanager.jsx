@@ -33,7 +33,7 @@ const postmanager = () => {
     if (fileTab === 1) {
       try {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/postProblems",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postProblems",
           {
             authorUsername: auth.username || "admin",
             authorFullname: auth.fullname || "Abhay Shah",
@@ -51,7 +51,7 @@ const postmanager = () => {
     } else if (fileTab === 2) {
       try {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/postNews",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postNews",
           {
             username: auth.username,
             title: docname,
@@ -69,7 +69,7 @@ const postmanager = () => {
     } else if (fileTab === 3) {
       try {
         const res = await axios.post(
-          "https://api.subhadipmandal.engineer/abhay/postEvent",
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postEvent",
           {
             username: auth.username,
             title: docname,
