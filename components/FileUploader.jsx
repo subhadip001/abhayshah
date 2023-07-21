@@ -8,12 +8,15 @@ import {
 import { initializeApp } from "firebase/app";
 import "firebase/storage";
 
-const FileUploader = ({ setDownloadURL, id, className }) => {
+const FileUploader = ({
+  label,
+  setDownloadURL,
+  id,
+  className,
+  buttonClass,
+}) => {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
-
-  const buttonClass =
-    "h-[5vh] w-[10%] ml-auto text-center bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold";
 
   const firebaseConfig = {
     apiKey: "AIzaSyARVarzHCVuEfMFpL2aN9p-8bIn6ITk-q8",
@@ -60,21 +63,19 @@ const FileUploader = ({ setDownloadURL, id, className }) => {
   }
 
   return (
-    <>
-      <input
-        id={id}
-        className={className}
-        type="file"
-        onChange={handleFileUpload}
-      />
-      <button type="button" className={buttonClass} onClick={uploadFile}>
-        {progress == 100
-          ? "Done"
-          : progress > 0 && progress < 100
-          ? Math.floor(progress) + "%"
-          : "Upload"}
-      </button>
-    </>
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id}>{label}</label>
+      <div className={className}>
+        <input id={id} type="file" onChange={handleFileUpload} />
+        <button type="button" className={buttonClass} onClick={uploadFile}>
+          {progress == 100
+            ? "Done"
+            : progress > 0 && progress < 100
+            ? Math.floor(progress) + "%"
+            : "Upload"}
+        </button>
+      </div>
+    </div>
   );
 };
 

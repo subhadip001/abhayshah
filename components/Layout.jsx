@@ -9,13 +9,13 @@ export default function Layout({ children }) {
   const router = useRouter();
   const auth = useContext(AuthContext);
 
-  if (!auth.username) {
-    if (typeof window !== "undefined") {
-      if (router.asPath.includes("/dashboard")) {
-        router.push("/");
-      }
-    }
-  }
+  // if (!auth.username) {
+  //   if (typeof window !== "undefined") {
+  //     if (router.asPath.includes("/dashboard")) {
+  //       router.push("/");
+  //     }
+  //   }
+  // }
 
   if (router.asPath === "/login" || router.asPath === "/signup") {
     return (
@@ -29,13 +29,13 @@ export default function Layout({ children }) {
         <NavBar />
         <main
           className={`w-full ${
-            router.asPath.includes("/dashboard") ? `flex` : ``
+            router.asPath.includes("/dashboard") ? `h-[90vh] flex` : ``
           }`}
         >
           <Sidebar />
           {children}
         </main>
-        {!router.asPath.includes("/dashboard") && <Footer />}
+        {router.asPath === "/" && <Footer />}
       </>
     );
   }

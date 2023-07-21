@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       colors: {
         brand: "#2567eb",
+        secondary: "#3B82F6"
       },
       screens: {
         sm: { max: "739px" },

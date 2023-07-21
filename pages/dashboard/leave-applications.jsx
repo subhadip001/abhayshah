@@ -111,7 +111,7 @@ const leaveapplications = () => {
   }, []);
 
   return (
-    <div className="h-[85vh] w-[85%] overflow-y-auto">
+    <div className="h-[90vh] w-[85%] overflow-y-auto">
       <div className="w-[90%] mx-auto flex flex-col gap-10 mt-5">
         {username === "admin" ? (
           <span className="text-4xl">All Leave Applications</span>

@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <>
       {router.asPath.includes("/dashboard") && (
-        <div className="block w-[15%] h-[100vh] static">
+        <div className="block w-[15%] static">
           <div className="flex flex-col h-full bg-[#efefef]">
             <ul className="text-center flex flex-col gap-5 mt-5">
               <Link
@@ -81,6 +81,18 @@ const Sidebar = () => {
                   href={"/dashboard/postmanager"}
                 >
                   Post Manager
+                </Link>
+              )}
+              {username === "admin" && (
+                <Link
+                  className={`inline-block ${
+                    router.asPath === "/dashboard/projectmanager"
+                      ? `underline`
+                      : ``
+                  }`}
+                  href={"/dashboard/projectmanager"}
+                >
+                  Project Manager
                 </Link>
               )}
             </ul>

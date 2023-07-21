@@ -228,7 +228,7 @@ const filemanager = () => {
                   <option value="Chapters">Chapters</option>
                   <option value="Journals">Journals</option>
                   <option value="Patents">Patents</option>
-                  <option value="Favorites">Favorites</option>
+                  <option value="Books">Books</option>
                 </select>
               </div>
             )}

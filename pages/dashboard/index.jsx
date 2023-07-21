@@ -535,8 +535,8 @@ const Dashboard = () => {
   ///////////////////////////////////////////////////////////////////////////////////////
 
   return (
-    <section className="h-full w-[85%]">
-      <div className="w-[98%] h-[100vh] overflow-auto mx-auto flex flex-col gap-10 mt-5">
+    <section className="w-[85%]">
+      <div className="w-[90%] h-[90vh] overflow-auto mx-auto flex flex-col gap-10 pt-5">
         <span className="text-4xl font-semibold">Basic User Details</span>
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col gap-5">

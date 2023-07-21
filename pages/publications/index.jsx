@@ -127,6 +127,25 @@ const Publications = () => {
                 )
               </span>
             )}
+            {resources.filter(
+              (project) => project?.publicationType === "Books"
+            ).length !== 0 && (
+              <span
+                onClick={() => {
+                  setActiveNav(6);
+                }}
+                className={activeNav === 6 ? activeTabClass : tabClass}
+              >
+                Books(
+                {
+                  resources.filter(
+                    (project) => project?.publicationType === "Books"
+                  ).length
+                }
+                )
+              </span>
+            )}
+
           </nav>
           <div className="flex items-center w-[30%] h-[90%] bg-white my-auto">
             <FiSearch className="w-[8%]" />
@@ -219,7 +238,7 @@ const Publications = () => {
               {search(resources)?.map((data, i) => {
                 return (
                   <React.Fragment key={data + i}>
-                    {data?.projectType === "Chapters" && (
+                    {data?.publicationType === "Chapters" && (
                       <div
                         key={i}
                         className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
@@ -256,7 +275,7 @@ const Publications = () => {
               {search(resources)?.map((data, i) => {
                 return (
                   <React.Fragment key={data + i}>
-                    {data?.projectType === "Journals" && (
+                    {data?.publicationType === "Journals" && (
                       <div
                         key={i}
                         className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
@@ -287,13 +306,50 @@ const Publications = () => {
               <div className="flex justify-center item-center">Loading...</div>
             )}
           </div>
-        ) : activeNav === 4 ? (
+        ) : activeNav === 5 ? (
           <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
             <div className="flex flex-wrap justify-between">
               {search(resources)?.map((data, i) => {
                 return (
                   <React.Fragment key={data + i}>
-                    {data?.projectType === "Patents" && (
+                    {data?.publicationType === "Patents" && (
+                      <div
+                        key={i}
+                        className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <span className="text-lg font-semibold">
+                            {data?.docname}
+                          </span>
+                          <p className="text-gray-700">{data?.docDesc}</p>
+                        </div>
+                        <span className="text-xs">
+                          <i>- by {data?.docOwnerName}</i>
+                        </span>
+                        <a
+                          href={data?.docLink}
+                          target="_blank"
+                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                        >
+                          Open File
+                        </a>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            {isLoading && (
+              <div className="flex justify-center item-center">Loading...</div>
+            )}
+          </div>
+        ) : activeNav === 6 ? (
+          <div className="flex flex-col gap-10 h-[85vh] overflow-y-auto">
+            <div className="flex flex-wrap justify-between">
+              {search(resources)?.map((data, i) => {
+                return (
+                  <React.Fragment key={data + i}>
+                    {data?.publicationType === "Books" && (
                       <div
                         key={i}
                         className="card border-2 py-4 px-3 flex flex-col gap-5 rounded-xl w-full mb-5 mr-10"
