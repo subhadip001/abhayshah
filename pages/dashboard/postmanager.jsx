@@ -10,6 +10,7 @@ import { initializeApp } from "firebase/app";
 import "firebase/storage";
 import React, { useContext, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
+import SelectComp from "@/components/SelectComp";
 
 //
 
@@ -75,6 +76,24 @@ const postmanager = () => {
             title: docname,
             desc: docDesc,
             eventDate: data["ev-date"],
+          }
+        );
+        console.log(res.data);
+        setIsLoading(false);
+        setIsAdded(true);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    } else if (fileTab === 4) {
+      try {
+        const res = await axios.post(
+          "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postAdminOpp",
+          {
+            username: auth.username,
+            title: docname,
+            description: docDesc,
+            typeOfOpp: data["opportunityType"],
           }
         );
         console.log(res.data);
@@ -151,7 +170,7 @@ const postmanager = () => {
               setProgress(0);
               setIsAdded(false);
             }}
-            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+            className={`flex h-[7vh] w-[20%] justify-center items-center ${
               fileTab === 1 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
             } cursor-pointer`}
           >
@@ -164,7 +183,7 @@ const postmanager = () => {
               setProgress(0);
               setIsAdded(false);
             }}
-            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+            className={`flex h-[7vh] w-[20%] justify-center items-center ${
               fileTab === 2 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
             } cursor-pointer`}
           >
@@ -177,11 +196,24 @@ const postmanager = () => {
               setProgress(0);
               setIsAdded(false);
             }}
-            className={`flex h-[7vh] w-[30%] justify-center items-center ${
+            className={`flex h-[7vh] w-[20%] justify-center items-center ${
               fileTab === 3 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
             } cursor-pointer`}
           >
             Events
+          </div>
+          <div
+            onClick={() => {
+              setFileTab(4);
+              setDownloadURL("");
+              setProgress(0);
+              setIsAdded(false);
+            }}
+            className={`flex h-[7vh] w-[20%] justify-center items-center ${
+              fileTab === 4 ? `bg-[#3B82F6] text-white` : `bg-gray-200`
+            } cursor-pointer`}
+          >
+            Opportunities
           </div>
         </div>
         <form
@@ -195,7 +227,9 @@ const postmanager = () => {
                   ? "Question"
                   : fileTab === 2
                   ? "News Headline"
-                  : "Event Headline"}{" "}
+                  : fileTab === 3
+                  ? "Event Headline"
+                  : "Title"}
               </label>
               <input
                 type="text"
@@ -223,13 +257,27 @@ const postmanager = () => {
               </div>
             )}
 
+            {fileTab === 4 && (
+              <SelectComp
+                label={"Opportunity Type"}
+                name={"opportunityType"}
+                id={"opportunityType"}
+                optionTitle={"Select Opportunity Type"}
+                optionValues={[
+                  "LAB_BASED_PROJECTS",
+                  "BTECH_PROJECTS",
+                  "MTECH_PROJECTS",
+                ]}
+              />
+            )}
+
             <div className="flex flex-col gap-2">
               <label htmlFor="about">
                 {fileTab === 1
                   ? "Attach Solution"
                   : fileTab === 2
                   ? "News Description"
-                  : "Event Description"}{" "}
+                  : "Description"}
               </label>
               <textarea
                 type="text"
@@ -287,6 +335,7 @@ const postmanager = () => {
                 {fileTab === 1 && !isAdded && "Post to Problems"}
                 {fileTab === 2 && !isAdded && "Post to News"}
                 {fileTab === 3 && !isAdded && "Post to Events"}
+                {fileTab === 4 && !isAdded && "Post to Opportunities"}
                 {isAdded && "Posted"}
               </>
             )}

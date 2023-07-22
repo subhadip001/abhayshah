@@ -9,7 +9,7 @@ const OppsApps = () => {
   const [applications, setApplications] = useState([]);
 
   const buttonClass =
-    "flex justify-center ml-auto items-center w-[10vw] bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-3 rounded font-semibold mt-3";
+    "flex justify-center ml-auto items-center w-[10vw] bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-3 rounded font-semibold";
 
   const getAllApps = async () => {
     setIsLoading(true);
@@ -32,6 +32,22 @@ const OppsApps = () => {
   useEffect(() => {
     getAllApps();
   }, []);
+
+  const handleOppDelete = async (_id) => {
+    try {
+      const res = await axios.post(
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/deleteOppReq",
+        {
+          username,
+          _id,
+        }
+      );
+      console.log(res.data);
+      getAllApps();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="h-[85vh] w-[85%] overflow-y-auto">
@@ -63,7 +79,7 @@ const OppsApps = () => {
                           <span>Message : {app?.message}</span>
                         )}
                       </div>
-                      <div className="flex items-end">
+                      <div className="flex flex-col justify-between">
                         <a
                           className={buttonClass}
                           href={app?.cvLink}
@@ -71,6 +87,14 @@ const OppsApps = () => {
                         >
                           Open
                         </a>
+                        <button
+                          className="px-3 py-2 bg-red-400 hover:bg-red-600 text-white transition-all"
+                          onClick={() => {
+                            handleOppDelete(app?._id);
+                          }}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </section>
                   </React.Fragment>

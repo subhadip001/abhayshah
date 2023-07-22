@@ -127,9 +127,8 @@ const Publications = () => {
                 )
               </span>
             )}
-            {resources.filter(
-              (project) => project?.publicationType === "Books"
-            ).length !== 0 && (
+            {resources.filter((project) => project?.publicationType === "Books")
+              .length !== 0 && (
               <span
                 onClick={() => {
                   setActiveNav(6);
@@ -145,7 +144,6 @@ const Publications = () => {
                 )
               </span>
             )}
-
           </nav>
           <div className="flex items-center w-[30%] h-[90%] bg-white my-auto">
             <FiSearch className="w-[8%]" />

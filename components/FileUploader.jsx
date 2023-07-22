@@ -63,7 +63,7 @@ const FileUploader = ({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full">
       <label htmlFor={id}>{label}</label>
       <div className={className}>
         <input id={id} type="file" onChange={handleFileUpload} />

@@ -44,7 +44,7 @@ const projectmanager = () => {
     setTotalFund("Loading...");
     try {
       const res = await axios.post(
-        " http://localhost:8000/abhay/getTotalFundByProjectNo",
+        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getTotalFundByProjectNo",
         { projectNo }
       );
       console.log(res.data);
@@ -77,21 +77,25 @@ const projectmanager = () => {
     console.log(data);
 
     try {
-      const res = await axios.post(" http://localhost:8000/abhay/addProject", {
-        username: username,
-        projectNo: data["p-no"],
-        txnNo: data["txn-no"],
-        txnDate: data["txn-date"],
-        projectType: data["p-type"] || projectType,
-        totalFund: data["t-fund"] || totalFund,
-        txnAmount: data["t-amount"],
-        fundLeft: totalFund == 0 ? data["t-fund"] : fundLeft - data["t-amount"],
-        expCode: data["exp-code"],
-        billNo: data["b-no"],
-        billDetails: data["b-details"],
-        fileUrl: downloadURL,
-        remarks: data["remarks"],
-      });
+      const res = await axios.post(
+        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/addProject",
+        {
+          username: username,
+          projectNo: data["p-no"],
+          txnNo: data["txn-no"],
+          txnDate: data["txn-date"],
+          projectType: data["p-type"] || projectType,
+          totalFund: data["t-fund"] || totalFund,
+          txnAmount: data["t-amount"],
+          fundLeft:
+            totalFund == 0 ? data["t-fund"] : fundLeft - data["t-amount"],
+          expCode: data["exp-code"],
+          billNo: data["b-no"],
+          billDetails: data["b-details"],
+          fileUrl: downloadURL,
+          remarks: data["remarks"],
+        }
+      );
       console.log(res.data);
     } catch (error) {
       console.log(error);
