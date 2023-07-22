@@ -12,11 +12,9 @@ const projectmanager = () => {
   const [downloadURL, setDownloadURL] = useState("");
   const [projectList, setProjectList] = useState([]);
   const [totalFund, setTotalFund] = useState("");
-  const [projectType, setProjectType] = useState("");
   const [fundLeft, setFundLeft] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [inputFieldLoading, setInputFieldLoading] = useState(false);
-  const [projectListLoading, setProjectListLoading] = useState(false); // New state variable
+  const [projectListLoading, setProjectListLoading] = useState(false);
   const auth = useContext(AuthContext);
   const username = auth.username;
 
@@ -24,7 +22,7 @@ const projectmanager = () => {
     setProjectListLoading(true);
     try {
       const res = await axios.get(
-        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllProjectList"
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllProjectList"
       );
       console.log(res.data);
       setProjectList(res.data.reverse());
@@ -40,11 +38,10 @@ const projectmanager = () => {
   }, []);
 
   const getTotalFundByProjectNo = async (projectNo) => {
-    setProjectType("Loading...");
     setTotalFund("Loading...");
     try {
       const res = await axios.post(
-        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getTotalFundByProjectNo",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getTotalFundByProjectNo",
         { projectNo }
       );
       console.log(res.data);
@@ -53,19 +50,15 @@ const projectmanager = () => {
       let isOldProject = false;
       if (totalFundValue == 0) {
         setTotalFund(0);
-        setProjectType("");
         isOldProject = false;
       } else {
         setTotalFund(totalFundValue);
-        setProjectType(res.data.projectType);
         isOldProject = true;
       }
       setFundLeft(res.data.fundLeft);
-
       setIsDisabled(isOldProject);
     } catch (error) {
       console.log(error);
-      setProjectType("");
       setTotalFund("");
     }
   };
@@ -78,13 +71,13 @@ const projectmanager = () => {
 
     try {
       const res = await axios.post(
-        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/addProject",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/addProject",
         {
           username: username,
           projectNo: data["p-no"],
           txnNo: data["txn-no"],
           txnDate: data["txn-date"],
-          projectType: data["p-type"] || projectType,
+          projectType: data["p-type"],
           totalFund: data["t-fund"] || totalFund,
           txnAmount: data["t-amount"],
           fundLeft:
