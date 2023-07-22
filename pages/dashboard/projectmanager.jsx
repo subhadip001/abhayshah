@@ -13,6 +13,7 @@ const projectmanager = () => {
   const [projectList, setProjectList] = useState([]);
   const [totalFund, setTotalFund] = useState("");
   const [projectType, setProjectType] = useState("");
+  const [fundLeft, setFundLeft] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [inputFieldLoading, setInputFieldLoading] = useState(false);
   const [projectListLoading, setProjectListLoading] = useState(false); // New state variable
@@ -26,7 +27,7 @@ const projectmanager = () => {
         " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllProjectList"
       );
       console.log(res.data);
-      setProjectList(res.data);
+      setProjectList(res.data.reverse());
       setProjectListLoading(false);
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ const projectmanager = () => {
     setTotalFund("Loading...");
     try {
       const res = await axios.post(
-        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getTotalFundByProjectNo",
+        " http://localhost:8000/abhay/getTotalFundByProjectNo",
         { projectNo }
       );
       console.log(res.data);
@@ -59,6 +60,7 @@ const projectmanager = () => {
         setProjectType(res.data.projectType);
         isOldProject = true;
       }
+      setFundLeft(res.data.fundLeft);
 
       setIsDisabled(isOldProject);
     } catch (error) {
@@ -75,25 +77,21 @@ const projectmanager = () => {
     console.log(data);
 
     try {
-      const res = await axios.post(
-        " https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/addProject",
-        {
-          username: username,
-          projectNo: data["p-no"],
-          txnNo: data["txn-no"],
-          txnDate: data["txn-date"],
-          projectType: data["p-type"] || projectType,
-          totalFund: data["t-fund"] || totalFund,
-          txnAmount: data["t-amount"],
-          fundLeft:
-            totalFund == 0 ? data["t-fund"] : totalFund - data["t-amount"],
-          expCode: data["exp-code"],
-          billNo: data["b-no"],
-          billDetails: data["b-details"],
-          fileUrl: downloadURL,
-          remarks: data["remarks"],
-        }
-      );
+      const res = await axios.post(" http://localhost:8000/abhay/addProject", {
+        username: username,
+        projectNo: data["p-no"],
+        txnNo: data["txn-no"],
+        txnDate: data["txn-date"],
+        projectType: data["p-type"] || projectType,
+        totalFund: data["t-fund"] || totalFund,
+        txnAmount: data["t-amount"],
+        fundLeft: totalFund == 0 ? data["t-fund"] : fundLeft - data["t-amount"],
+        expCode: data["exp-code"],
+        billNo: data["b-no"],
+        billDetails: data["b-details"],
+        fileUrl: downloadURL,
+        remarks: data["remarks"],
+      });
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -133,15 +131,13 @@ const projectmanager = () => {
               required={true}
               placeholder="Enter Transaction Date"
             />
-            <SpecialInputComp
-              label="Project Type"
+            <InputComp
+              label="Transaction Type"
               type="text"
               name="p-type"
               id="p-type"
               required={true}
-              placeholder="Enter Project Type"
-              isDisabled={isDisabled}
-              projectType={projectType}
+              placeholder="Enter Transaction Type"
             />
           </div>
           <div className="grid grid-cols-2 gap-5">
@@ -308,6 +304,12 @@ const projectmanager = () => {
                 className="bg-secondary py-2 px-5 text-white"
               >
                 Add Project
+              </button>
+              <button
+                className="bg-secondary py-2 px-5 text-white"
+                onClick={getAllProjectsList}
+              >
+                Refresh
               </button>
               {projectList.length > 0 && (
                 <ExportToExcel projectList={projectList} />

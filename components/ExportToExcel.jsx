@@ -1,68 +1,75 @@
 import React from "react";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import * as ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 
 const ExportToExcel = ({ projectList }) => {
-  const createAnchorElement = (url) => {
-    return (
-      <a
-        href={url}
-        className="underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open
-      </a>
-    );
+  const handleExportToExcel = async () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Projects Data");
+
+    // Define the columns and headers
+    const columns = [
+      { header: "Project No", key: "projectNo", width: 15 },
+      { header: "Transaction No", key: "txnNo", width: 15 },
+      { header: "Transaction Date", key: "txnDate", width: 15 },
+      { header: "Project Type", key: "projectType", width: 15 },
+      { header: "Total Fund", key: "totalFund", width: 15 },
+      { header: "Transaction Amount", key: "txnAmount", width: 15 },
+      { header: "Expenditure Code", key: "expCode", width: 15 },
+      { header: "Bill No", key: "billNo", width: 15 },
+      { header: "Bill Details", key: "billDetails", width: 15 },
+      { header: "File URL", key: "fileUrl", width: 40 }, // Increase width for URLs
+      { header: "Remarks", key: "remarks", width: 15 },
+    ];
+
+    worksheet.columns = columns;
+
+    // Add data to the worksheet
+    projectList.forEach((project) => {
+      worksheet.addRow({
+        projectNo: project?.projectNo ?? "NA",
+        txnNo: project?.txnNo ?? "NA",
+        txnDate: project?.txnDate ?? "NA",
+        projectType: project?.projectType ?? "NA",
+        totalFund: project?.totalFund ?? "NA",
+        txnAmount: project?.txnAmount ?? "NA",
+        expCode: project?.expCode ?? "NA",
+        billNo: project?.billNo ?? "NA",
+        billDetails: project?.billDetails ?? "NA",
+        fileUrl: project?.fileUrl
+          ? {
+              text: "open",
+              hyperlink: project?.fileUrl,
+            }
+          : "NA",
+        remarks: project?.remarks ?? "NA",
+      });
+    });
+
+    // Save the workbook to a file
+
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      // Convert the buffer to a Blob
+      const blob = new Blob([buffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      // Generate a unique filename for the exported Excel file
+      const fileName = "project_expenditure_" + Date.now() + ".xlsx";
+
+      // Save the Blob as a file using FileSaver.js
+      saveAs(blob, fileName);
+    });
   };
+
   return (
     <div>
-      <table id="projectTable" style={{ display: "none" }}>
-        <thead>
-          <tr>
-            <th>Project No</th>
-            <th>Transaction No</th>
-            <th>Transaction Date</th>
-            <th>Project Type</th>
-            <th>Total Fund</th>
-            <th>Transaction Amount</th>
-            <th>Expenditure Code</th>
-            <th>Bill No</th>
-            <th>Bill Details</th>
-            <th>File URL</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {projectList.map((project, index) => (
-            <tr key={index}>
-              <td>{project?.projectNo ?? "NA"}</td>
-              <td>{project?.txnDate ?? "NA"}</td>
-              <td>{project?.txnNo ?? "NA"}</td>
-              <td>{project?.projectType ?? "NA"}</td>
-              <td>{project?.totalFund ?? "NA"}</td>
-              <td>{project?.txnAmount ?? "NA"}</td>
-              <td>{project?.expCode ?? "NA"}</td>
-              <td>{project?.billNo ?? "NA"}</td>
-              <td>{project?.billDetails ?? "NA"}</td>
-              <td>
-                {project?.fileUrl
-                  ? createAnchorElement(project?.fileUrl)
-                  : "NA"}
-              </td>
-              <td>{project?.remarks ?? "NA"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <ReactHTMLTableToExcel
-        id="exportButton"
+      <button
         className="bg-secondary py-2 px-5 text-white"
-        table="projectTable"
-        filename="project_expenditure"
-        sheet="sheet1"
-        buttonText="Export to Excel"
-      />
+        onClick={handleExportToExcel}
+      >
+        Export to Excel
+      </button>
     </div>
   );
 };
