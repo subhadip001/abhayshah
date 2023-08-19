@@ -90,6 +90,8 @@ const projectmanager = () => {
         }
       );
       console.log(res.data);
+      setShowNewProjectForm(false);
+      getAllProjectsList();
     } catch (error) {
       console.log(error);
     }
@@ -233,13 +235,13 @@ const projectmanager = () => {
 
   const projectListTable = () => {
     return (
-      <section className="w-[100%] overflow-x-auto">
+      <section className="w-[100%] overflow-x-auto h-[65vh]">
         <table className="w-full">
           <thead className="bg-gray-300">
             <tr className="">
               <th className="px-2 py-1 h-[5vh]">Project No</th>
-              <th className="px-2 py-1 h-[5vh]">Transaction No</th>
               <th className="px-2 py-1 h-[5vh]">Transaction Date</th>
+              <th className="px-2 py-1 h-[5vh]">Transaction No</th>
               <th className="px-2 py-1 h-[5vh]">Project Type</th>
               <th className="px-2 py-1 h-[5vh]">Total Fund</th>
               <th className="px-2 py-1 h-[5vh]">Transaction Amount</th>
