@@ -454,9 +454,9 @@ const Username = () => {
           <div className="flex flex-col h-[50vh] w-full relative">
             <div className="cover flex h-[calc(10vw+5rem)] w-full">
               <img
-                src="https://w0.peakpx.com/wallpaper/272/935/HD-wallpaper-waves-blue-gradient-modern-abstraction-abstract.jpg"
-                className="h-full w-full"
-                alt=""
+                src="https://www.iitr.ac.in/assets/56f4da26ed956730309fa1488611ee0f13b0ac95ebb1bc9b5d210e31ff70e79c_iitr175.jpg"
+                className="h-full w-full object-cover"
+                alt="back_img"
                 draggable="false"
               />
             </div>

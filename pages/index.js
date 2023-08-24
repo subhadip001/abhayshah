@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 import Image from "next/image";
 import HeroImage from "./../public/hero-image.jpg";
+import axiosClient from "@/utils/axiosClient";
 
 export default function Home() {
   const auth = useContext(AuthContext);
@@ -19,6 +20,9 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [name, setName] = useState("");
   const [institution, setInstitution] = useState("");
+  const [noOfStudents , setNoOfStudents] = useState(0);
+  const [noOfResearchProjects , setNoOfResearchProjects] = useState(0);
+  const [noOfPublications , setNoOfPublications] = useState(0);
 
   const getProblems = async () => {
     setIsLoading(true);
@@ -53,8 +57,8 @@ export default function Home() {
   const getEvents = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(
-        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/getAllEvents"
+      const res = await axiosClient.get(
+        "/getAllEvents"
       );
       console.log(res.data);
       setEvents(res.data);
@@ -65,10 +69,80 @@ export default function Home() {
     }
   };
 
+  const submitAnswer = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.post(
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/submitAnswer",
+        {
+          username: username,
+          name: name,
+          institution: institution,
+          answer: inputValue,
+        }
+      );
+      console.log(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  const getNoOfStudents = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axiosClient.get(
+        "/getNoOfStudents"
+      );
+      console.log(res.data);
+      setNoOfStudents(res.data.noOfStudents);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  const getNoOfResearchProjects = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axiosClient.get(
+        "/getNoOfProjects"
+      );
+      console.log(res.data);
+      setIsLoading(false);
+      setNoOfResearchProjects(res.data.noOfProjects);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  const getNoOfPublications = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axiosClient.get(
+        "/getNoOfPublications"
+      );
+      console.log(res.data);
+      setIsLoading(false);
+      setNoOfPublications(res.data.noOfPublications);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+
+
   useEffect(() => {
     getProblems();
     getNews();
     getEvents();
+    getNoOfStudents()
+    getNoOfResearchProjects()
+    getNoOfPublications()
   }, []);
 
   const handleSubmit = (e) => {
@@ -197,11 +271,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
-        <div className="py-20 flex flex-col gap-20 back-image">
+        <div className="py-20 relative mb-60 flex flex-col gap-20 back-image">
           <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">
-            WELCOME!
+          Welcome to 6G-Vigyan Lab, IIT Roorkee!
           </h1>
-          <div className="flex bg-[#d2d2d22c] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
+          <div className="flex translate-y-80 bg-[#d2d2d28a] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
             <div className="">
               <Image src={HeroImage} alt="Hero Image" className="h-full" />
             </div>
@@ -223,6 +297,11 @@ export default function Home() {
                 Applications of AI and Deep Learning{" "}
               </p>
             </div>
+          </div>
+          <div className="flex items-center justify-center gap-10 translate-y-80 w-[80%] mx-auto">
+            <span className="py-3 px-5 border-2">No. Of Students - {noOfStudents}</span>
+            <span className="py-3 px-5 border-2">No. Of Research Projects - {noOfResearchProjects}</span>
+            <span className="py-3 px-5 border-2">No. Of Publications - {noOfPublications}</span>
           </div>
         </div>
 
