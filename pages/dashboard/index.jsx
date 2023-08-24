@@ -18,6 +18,7 @@ const Dashboard = () => {
   const auth = useContext(AuthContext);
   const [fullname, setFullname] = useState("");
   const [about, setAbout] = useState("");
+  const [userType, setUserType] = useState("");
   const [interest, setInterest] = useState("");
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -45,6 +46,7 @@ const Dashboard = () => {
       const data = res.data;
       setFullname(data.fullname);
       setAbout(data.about);
+      setUserType(data.typeOfUser);
       setInterest(data.areaOfInterest);
       setData(data);
       console.log(data);
@@ -68,6 +70,7 @@ const Dashboard = () => {
           data: {
             fullname: data.fullname,
             about: data.about,
+            typeOfUser: data.userType,
             areaOfInterest: data.areaOfInterest,
             profession: data.profession,
             honors: data.honors,
@@ -541,7 +544,7 @@ const Dashboard = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label htmlFor="username">Enrollment No : </label>
+              <label htmlFor="username">Username : </label>
               <input
                 type="text"
                 name="username"
@@ -586,6 +589,26 @@ const Dashboard = () => {
                 <option value="B.Tech">B.Tech</option>
                 <option value="M.Tech">M.Tech</option>
                 <option value="Ph.D">Ph.D</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="userType">Edit User Type : </label>
+              <select
+                onChange={(e) => {
+                  setUserType(e.target.value);
+                  setData({ ...data, userType: e.target.value });
+                }}
+                defaultValue={userType}
+                name="userType"
+                id="userType"
+                className="border outline-none capitalize  px-3 py-2"
+              >
+                <option value="" disabled>
+                  {userType}
+                </option>
+                <option value="student">Student</option>
+                <option value="alumni">Alumni</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div className="flex flex-col gap-2">

@@ -9,6 +9,7 @@ function SignupForm() {
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -39,6 +40,7 @@ function SignupForm() {
           username: username,
           fullname: fullname,
           email: email,
+          userType: userType,
           password: password,
         }
       );
@@ -102,6 +104,24 @@ function SignupForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
               />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="userType">User Type</label>
+              <select
+                id="userType"
+                placeholder="Select User Type"
+                value={userType}
+                required
+                onChange={(e) => setUserType(e.target.value)}
+                className="inline-block outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
+              >
+                <option value="" disabled selected>
+                  Select User Type
+                </option>
+                <option value="student">Student</option>
+                <option value="alumni">Alumni</option>
+                <option value="other">Other</option>
+              </select>
             </div>
             <div className="flex flex-col">
               <label htmlFor="password">Password</label>

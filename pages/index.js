@@ -20,9 +20,9 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [name, setName] = useState("");
   const [institution, setInstitution] = useState("");
-  const [noOfStudents , setNoOfStudents] = useState(0);
-  const [noOfResearchProjects , setNoOfResearchProjects] = useState(0);
-  const [noOfPublications , setNoOfPublications] = useState(0);
+  const [noOfStudents, setNoOfStudents] = useState(0);
+  const [noOfResearchProjects, setNoOfResearchProjects] = useState(0);
+  const [noOfPublications, setNoOfPublications] = useState(0);
 
   const getProblems = async () => {
     setIsLoading(true);
@@ -57,9 +57,7 @@ export default function Home() {
   const getEvents = async () => {
     setIsLoading(true);
     try {
-      const res = await axiosClient.get(
-        "/getAllEvents"
-      );
+      const res = await axiosClient.get("/getAllEvents");
       console.log(res.data);
       setEvents(res.data);
       setIsLoading(false);
@@ -92,9 +90,7 @@ export default function Home() {
   const getNoOfStudents = async () => {
     setIsLoading(true);
     try {
-      const res = await axiosClient.get(
-        "/getNoOfStudents"
-      );
+      const res = await axiosClient.get("/getNoOfStudents");
       console.log(res.data);
       setNoOfStudents(res.data.noOfStudents);
       setIsLoading(false);
@@ -107,9 +103,7 @@ export default function Home() {
   const getNoOfResearchProjects = async () => {
     setIsLoading(true);
     try {
-      const res = await axiosClient.get(
-        "/getNoOfProjects"
-      );
+      const res = await axiosClient.get("/getNoOfProjects");
       console.log(res.data);
       setIsLoading(false);
       setNoOfResearchProjects(res.data.noOfProjects);
@@ -122,9 +116,7 @@ export default function Home() {
   const getNoOfPublications = async () => {
     setIsLoading(true);
     try {
-      const res = await axiosClient.get(
-        "/getNoOfPublications"
-      );
+      const res = await axiosClient.get("/getNoOfPublications");
       console.log(res.data);
       setIsLoading(false);
       setNoOfPublications(res.data.noOfPublications);
@@ -134,15 +126,13 @@ export default function Home() {
     }
   };
 
-
-
   useEffect(() => {
     getProblems();
     getNews();
     getEvents();
-    getNoOfStudents()
-    getNoOfResearchProjects()
-    getNoOfPublications()
+    getNoOfStudents();
+    getNoOfResearchProjects();
+    getNoOfPublications();
   }, []);
 
   const handleSubmit = (e) => {
@@ -273,7 +263,7 @@ export default function Home() {
       <main className="">
         <div className="py-20 relative mb-60 flex flex-col gap-20 back-image">
           <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">
-          Welcome to 6G-Vigyan Lab, IIT Roorkee!
+            Welcome to 6G-Vigyan Lab, IIT Roorkee!
           </h1>
           <div className="flex translate-y-80 bg-[#d2d2d28a] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
             <div className="">
@@ -299,9 +289,15 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center justify-center gap-10 translate-y-80 w-[80%] mx-auto">
-            <span className="py-3 px-5 border-2">No. Of Students - {noOfStudents}</span>
-            <span className="py-3 px-5 border-2">No. Of Research Projects - {noOfResearchProjects}</span>
-            <span className="py-3 px-5 border-2">No. Of Publications - {noOfPublications}</span>
+            <span className="py-3 px-5 border-2">
+              No. Of Students - {noOfStudents}
+            </span>
+            <span className="py-3 px-5 border-2">
+              No. Of Research Projects - {noOfResearchProjects}
+            </span>
+            <span className="py-3 px-5 border-2">
+              No. Of Publications - {noOfPublications}
+            </span>
           </div>
         </div>
 
@@ -354,15 +350,23 @@ export default function Home() {
             <h1 className="text-[#191919] text-3xl font-bold">QUESTION</h1>
             <div className="w-16 h-1 bg-blue-500 text pt-1">&nbsp;</div>
           </div>
-          <div className="my-10 mx-20">
-            <h2 className="text-2xl font-bold pb-5 text-[#191919]">
-              {problems[1]?.question}
-            </h2>
-            <input className="w-full bg-gray-200 border-blue-600 h-10 border active:border-green-600 px-2 "></input>
-            <button className="h-10 bg-blue-500 px-20 my-10 hover:bg-blue-600 transition-all">
-              Submit
-            </button>
-          </div>
+          {problems?.length > 0 ? (
+            <div className="my-10 mx-20">
+              <h2 className="text-2xl font-bold pb-5 text-[#191919]">
+                {problems[problems.length - 1]?.question}
+              </h2>
+              <input className="w-full bg-gray-200 border-blue-600 h-10 border active:border-green-600 px-2 "></input>
+              <button className="h-10 bg-blue-500 px-20 my-10 hover:bg-blue-600 transition-all">
+                Submit
+              </button>
+            </div>
+          ) : (
+            <div className="my-10 mx-20">
+              <h2 className="text-2xl font-bold pb-5 text-[#191919]">
+                No question available
+              </h2>
+            </div>
+          )}
         </div>
         {showPopup && (
           <Popup
