@@ -8,6 +8,13 @@ const axiosClient = axios.create({
     },
 });
 
+const axiosClientDev = axios.create({
+    baseURL: "http://localhost:8000/abhay",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
 
 
 export default axiosClient;
+export { axiosClientDev };

@@ -95,6 +95,18 @@ const Sidebar = () => {
                   Project Manager
                 </Link>
               )}
+              {username === "admin" && (
+                <Link
+                  className={`inline-block ${
+                    router.asPath === "/dashboard/allusermanager"
+                      ? `underline`
+                      : ``
+                  }`}
+                  href={"/dashboard/allusermanager"}
+                >
+                  All User Manager
+                </Link>
+              )}
             </ul>
           </div>
         </div>
