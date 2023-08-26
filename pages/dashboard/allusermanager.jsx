@@ -47,7 +47,7 @@ const AllUserManager = () => {
             <div className="flex flex-col gap-5">
               {users?.map((user) => (
                 <div className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 border-2 px-5 py-3">
                     <span className="text-2xl font-semibold">{user.fullname} ({user.username})</span>
                     <span className="text-lg">{user.password}</span>
                   </div>

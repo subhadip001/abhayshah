@@ -265,7 +265,7 @@ export default function Home() {
           <h1 className="mx-auto w-[80%] text-4xl font-thin mt-1 text-center">
             Welcome to 6G-Vigyan Lab, IIT Roorkee!
           </h1>
-          <div className="flex translate-y-80 bg-[#d2d2d28a] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
+          <div className="flex translate-y-80 bg-[#dedddde6] backdrop-blur-xs px-10 py-5 border-2 border-[#dcdcdc9c] mx-auto w-[80%] flex-row sm:flex-col items-center justify-between">
             <div className="">
               <Image src={HeroImage} alt="Hero Image" className="h-full" />
             </div>
@@ -289,14 +289,14 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center justify-center gap-10 translate-y-80 w-[80%] mx-auto">
-            <span className="py-3 px-5 border-2">
-              No. Of Students - {noOfStudents}
+            <span className="py-3 px-5 border-2 bg-brand text-white">
+              Students - {noOfStudents}
             </span>
-            <span className="py-3 px-5 border-2">
-              No. Of Research Projects - {noOfResearchProjects}
+            <span className="py-3 px-5 border-2 bg-brand text-white">
+              Research Projects - {noOfResearchProjects}
             </span>
-            <span className="py-3 px-5 border-2">
-              No. Of Publications - {noOfPublications}
+            <span className="py-3 px-5 border-2 bg-brand text-white">
+              Publications - {noOfPublications}
             </span>
           </div>
         </div>

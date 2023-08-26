@@ -21,6 +21,7 @@ import ShortTerm from "../../components/ShortTerm";
 import Special from "../../components/Special";
 import Seminars from "../../components/Seminars";
 import Journal from "../../components/Journal";
+import axiosClient, { axiosClientDev } from "@/utils/axiosClient";
 
 const Username = () => {
   const router = useRouter();
@@ -75,8 +76,8 @@ const Username = () => {
   const getUsernames = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(
-        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/userfullnames"
+      const res = await axiosClient.get(
+        "/userfullnames"
       );
       const users = res.data;
       setUsernames(res.data);
@@ -325,8 +326,9 @@ const Username = () => {
                           }`}
                           href={`/team/${data?.username}`}
                         >
-                          <li className="h-[90%] flex justify-center items-center">
+                          <li className="h-[90%] w-full flex justify-between items-center">
                             <span> {data?.fullname}</span>
+                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
                           </li>
                         </Link>
                       )}
@@ -361,8 +363,9 @@ const Username = () => {
                           }`}
                           href={`/team/${data?.username}`}
                         >
-                          <li className="h-[90%] flex justify-center items-center ">
+                          <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
+                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
                           </li>
                         </Link>
                       )}
@@ -400,8 +403,9 @@ const Username = () => {
                           }`}
                           href={`/team/${data?.username}`}
                         >
-                          <li className="h-[90%] flex justify-center items-center ">
+                          <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
+                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
                           </li>
                         </Link>
                       )}
@@ -439,8 +443,9 @@ const Username = () => {
                           }`}
                           href={`/team/${data?.username}`}
                         >
-                          <li className="h-[90%] flex justify-center items-center ">
+                          <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
+                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
                           </li>
                         </Link>
                       )}
