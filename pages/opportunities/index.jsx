@@ -16,6 +16,9 @@ const Opportunities = () => {
   const handleSendMail = async (
     nameOfStudent,
     branch,
+    institute,
+    email,
+    contact,
     programme,
     yog,
     message
@@ -28,6 +31,9 @@ const Opportunities = () => {
           recipientEmail: "mnhacker2001@gmail.com",
           nameOfStudent,
           branch,
+          institute,
+          email,
+          contact,
           programme,
           yog,
           message,
@@ -64,10 +70,14 @@ const Opportunities = () => {
     setSpinner(true);
     try {
       const res = await axios.post(
-        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postOppRequest",
+        // "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postOppRequest",
+        "http://localhost:8000/abhay/postOppRequest",
         {
           nameOfStudent: data["name"],
           branch: data["branch"],
+          institute:data["institute"],
+          email:["email"],
+          contact:["contact"],
           programme: data["programme"],
           yog: data["yog"],
           cvLink: downloadURL,
@@ -81,6 +91,9 @@ const Opportunities = () => {
         data["name"],
         data["branch"],
         data["programme"],
+        data["institute"],
+        data["email"],
+        data["contact"],
         data["yog"],
         data["message"]
       );
@@ -101,6 +114,10 @@ const Opportunities = () => {
         className="w-[80%] mx-auto border-2"
       >
         <div className="flex flex-col justify-center gap-5 w-[90%] mx-auto my-10">
+          <span className="text-2xl font-semibold mb-5 ">
+            Submit your details here. In case of any releveant opportunity, you
+            will be contacted.
+          </span>
           <div className="grid grid-cols-2 gap-5">
             <div className="flex flex-col gap-1">
               <label htmlFor="username">Name</label>
@@ -124,6 +141,42 @@ const Opportunities = () => {
               />
             </div>
           </div>
+
+          <div className="grid grid-cols-3 gap-5">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="institute">Institute</label>
+              <input
+                type="text"
+                id="institute"
+                name="institute"
+                placeholder="Type your Institute name"
+                className="inline-block w-full outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Type your email"
+                required
+                className="inline-block w-full outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="contact">Contact Number</label>
+              <input
+                type="tel"
+                id="contact"
+                name="contact"
+                placeholder="Type your contact number"
+                className="inline-block w-full outline-none leading-6 py-1 px-2 border border-gray-500 mt-1"
+              />
+            </div>
+          </div>
+
+
           <div className="grid grid-cols-3 gap-5">
             <div className="flex flex-col gap-1">
               <label htmlFor="fullname">Programme</label>
@@ -180,6 +233,7 @@ const Opportunities = () => {
           </button>
         </div>
       </form>
+      <div className="bg-brand text-2xl font-semibold p-5 w-[100%] pl-[10%] mt-5 text-white">List of Open Positions and Opportunity</div>
       <section className="flex flex-col gap-5 w-[80%] mx-auto my-10">
         <nav className="flex gap-5 uppercase">
           <span

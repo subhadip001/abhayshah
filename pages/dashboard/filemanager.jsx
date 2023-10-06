@@ -351,7 +351,6 @@ const filemanager = () => {
                   type="file"
                   onChange={handleFileUpload}
                   id="doc"
-                  required
                   placeholder="Document"
                   className="border outline-none  px-3 py-2"
                 />
@@ -369,6 +368,7 @@ const filemanager = () => {
               {downloadURL && <p>File uploaded successfully!</p>}
             </div>
           </div>
+          {fileTab === 2 ?<button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">Add to Publications</button> : <div></div>}
           {downloadURL && (
             <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">
               {isLoading ? (
@@ -383,6 +383,8 @@ const filemanager = () => {
               )}
             </button>
           )}
+          
+
         </form>
       </div>
     </section>

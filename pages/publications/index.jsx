@@ -178,13 +178,17 @@ const Publications = () => {
                     <span className="text-xs">
                       <i>- by {data?.docOwnerName}</i>
                     </span>
-                    <a
-                      href={data?.docLink}
-                      target="_blank"
-                      className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                    >
-                      Open File
-                    </a>
+                    {data.docLink === "" ? (
+                      <div></div>
+                    ) : (
+                      <a
+                        href={data?.docLink}
+                        target="_blank"
+                        className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                      >
+                        Open File
+                      </a>
+                    )}
                   </div>
                 );
               })}
@@ -213,13 +217,17 @@ const Publications = () => {
                         <span className="text-xs">
                           <i>- by {data?.docOwnerName}</i>
                         </span>
-                        <a
-                          href={data?.docLink}
-                          target="_blank"
-                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                        >
-                          Open File
-                        </a>
+                        {data.docLink === "" ? (
+                          <div></div>
+                        ) : (
+                          <a
+                            href={data?.docLink}
+                            target="_blank"
+                            className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                          >
+                            Open File
+                          </a>
+                        )}
                       </div>
                     )}
                   </React.Fragment>
@@ -250,13 +258,17 @@ const Publications = () => {
                         <span className="text-xs">
                           <i>- by {data?.docOwnerName}</i>
                         </span>
-                        <a
-                          href={data?.docLink}
-                          target="_blank"
-                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                        >
-                          Open File
-                        </a>
+                        {data.docLink === "" ? (
+                          <div></div>
+                        ) : (
+                          <a
+                            href={data?.docLink}
+                            target="_blank"
+                            className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                          >
+                            Open File
+                          </a>
+                        )}
                       </div>
                     )}
                   </React.Fragment>
@@ -287,13 +299,17 @@ const Publications = () => {
                         <span className="text-xs">
                           <i>- by {data?.docOwnerName}</i>
                         </span>
-                        <a
-                          href={data?.docLink}
-                          target="_blank"
-                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                        >
-                          Open File
-                        </a>
+                        {data.docLink === "" ? (
+                          <div></div>
+                        ) : (
+                          <a
+                            href={data?.docLink}
+                            target="_blank"
+                            className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                          >
+                            Open File
+                          </a>
+                        )}
                       </div>
                     )}
                   </React.Fragment>
@@ -324,13 +340,17 @@ const Publications = () => {
                         <span className="text-xs">
                           <i>- by {data?.docOwnerName}</i>
                         </span>
-                        <a
-                          href={data?.docLink}
-                          target="_blank"
-                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                        >
-                          Open File
-                        </a>
+                        {data.docLink === "" ? (
+                          <div></div>
+                        ) : (
+                          <a
+                            href={data?.docLink}
+                            target="_blank"
+                            className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                          >
+                            Open File
+                          </a>
+                        )}
                       </div>
                     )}
                   </React.Fragment>
@@ -361,13 +381,15 @@ const Publications = () => {
                         <span className="text-xs">
                           <i>- by {data?.docOwnerName}</i>
                         </span>
-                        <a
-                          href={data?.docLink}
-                          target="_blank"
-                          className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
-                        >
-                          Open File
-                        </a>
+                        {data.docLink && (
+                          <a
+                            href={data?.docLink}
+                            target="_blank"
+                            className="text-center w-[10%] ml-auto bg-[#0E66C91A] text-[#0E66C9] hover:bg-[#0e65c957] transition-all py-2 px-4 rounded font-semibold mt-auto"
+                          >
+                            Open File
+                          </a>
+                        )}
                       </div>
                     )}
                   </React.Fragment>

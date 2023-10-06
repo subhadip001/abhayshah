@@ -608,6 +608,8 @@ const Dashboard = () => {
                 </option>
                 <option value="student">Student</option>
                 <option value="alumni">Alumni</option>
+                <option value="intern">Intern(Undergrad,Postgrad)</option>
+                <option value="staff">Staff(Research,Lab)</option>
                 <option value="other">Other</option>
               </select>
             </div>

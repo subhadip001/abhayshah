@@ -267,6 +267,10 @@ const postmanager = () => {
                   "LAB_BASED_PROJECTS",
                   "BTECH_PROJECTS",
                   "MTECH_PROJECTS",
+                  "For IITR Students",
+                  "For External Students(Outside IITR)",
+                  "Internships",
+                  "Open Positions",
                 ]}
               />
             )}
