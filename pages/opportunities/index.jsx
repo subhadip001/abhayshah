@@ -70,8 +70,8 @@ const Opportunities = () => {
     setSpinner(true);
     try {
       const res = await axios.post(
-        // "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postOppRequest",
-        "http://localhost:8000/abhay/postOppRequest",
+        "https://b60upcmqnc.execute-api.ap-south-1.amazonaws.com/prod/abhay/postOppRequest",
+        // "http://localhost:8000/abhay/postOppRequest",
         {
           nameOfStudent: data["name"],
           branch: data["branch"],
