@@ -31,6 +31,7 @@ const Username = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingRight, setIsLoadingRight] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
+  const [showOptionsAlumni, setShowOptionsAlumni] = useState(false);
   const [photo, setPhoto] = useState("");
   const [profession, setProfession] = useState("");
   const [name, setName] = useState("");
@@ -76,9 +77,7 @@ const Username = () => {
   const getUsernames = async () => {
     setIsLoading(true);
     try {
-      const res = await axiosClient.get(
-        "/userfullnames"
-      );
+      const res = await axiosClient.get("/userfullnames");
       const users = res.data;
       setUsernames(res.data);
       console.log(users);
@@ -115,6 +114,7 @@ const Username = () => {
   const handleOutsideClick = (event) => {
     if (optionsRef.current && !optionsRef.current.contains(event.target)) {
       setShowOptions(false);
+      setShowOptionsAlumni(false);
     }
   };
 
@@ -328,7 +328,9 @@ const Username = () => {
                         >
                           <li className="h-[90%] w-full flex justify-between items-center">
                             <span> {data?.fullname}</span>
-                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
+                            <small className="text-gray-800 capitalize">
+                              {data?.typeOfUser}
+                            </small>
                           </li>
                         </Link>
                       )}
@@ -365,7 +367,9 @@ const Username = () => {
                         >
                           <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
-                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
+                            <small className="text-gray-800 capitalize">
+                              {data?.typeOfUser}
+                            </small>
                           </li>
                         </Link>
                       )}
@@ -405,7 +409,9 @@ const Username = () => {
                         >
                           <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
-                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
+                            <small className="text-gray-800 capitalize">
+                              {data?.typeOfUser}
+                            </small>
                           </li>
                         </Link>
                       )}
@@ -421,6 +427,24 @@ const Username = () => {
               <span className="text-[#000] font-semibold px-5 py-2 text-xl">
                 B.Tech
               </span>
+              <div className=" h-[90] w-full flex justify-between items-center">
+                <div>
+                  <button
+                    onClick={() => {
+                      setShowOptionsAlumni(!showOptionsAlumni);
+                    }}
+                    className="capitalize text-xl flex w-full h-[90%] justify-between items-center px-5 py-2 gap-36"
+                  >
+                    Alumni
+                    {showOptionsAlumni ? (
+                      <SlArrowUp className="mt-[0.3rem]" />
+                    ) : (
+                      <SlArrowDown className="mt-[0.3rem]" />
+                    )}
+                  </button>
+                </div>
+                <span></span>
+              </div>
               {isLoading && (
                 <div className="flex flex-col gap-2">
                   <span className="px-5 h-10 block bg-[#eaeaea] animate-pulse"></span>
@@ -428,6 +452,7 @@ const Username = () => {
                 </div>
               )}
               {!isLoading &&
+                showOptionsAlumni &&
                 usernames?.map((data, i) => {
                   return (
                     <React.Fragment key={data + i}>
@@ -445,7 +470,9 @@ const Username = () => {
                         >
                           <li className="h-[90%] w-full flex justify-between items-center ">
                             <span> {data?.fullname}</span>
-                            <small className="text-gray-800 capitalize">{data?.typeOfUser}</small>
+                            <small className="text-gray-800 capitalize">
+                              {data?.typeOfUser}
+                            </small>
                           </li>
                         </Link>
                       )}
