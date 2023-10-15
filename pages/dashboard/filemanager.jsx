@@ -11,8 +11,6 @@ import "firebase/storage";
 import React, { useContext, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 
-//
-
 const filemanager = () => {
   const auth = useContext(AuthContext);
   const [docname, setDocname] = useState("");
@@ -23,7 +21,6 @@ const filemanager = () => {
   const [downloadURL, setDownloadURL] = useState(null);
   const [fileTab, setFileTab] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -368,7 +365,13 @@ const filemanager = () => {
               {downloadURL && <p>File uploaded successfully!</p>}
             </div>
           </div>
-          {fileTab === 2 ?<button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">Add to Publications</button> : <div></div>}
+          {fileTab === 2 ? (
+            <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">
+              Add to Publications
+            </button>
+          ) : (
+            <div></div>
+          )}
           {downloadURL && (
             <button className="bg-[#3B82F6] py-3 text-white w-[30%] flex justify-center items-center  mb-10">
               {isLoading ? (
@@ -383,8 +386,6 @@ const filemanager = () => {
               )}
             </button>
           )}
-          
-
         </form>
       </div>
     </section>
